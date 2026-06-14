@@ -10,7 +10,6 @@ import {
   RefreshCw, 
   Trophy, 
   User, 
-  Calendar, 
   ShieldCheck, 
   Download, 
   Users, 
@@ -19,9 +18,7 @@ import {
   Sparkles, 
   TrendingUp, 
   Building2, 
-  BookOpen,
-  Check,
-  ChevronRight 
+  Check
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import quizData from "@/data/quizzes.json";
@@ -36,6 +33,8 @@ interface Question {
   difficulty: "debutant" | "expert" | "champion";
   category: "biographie" | "parti" | "programme" | "institutions";
 }
+
+type CategoryId = "all" | "biographie" | "parti" | "programme" | "institutions";
 
 interface LeaderboardUser {
   rank: number;
@@ -99,7 +98,7 @@ const CATEGORIES = [
 export default function QuizGame() {
   const [userName, setUserName] = useState("");
   const [difficulty, setDifficulty] = useState<"debutant" | "expert" | "champion">("debutant");
-  const [selectedCategory, setSelectedCategory] = useState<"all" | "biographie" | "parti" | "programme" | "institutions">("all");
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId>("all");
   const [gameState, setGameState] = useState<"start" | "quiz" | "result">("start");
   
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -125,12 +124,12 @@ export default function QuizGame() {
       if (error) {
         console.error("Error fetching leaderboard:", error);
       } else if (data && data.length > 0) {
-        const mapped: LeaderboardUser[] = data.map((item: any, idx: number) => ({
+        const mapped: LeaderboardUser[] = (data as Record<string, unknown>[]).map((item, idx) => ({
           rank: idx + 1,
-          name: item.name,
-          score: item.score,
-          badge: item.badge,
-          time: item.time,
+          name: item.name as string,
+          score: item.score as number,
+          badge: item.badge as string,
+          time: item.time as string,
         }));
         setLeaderboard(mapped);
       }
@@ -148,14 +147,14 @@ export default function QuizGame() {
         const { data, error } = await supabase.from("quizzes").select("*");
         if (error) throw error;
         if (data && data.length > 0) {
-          const mapped = data.map((q: any) => ({
+          const mapped = (data as Record<string, unknown>[]).map((q) => ({
             id: Number(q.id) || Math.floor(Math.random() * 100000),
-            question: q.question,
-            options: q.options,
-            answer: q.correct_answer,
-            explanation: q.explanation,
-            difficulty: q.difficulty || "debutant",
-            category: q.category
+            question: q.question as string,
+            options: q.options as string[],
+            answer: q.correct_answer as number,
+            explanation: q.explanation as string,
+            difficulty: (q.difficulty as Question["difficulty"]) || "debutant",
+            category: q.category as Question["category"]
           }));
           setAllQuizzes(mapped);
         }
@@ -379,7 +378,7 @@ export default function QuizGame() {
                 Le Grand Quiz Ousmane Sonko
               </h2>
               <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
-                Testez vos connaissances sur l'histoire politique, la biographie, la vision économique et le programme Sénégal 2050 du leader national.
+                Testez vos connaissances sur l&apos;histoire politique, la biographie, la vision économique et le programme Sénégal 2050 du leader national.
               </p>
             </div>
 
@@ -438,7 +437,7 @@ export default function QuizGame() {
                     return (
                       <button
                         key={cat.id}
-                        onClick={() => setSelectedCategory(cat.id as any)}
+                        onClick={() => setSelectedCategory(cat.id as CategoryId)}
                         className={`p-3.5 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer hover:scale-[1.02] relative group min-h-[110px] ${
                           isActive 
                             ? "bg-brand-green/40 border-brand-gold shadow-lg" 
@@ -510,10 +509,9 @@ export default function QuizGame() {
 
               {/* Smooth Progress Bar */}
               <div className="w-full h-1.5 bg-brand-green-dark/40 rounded-full overflow-hidden mb-6 border border-brand-emerald/5">
-                {/* eslint-disable-next-line react/forbid-dom-props */}
                 <div 
-                  className="h-full bg-gradient-to-r from-brand-gold to-brand-gold-light transition-all duration-300 rounded-full"
-                  style={{ width: `${((currentQuestionIndex) / questions.length) * 100}%` }}
+                  className="progress-bar-fill h-full bg-gradient-to-r from-brand-gold to-brand-gold-light transition-all duration-300 rounded-full"
+                  style={{ '--progress-width': `${((currentQuestionIndex) / questions.length) * 100}%` } as React.CSSProperties}
                 />
               </div>
 
@@ -525,7 +523,7 @@ export default function QuizGame() {
                   className="mb-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/25 text-red-400 text-xs font-mono font-bold animate-pulse"
                 >
                   <Flame className="w-4 h-4 fill-red-500 text-red-500" />
-                  <span>SÉRIE ACTIVE : 🔥 {streak} D'AFFILÉE !</span>
+                  <span>SÉRIE ACTIVE : 🔥 {streak} D&apos;AFFILÉE !</span>
                 </motion.div>
               )}
             </div>
@@ -694,19 +692,19 @@ export default function QuizGame() {
               {/* Central text */}
               <div className="my-auto flex flex-col items-center relative z-10 py-2">
                 <span className="text-[10px] font-serif italic text-foreground/60 print:text-black/60">
-                  Le Comité d'Attestation décerne ce
+                  Le Comité d&apos;Attestation décerne ce
                 </span>
                 <span className="text-xl md:text-2xl font-black font-display text-white mt-1 border-b border-brand-gold/30 pb-1.5 px-6 print:text-black print:border-black">
                   BREVET DE MÉRITE CITOYEN
                 </span>
                 <span className="text-[9px] font-mono text-brand-gold/80 tracking-widest uppercase mt-1 print:text-black">
-                  à l'honorable patriote
+                  à l&apos;honorable patriote
                 </span>
                 <span className="text-2xl md:text-3xl font-extrabold font-display text-brand-gold mt-2 tracking-wide print:text-black">
                   {userName}
                 </span>
                 <span className="text-[10px] font-serif italic text-foreground/50 mt-3 max-w-sm leading-relaxed print:text-black/60">
-                  pour avoir démontré une connaissance approfondie de la biographie, du parcours politique, et de la vision économique du leader national Ousmane Sonko (Sénégal 2050), avec un score d'excellence de
+                  pour avoir démontré une connaissance approfondie de la biographie, du parcours politique, et de la vision économique du leader national Ousmane Sonko (Sénégal 2050), avec un score d&apos;excellence de
                 </span>
                 <span className="text-3xl font-black font-mono text-brand-gold mt-2.5 print:text-black">
                   {percentScore}%
@@ -726,7 +724,7 @@ export default function QuizGame() {
                 </div>
 
                 <div className="text-right flex flex-col justify-end">
-                  <span className="text-[9px] font-mono text-foreground/40 print:text-black/50">DATE D'OBTENTION</span>
+                  <span className="text-[9px] font-mono text-foreground/40 print:text-black/50">DATE D&apos;OBTENTION</span>
                   <span className="text-[10px] font-mono font-bold text-foreground/85 mt-1 print:text-black">
                     {new Date().toLocaleDateString("fr-FR")}
                   </span>
@@ -764,7 +762,7 @@ export default function QuizGame() {
           <h3 className="text-lg font-bold text-foreground font-display">Classement National</h3>
         </div>
         <p className="text-xs text-foreground/50 mb-4">
-          Tableau d'honneur en direct des meilleurs citoyens-patriotes du pays.
+          Tableau d&apos;honneur en direct des meilleurs citoyens-patriotes du pays.
         </p>
 
         <div className="space-y-2.5">

@@ -76,6 +76,11 @@
   display: none;             /* Chrome / Safari / Opera */
 }
 
+/* Dynamic progress bar — width driven by CSS custom property to avoid inline style linting */
+.progress-bar-fill {
+  width: var(--progress-width, 0%);
+}
+
 /* Glassmorphism utilities */
 .glass-panel {
   background: rgba(14, 24, 19, 0.75);
