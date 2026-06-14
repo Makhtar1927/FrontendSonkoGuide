@@ -6,9 +6,75 @@ import WaveButton from "@/components/wave-button";
 import { Landmark } from "lucide-react";
 import Navbar from "@/components/navbar";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://frontendsonkoguide.vercel.app";
+const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+
 export const metadata: Metadata = {
-  title: "SONKO — Guide de la Révolution",
-  description: "Découvrez le parcours d'Ousmane Sonko : biographie, chronologie interactive 360°, réalisations nationales, quiz éducatifs, et assistant IA d'Ousmane Sonko, Guide de la Révolution et Président de l'Assemblée nationale.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "SONKO — Guide de la Révolution | Encyclopédie Interactive",
+    template: "%s | SONKO — Guide de la Révolution",
+  },
+  description:
+    "Découvrez Ousmane Sonko : biographie complète, chronologie 360°, réalisations nationales, quiz citoyen, bibliothèque et assistant IA. Guide de la Révolution & Président de l'Assemblée nationale du Sénégal.",
+  keywords: [
+    "Ousmane Sonko",
+    "PASTEF",
+    "Sénégal",
+    "Guide de la Révolution",
+    "Président Assemblée nationale",
+    "biographie",
+    "politique sénégalaise",
+    "Sénégal 2050",
+  ],
+  authors: [{ name: "Patriote'Dev", url: "https://pma-portfolio.vercel.app/" }],
+  creator: "Patriote'Dev",
+  publisher: "PASTEF — Patriotes du Sénégal",
+  // ─── Open Graph (WhatsApp, Facebook, LinkedIn) ───────────────────────────
+  openGraph: {
+    type: "website",
+    locale: "fr_SN",
+    url: SITE_URL,
+    siteName: "SONKO — Guide de la Révolution",
+    title: "SONKO — Guide de la Révolution | Encyclopédie Interactive",
+    description:
+      "Tout savoir sur Ousmane Sonko en un seul endroit : biographie, chronologie 360°, réalisations, quiz et assistant IA.",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Ousmane Sonko — Guide de la Révolution & Président de l'Assemblée nationale",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  // ─── Twitter Card ────────────────────────────────────────────────────────
+  twitter: {
+    card: "summary_large_image",
+    title: "SONKO — Guide de la Révolution",
+    description:
+      "Tout savoir sur Ousmane Sonko en un seul endroit : biographie, chronologie 360°, réalisations, quiz et assistant IA.",
+    images: [OG_IMAGE],
+    creator: "@PASTEF_Officiel",
+  },
+  // ─── Icons ───────────────────────────────────────────────────────────────
+  icons: {
+    icon: "/IconSonko.jpg",
+    apple: "/IconSonko.jpg",
+    shortcut: "/IconSonko.jpg",
+  },
+  // ─── Robots / SEO ────────────────────────────────────────────────────────
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
