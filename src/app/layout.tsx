@@ -144,7 +144,6 @@ export default function RootLayout({
                 <li><Link href="/#ask-sonko" className="hover:text-white transition-colors">Assistant RAG IA</Link></li>
                 <li><Link href="/#timeline-360" className="hover:text-white transition-colors">Chronologie 360°</Link></li>
                 <li><Link href="/communaute" className="hover:text-white transition-colors">Espace Communauté</Link></li>
-                <li><Link href="/admin" className="text-brand-gold/60 hover:text-brand-gold transition-colors font-semibold">Portail Admin</Link></li>
               </ul>
             </div>
           </div>
