@@ -67,6 +67,15 @@
   background: #F3D062;
 }
 
+/* Hide scrollbar utility — replaces inline scrollbarWidth/msOverflowStyle */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE / Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;             /* Chrome / Safari / Opera */
+}
+
 /* Glassmorphism utilities */
 .glass-panel {
   background: rgba(14, 24, 19, 0.75);

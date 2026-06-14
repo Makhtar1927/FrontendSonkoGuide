@@ -510,6 +510,7 @@ export default function QuizGame() {
 
               {/* Smooth Progress Bar */}
               <div className="w-full h-1.5 bg-brand-green-dark/40 rounded-full overflow-hidden mb-6 border border-brand-emerald/5">
+                {/* eslint-disable-next-line react/forbid-dom-props */}
                 <div 
                   className="h-full bg-gradient-to-r from-brand-gold to-brand-gold-light transition-all duration-300 rounded-full"
                   style={{ width: `${((currentQuestionIndex) / questions.length) * 100}%` }}

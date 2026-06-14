@@ -16,7 +16,7 @@ interface EventScenario {
   image: string;
 }
 
-const ICON_MAP: { [key: string]: React.ComponentType<any> } = {
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   ShieldAlert: ShieldAlert,
   Scale: Scale,
   Flag: Flag,
@@ -93,7 +93,6 @@ export default function EventsSlider360() {
       <div
         ref={containerRef}
         className="flex gap-8 overflow-x-auto py-8 px-4 md:px-12 scrollbar-none select-none snap-x snap-mandatory scroll-smooth"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {scenarios.map((scenario) => {
           const Icon = ICON_MAP[scenario.icon] || Calendar;
@@ -109,6 +108,7 @@ export default function EventsSlider360() {
               <div className={`w-72 h-72 rounded-full border flex flex-col items-center justify-center p-8 text-center relative overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-xl ${scenario.theme}`}>
                 
                 {/* Background Image with zoom on hover */}
+                {/* eslint-disable-next-line react/forbid-dom-props */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-750 group-hover:scale-110"
                   style={{ backgroundImage: `url(${scenario.image})` }}

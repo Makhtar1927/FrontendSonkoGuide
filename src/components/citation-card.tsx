@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Share2, Copy, Download, Check, Sparkles, MessageSquare } from "lucide-react";
+import { Copy, Download, Check, Sparkles } from "lucide-react";
 
 interface Quote {
   text: string;
@@ -306,7 +307,7 @@ export default function CitationCard() {
             title="Partager sur WhatsApp"
             className="p-2 rounded-lg bg-[#25D366]/10 hover:bg-[#25D366]/20 transition-colors border border-[#25D366]/20 cursor-pointer flex items-center justify-center"
           >
-            <img src="/WhatsApp.svg" alt="WhatsApp" className="w-6 h-6" />
+            <Image src="/WhatsApp.svg" alt="WhatsApp" width={24} height={24} />
           </button>
           <button
             onClick={() => shareSocial("twitter")}
