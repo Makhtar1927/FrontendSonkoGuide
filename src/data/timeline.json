@@ -1,0 +1,171 @@
+[
+  {
+    "year": "1974",
+    "title": "Naissance et Enfance",
+    "category": "personal",
+    "importance": 5,
+    "description": "Naissance le 15 juillet 1974 à Thiès. Ousmane Sonko grandit entre Sébikotane (près de Dakar) et la Casamance, au sein d'une famille modeste et religieuse.",
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306863/EnfanceSonko1.jpg"
+  },
+  {
+    "year": "1993",
+    "title": "Baccalauréat et Entrée à l'UGB",
+    "category": "academic",
+    "importance": 4,
+    "description": "Obtention du baccalauréat et admission à l'Université Gaston Berger (UGB) de Saint-Louis, réputée pour sa rigueur académique.",
+    "media": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "1999",
+    "title": "Maîtrise en Droit Public (UGB)",
+    "category": "academic",
+    "importance": 4,
+    "description": "Diplômé d'une Maîtrise en Droit Public à l'Université Gaston Berger de Saint-Louis, spécialité Droit des Affaires et Fiscalité.",
+    "media": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "2001",
+    "title": "Brevet de l'ENA (Sénégal)",
+    "category": "academic",
+    "importance": 5,
+    "description": "Sorti major ou haut gradé de l'École Nationale d'Administration (ENA) du Sénégal, section Impôts et Domaines.",
+    "media": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "2001",
+    "title": "Entrée à l'Inspection des Impôts et Domaines",
+    "category": "professional",
+    "importance": 5,
+    "description": "Nommé inspecteur des Impôts et Domaines. Il commence sa carrière dans la fonction publique, découvrant les rouages de la fiscalité sénégalaise.",
+    "media": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "2003",
+    "title": "Master en Finances Publiques (UCAD)",
+    "category": "academic",
+    "importance": 3,
+    "description": "Obtention d'un Master 2 en Finances Publiques et Fiscalité à l'Université Cheikh Anta Diop (UCAD) de Dakar.",
+    "media": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "2005",
+    "title": "Création du Syndicat Autonome (SAID)",
+    "category": "professional",
+    "importance": 4,
+    "description": "Fondateur et premier Secrétaire Général du Syndicat Autonome des Agents des Impôts et Domaines (SAID), luttant pour l'éthique et les réformes fiscales.",
+    "media": "https://images.unsplash.com/photo-1521791136368-1a8b27503462?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "2014",
+    "title": "Fondation de PASTEF-Les Patriotes",
+    "category": "political",
+    "importance": 5,
+    "description": "Création du parti politique PASTEF (Patriotes du Sénégal pour le travail, l'éthique et la fraternité) le 2 janvier 2014 par un groupe de cadres de l'administration publique.",
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306815/2015Sonko1.jpg"
+  },
+  {
+    "year": "2016",
+    "title": "Radiation de la Fonction Publique",
+    "category": "professional",
+    "importance": 5,
+    "description": "Radié de la fonction publique par décret présidentiel pour manquement à son obligation de réserve, suite à ses dénonciations de la fraude fiscale de certaines élites.",
+    "media": [
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306817/2016Sonko1.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306819/2016Sonko2.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306821/2016Sonko3.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306823/2016Sonko4.jpg"
+    ]
+  },
+  {
+    "year": "2017",
+    "title": "Élection comme Député & Livre 'Solutions'",
+    "category": "political",
+    "importance": 5,
+    "description": "Élu député à l'Assemblée Nationale lors des élections législatives. Publication de son ouvrage phare 'Solutions' exposant son programme économique.",
+    "media": [
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306825/2017Sonko1.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306827/2017Sonko2.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306829/2017Sonko3.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306831/2017Sonko4.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306832/2017Sonko5.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306835/2017Sonko6.jpg"
+    ]
+  },
+  {
+    "year": "2018",
+    "title": "Livre 'Pétrole et Gaz au Sénégal'",
+    "category": "political",
+    "importance": 4,
+    "description": "Publication de son second livre dénonçant la gestion des ressources naturelles et réclamant la renégociation des contrats miniers et pétroliers.",
+    "media": [
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306836/2018Sonko1.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306838/2018Sonko2.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306840/2018Sonko3.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306842/2018Sonko4.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306844/2018Sonko5.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306846/2018Sonko6.jpg"
+    ]
+  },
+  {
+    "year": "2019",
+    "title": "Troisième à la Présidentielle",
+    "category": "political",
+    "importance": 5,
+    "description": "Pour sa première candidature présidentielle, Ousmane Sonko crée la surprise en obtenant 15,67% des voix, se classant troisième et s'imposant comme leader de l'opposition.",
+    "media": [
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306848/2019Sonko1.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306850/2019Sonko2.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306852/2019Sonko3.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306854/2019Sonko4.jpg",
+      "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306856/2019Sonko5.jpg"
+    ]
+  },
+  {
+    "year": "2021",
+    "title": "Manifestations de Mars",
+    "category": "political",
+    "importance": 4,
+    "description": "Son arrestation en mars déclenche d'importantes manifestations populaires à travers le pays. Il est libéré sous contrôle judiciaire face à la pression populaire.",
+    "media": "https://images.unsplash.com/photo-1552083375-1447ce886485?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "2022",
+    "title": "Élu Maire de Ziguinchor",
+    "category": "political",
+    "importance": 5,
+    "description": "Élu triomphalement Maire de la ville de Ziguinchor lors des élections locales avec la coalition Yewwi Askan Wi.",
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306858/2023Sonko1.jpg"
+  },
+  {
+    "year": "2024",
+    "title": "Libération et Victoire Électorale",
+    "category": "political",
+    "importance": 5,
+    "description": "Libéré de prison en mars à la suite d'une loi d'amnistie, il mène la campagne de Bassirou Diomaye Faye qui l'emporte dès le premier tour (54%). Nommé Premier Ministre le 2 avril 2024.",
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781307069/2024Sonko1.webp"
+  },
+  {
+    "year": "2024",
+    "title": "Présentation du Plan 'Sénégal 2050'",
+    "category": "political",
+    "importance": 5,
+    "description": "En octobre 2024, le Premier Ministre Ousmane Sonko et le Président Faye présentent la vision de développement 'Sénégal 2050' pour la souveraineté économique nationale.",
+    "media": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "year": "2026",
+    "title": "Président de l'Assemblée Nationale",
+    "category": "political",
+    "importance": 5,
+    "description": "Élu président de l'Assemblée nationale le 26 mai 2026, Ousmane Sonko prend la tête du pouvoir législatif pour concrétiser les réformes institutionnelles et économiques prévues.",
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306861/2026Sonko1.jpg"
+  },
+  {
+    "year": "2026",
+    "title": "Congrès de PASTEF et Guide de la Révolution",
+    "category": "political",
+    "importance": 5,
+    "description": "Lors du premier congrès extraordinaire de PASTEF les 6-7 juin 2026 à Diamniadio, il est réélu à l'unanimité président du parti pour 6 ans et consacré comme le Guide de la Révolution.",
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306861/2026Sonko1.jpg"
+  }
+]

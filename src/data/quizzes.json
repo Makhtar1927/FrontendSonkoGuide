@@ -1,0 +1,922 @@
+[
+  {
+    "id": 1,
+    "question": "En quelle année Ousmane Sonko est-il né ?",
+    "options": ["1970", "1974", "1978", "1982"],
+    "answer": 1,
+    "explanation": "Ousmane Sonko est né le 15 juillet 1974.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 2,
+    "question": "Dans quelle ville du Sénégal Ousmane Sonko est-il né ?",
+    "options": ["Dakar", "Thiès", "Saint-Louis", "Ziguinchor"],
+    "answer": 1,
+    "explanation": "Bien qu'il ait grandi en Casamance et à Sébikotane, Ousmane Sonko est né à Thiès.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 3,
+    "question": "Dans quelle université Ousmane Sonko a-t-il obtenu sa Maîtrise en Droit Public ?",
+    "options": [
+      "Université Cheikh Anta Diop (UCAD)",
+      "Université Gaston Berger (UGB)",
+      "Université de Thiès",
+      "Université Assane Seck"
+    ],
+    "answer": 1,
+    "explanation": "Il a obtenu sa Maîtrise en Droit Public à l'Université Gaston Berger (UGB) de Saint-Louis en 1999.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 4,
+    "question": "De quelle grande ville du sud du Sénégal Ousmane Sonko a-t-il été maire en 2022 ?",
+    "options": ["Kolda", "Ziguinchor", "Sédhiou", "Bignona"],
+    "answer": 1,
+    "explanation": "Ousmane Sonko a été élu maire de la ville de Ziguinchor lors des élections locales de janvier 2022.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 5,
+    "question": "Quelle fonction gouvernementale majeure Ousmane Sonko a-t-il occupée à partir d'avril 2024 ?",
+    "options": [
+      "Président de la République",
+      "Président de l'Assemblée nationale",
+      "Premier Ministre",
+      "Ministre de l'Économie"
+    ],
+    "answer": 2,
+    "explanation": "Il a été nommé Premier Ministre par le Président Bassirou Diomaye Faye le 2 avril 2024.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 6,
+    "question": "Quel poste de direction législative Ousmane Sonko occupe-t-il depuis mai 2026 ?",
+    "options": [
+      "Président du Conseil Constitutionnel",
+      "Président de l'Assemblée nationale",
+      "Médiateur de la République",
+      "Président du HCCT"
+    ],
+    "answer": 1,
+    "explanation": "Il a été élu Président de l'Assemblée nationale le 26 mai 2026 suite aux élections législatives.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 7,
+    "question": "Dans quelle localité près de Dakar Ousmane Sonko a-t-il grandi et passé une partie importante de son enfance ?",
+    "options": ["Sébikotane", "Rufisque", "Diamniadio", "Guédiawaye"],
+    "answer": 0,
+    "explanation": "Ousmane Sonko a passé une partie importante de sa jeunesse et de son enfance à Sébikotane.",
+    "difficulty": "champion",
+    "category": "biographie"
+  },
+  {
+    "id": 8,
+    "question": "Dans quelle école d'élite Ousmane Sonko a-t-il fait sa formation d'inspecteur de 1999 à 2001 ?",
+    "options": [
+      "Le Prytanie Militaire de Saint-Louis",
+      "L'École Nationale d'Administration (ENA)",
+      "Le CESAG",
+      "L'Université de Dakar"
+    ],
+    "answer": 1,
+    "explanation": "Il a intégré l'École Nationale d'Administration (ENA) du Sénégal en 1999 et en est sorti breveté en 2001.",
+    "difficulty": "expert",
+    "category": "biographie"
+  },
+  {
+    "id": 9,
+    "question": "Quel diplôme universitaire Ousmane Sonko a-t-il obtenu à l'UCAD de Dakar en 2003 ?",
+    "options": [
+      "Doctorat d'État en Fiscalité",
+      "Master 2 (DEA) en Finances Publiques et Fiscalité",
+      "Licence en Sciences Politiques",
+      "Maîtrise en Droit Privé"
+    ],
+    "answer": 1,
+    "explanation": "Il a complété sa formation par un Master 2 (DEA) en Finances Publiques et Fiscalité à l'UCAD en 2003.",
+    "difficulty": "expert",
+    "category": "biographie"
+  },
+  {
+    "id": 10,
+    "question": "Quel était le sujet exact du mémoire de maîtrise d'Ousmane Sonko à l'UGB en 1999 ?",
+    "options": [
+      "La fiscalité locale au Sénégal",
+      "L'organisation administrative du Parlement",
+      "La décentralisation et les collectivités locales",
+      "La régulation du commerce transfrontalier"
+    ],
+    "answer": 0,
+    "explanation": "Son mémoire de fin d'études de maîtrise à l'UGB s'intitulait 'La fiscalité locale au Sénégal'.",
+    "difficulty": "champion",
+    "category": "biographie"
+  },
+  {
+    "id": 11,
+    "question": "En quelle année Ousmane Sonko a-t-il été admis au concours d'entrée de l'ENA du Sénégal ?",
+    "options": ["1997", "1999", "2001", "2003"],
+    "answer": 1,
+    "explanation": "Il a réussi le concours d'entrée à l'ENA en 1999 juste après l'obtention de sa maîtrise à l'UGB.",
+    "difficulty": "champion",
+    "category": "biographie"
+  },
+  {
+    "id": 12,
+    "question": "Quel sport de combat Ousmane Sonko a-t-il pratiqué activement durant sa jeunesse ?",
+    "options": ["Le karaté", "Le judo", "La boxe", "La lutte sénégalaise"],
+    "answer": 0,
+    "explanation": "Ousmane Sonko a pratiqué le karaté de manière assidue durant ses années de jeunesse et d'études.",
+    "difficulty": "expert",
+    "category": "biographie"
+  },
+  {
+    "id": 13,
+    "question": "Dans quel lycée du sud du pays Ousmane Sonko a-t-il obtenu son baccalauréat ?",
+    "options": ["Lycée Lamine Guèye", "Lycée Djignabo de Ziguinchor", "Lycée Limamou Laye", "Lycée Charles de Gaulle"],
+    "answer": 1,
+    "explanation": "Il a obtenu son baccalauréat au Lycée Djignabo de Ziguinchor.",
+    "difficulty": "expert",
+    "category": "biographie"
+  },
+  {
+    "id": 14,
+    "question": "À quel âge Ousmane Sonko est-il devenu Premier ministre de la République du Sénégal ?",
+    "options": ["42 ans", "45 ans", "49 ans", "52 ans"],
+    "answer": 2,
+    "explanation": "Né en juillet 1974, il a été nommé Premier ministre en avril 2024 à l'âge de 49 ans.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 15,
+    "question": "Dans quel pays Ousmane Sonko a-t-il effectué son premier déplacement officiel à l'étranger en tant que Premier ministre ?",
+    "options": ["La France", "La Côte d'Ivoire", "Le Mali", "La Gambie"],
+    "answer": 2,
+    "explanation": "Son premier déplacement officiel s'est fait au Mali en mai 2024 dans une optique de raffermissement des liens sous-régionaux.",
+    "difficulty": "expert",
+    "category": "biographie"
+  },
+  {
+    "id": 16,
+    "question": "Quel poste technique Ousmane Sonko a-t-il occupé au sein de la DGID peu après sa sortie de l'ENA ?",
+    "options": ["Directeur des Domaines", "Inspecteur vérificateur", "Chef du bureau de la législation", "Receveur des impôts"],
+    "answer": 1,
+    "explanation": "Il a notamment exercé en tant qu'inspecteur vérificateur à la Direction générale des impôts et des domaines (DGID).",
+    "difficulty": "champion",
+    "category": "biographie"
+  },
+  {
+    "id": 17,
+    "question": "Quel est le jour et le mois exacts de naissance d'Ousmane Sonko ?",
+    "options": ["1er janvier", "15 juillet", "2 avril", "12 septembre"],
+    "answer": 1,
+    "explanation": "Ousmane Sonko est né le 15 juillet 1974.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 18,
+    "question": "À quel corps de contrôle d'élite de l'administration sénégalaise Ousmane Sonko a-t-il appartenu de 2001 à 2016 ?",
+    "options": ["Inspecteur Général d'État", "Magistrat", "Inspecteur des Impôts et des Domaines", "Inspecteur du Travail"],
+    "answer": 2,
+    "explanation": "Ousmane Sonko a été Inspecteur des Impôts et des Domaines durant 15 ans au sein du ministère de l'Économie et des Finances.",
+    "difficulty": "debutant",
+    "category": "biographie"
+  },
+  {
+    "id": 19,
+    "question": "Quelle est la principale discipline de droit fiscal qu'Ousmane Sonko a enseignée à l'UGB de Saint-Louis en tant que chargé de cours ?",
+    "options": ["Droit fiscal général et fiscalité locale", "Droit constitutionnel", "Droit des affaires", "Procédure pénale"],
+    "answer": 0,
+    "explanation": "Il a enseigné le droit fiscal et la fiscalité locale à l'UGB, son université d'origine.",
+    "difficulty": "expert",
+    "category": "biographie"
+  },
+  {
+    "id": 20,
+    "question": "Où Ousmane Sonko a-t-il prononcé une conférence publique majeure aux côtés de Jean-Luc Mélenchon en mai 2024 ?",
+    "options": ["À l'Université de Dakar (UCAD)", "À Sciences Po Paris", "Au Grand Théâtre de Dakar", "À l'UGB de Saint-Louis"],
+    "answer": 0,
+    "explanation": "La conférence sur les partenariats Afrique-Europe et l'avenir de la souveraineté a eu lieu à l'UCAD de Dakar.",
+    "difficulty": "champion",
+    "category": "biographie"
+  },
+  {
+    "id": 21,
+    "question": "Quel est le nom complet du parti politique fondé par Ousmane Sonko en janvier 2014 ?",
+    "options": ["PASTEF-Les Patriotes", "PDS", "APR", "REWMI"],
+    "answer": 0,
+    "explanation": "Le parti s'appelle 'PASTEF-Les Patriotes' (Patriotes africains du Sénégal pour le travail, l'éthique et la fraternité).",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 22,
+    "question": "Quelle est la signification de l'acronyme du parti PASTEF ?",
+    "options": [
+      "Parti de l'Alliance pour la Solidarité, le Travail et l'Énergie Féminine",
+      "Patriotes africains du Sénégal pour le travail, l'éthique et la fraternité",
+      "Patriotes Associés pour la Souveraineté et la Transformation Économique Francophone",
+      "Parti Africain pour la Solidarité, la Révolution et l'Égalité Des Familles"
+    ],
+    "answer": 1,
+    "explanation": "PASTEF signifie 'Patriotes africains du Sénégal pour le travail, l'éthique et la fraternité'.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 23,
+    "question": "Quel titre honorifique et idéologique a été décerné à Ousmane Sonko lors du congrès de PASTEF en juin 2026 ?",
+    "options": ["Président à vie", "Guide de la Révolution", "Héros National", "Père de la Nation"],
+    "answer": 1,
+    "explanation": "Les militants de PASTEF l'ont plébiscité comme 'Guide de la Révolution' lors du congrès extraordinaire de juin 2026.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 24,
+    "question": "Quelle coalition d'opposition Ousmane Sonko a-t-il co-fondée pour les élections territoriales et législatives de 2022 ?",
+    "options": ["Benno Bokk Yakaar", "Yewwi Askan Wi", "Wallu Sénégal", "Taxawu Sénégal"],
+    "answer": 1,
+    "explanation": "La coalition d'opposition unifiée 'Yewwi Askan Wi' (Libérer le Peuple) a été co-fondée en 2021.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 25,
+    "question": "À quel âge Ousmane Sonko a-t-il fondé le parti PASTEF en janvier 2014 avec d'autres hauts fonctionnaires ?",
+    "options": ["30 ans", "35 ans", "39 ans", "45 ans"],
+    "answer": 2,
+    "explanation": "Né en juillet 1974, il venait d'avoir 39 ans lors de la fondation de PASTEF le 2 janvier 2014.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 26,
+    "question": "Quel candidat Ousmane Sonko a-t-il soutenu et fait élire à la présidentielle de mars 2024 ?",
+    "options": ["Bassirou Diomaye Faye", "Khalifa Sall", "Idrissa Seck", "Amadou Ba"],
+    "answer": 0,
+    "explanation": "Ne pouvant concourir en personne, Ousmane Sonko a propulsé son secrétaire général, Bassirou Diomaye Faye, élu au premier tour.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 27,
+    "question": "Quel syndicat Ousmane Sonko a-t-il co-fondé et dirigé au sein de l'administration fiscale à partir de 2005 ?",
+    "options": [
+      "Le SAID (Syndicat Autonome des Agents des Impôts et Domaines)",
+      "Le CNTS",
+      "Le SUDES",
+      "Le syndicat de la Magistrature"
+    ],
+    "answer": 0,
+    "explanation": "Il a co-fondé et dirigé le SAID en tant que Secrétaire général pour réclamer l'équité fiscale et le mérite.",
+    "difficulty": "expert",
+    "category": "parti"
+  },
+  {
+    "id": 28,
+    "question": "Pour quel motif officiel Ousmane Sonko a-t-il été radié de la fonction publique par décret en août 2016 ?",
+    "options": [
+      "Abandon de poste",
+      "Manquement à l'obligation de réserve",
+      "Malversation financière",
+      "Délit d'opinion politique"
+    ],
+    "answer": 1,
+    "explanation": "La radiation a été prononcée pour 'manquement à l'obligation de réserve' après qu'il a révélé des anomalies fiscales d'envergure.",
+    "difficulty": "expert",
+    "category": "parti"
+  },
+  {
+    "id": 29,
+    "question": "Quelle coalition électorale a permis à PASTEF d'entrer à l'Assemblée nationale en 2017 avec son tout premier député ?",
+    "options": ["Coalition Ndawi Askan Wi", "Coalition Yewwi Askan Wi", "Coalition Benno Bokk Yakaar", "Coalition Aar Sénégal"],
+    "answer": 0,
+    "explanation": "C'est sous la bannière de la coalition 'Ndawi Askan Wi' (Le Peuple Debout) que Sonko a été élu député en 2017.",
+    "difficulty": "expert",
+    "category": "parti"
+  },
+  {
+    "id": 30,
+    "question": "Combien de députés la coalition Yewwi Askan Wi (dont PASTEF) a-t-elle obtenus lors des législatives de 2022 ?",
+    "options": ["25 députés", "56 députés", "80 députés", "110 députés"],
+    "answer": 1,
+    "explanation": "La coalition Yewwi Askan Wi a décroché 56 députés, marquant un tournant historique de l'opposition.",
+    "difficulty": "expert",
+    "category": "parti"
+  },
+  {
+    "id": 31,
+    "question": "Quelle est la date précise de la fondation officielle de PASTEF-Les Patriotes ?",
+    "options": ["2 Janvier 2012", "2 Janvier 2014", "15 Juillet 2014", "26 Décembre 2015"],
+    "answer": 1,
+    "explanation": "Le parti a tenu son assemblée générale constitutive le 2 janvier 2014 à Dakar.",
+    "difficulty": "champion",
+    "category": "parti"
+  },
+  {
+    "id": 32,
+    "question": "Quel score cumulé a été obtenu par l'inter-coalition de l'opposition Yewwi-Wallu aux législatives de 2022 ?",
+    "options": ["80 sièges sur 165", "65 sièges sur 165", "92 sièges sur 165", "45 sièges sur 165"],
+    "answer": 0,
+    "explanation": "L'inter-coalition Yewwi-Wallu a décroché 80 sièges sur 165, privant le pouvoir de majorité absolue d'emblée.",
+    "difficulty": "champion",
+    "category": "parti"
+  },
+  {
+    "id": 33,
+    "question": "Comment s'appelle l'organe de formation politique interne de PASTEF destiné aux cadres et aux militants ?",
+    "options": [
+      "L'École des Patriotes",
+      "L'Académie de la Révolution",
+      "L'Institut Souverain",
+      "Le Centre d'Éducation Citoyenne"
+    ],
+    "answer": 0,
+    "explanation": "L'École des Patriotes assure la formation idéologique, citoyenne et éthique des militants de PASTEF.",
+    "difficulty": "champion",
+    "category": "parti"
+  },
+  {
+    "id": 34,
+    "question": "Lors de quel grand rassemblement Ousmane Sonko a-t-il été réélu président de PASTEF pour un mandat de 6 ans en juin 2026 ?",
+    "options": [
+      "Le 1er Congrès Extraordinaire de PASTEF à Diamniadio",
+      "La session extraordinaire de l'Assemblée nationale",
+      "Le grand meeting de Ziguinchor",
+      "La conférence de presse nationale"
+    ],
+    "answer": 0,
+    "explanation": "Le congrès extraordinaire s'est réuni les 6-7 juin 2026 au CICAD de Diamniadio pour renouveler les instances.",
+    "difficulty": "champion",
+    "category": "parti"
+  },
+  {
+    "id": 35,
+    "question": "Quel complexe d'accueil a abrité le premier congrès extraordinaire de PASTEF les 6-7 juin 2026 ?",
+    "options": [
+      "Le Centre International de Conférences Abdou Diouf (CICAD)",
+      "Le Grand Théâtre National de Dakar",
+      "Le Stade Abdoulaye Wade",
+      "Le CICES"
+    ],
+    "answer": 0,
+    "explanation": "Les 6-7 juin 2026, le congrès extraordinaire s'est tenu au CICAD de Diamniadio.",
+    "difficulty": "expert",
+    "category": "parti"
+  },
+  {
+    "id": 36,
+    "question": "Quel est le nom officiel du mouvement des jeunes du parti PASTEF ?",
+    "options": [
+      "Jeunesse Patriotique du Sénégal (JPS)",
+      "Union des Jeunes de PASTEF (UJP)",
+      "Mouvement des Jeunes Patriotes (MJP)",
+      "Génération Libre"
+    ],
+    "answer": 0,
+    "explanation": "Le mouvement de jeunesse s'appelle la JPS (Jeunesse Patriotique du Sénégal), présente partout au pays.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 37,
+    "question": "Comment s'appelle la structure des femmes de PASTEF ?",
+    "options": ["Jigeenu Pastef (MOJIP)", "Femmes Souveraines", "Mouvement National des Femmes de Pastef (MNFP)", "Collectif des Patriotes"],
+    "answer": 0,
+    "explanation": "Le mouvement national des femmes de PASTEF est communément désigné sous le sigle MOJIP (Jigeenu Pastef).",
+    "difficulty": "expert",
+    "category": "parti"
+  },
+  {
+    "id": 38,
+    "question": "Comment s'appelle l'organisation regroupant les personnes âgées et le troisième âge au sein du parti PASTEF ?",
+    "options": ["Les Sages du Projet", "Magui Pastef", "Aînés Patriotes", "Conseil des Anciens"],
+    "answer": 1,
+    "explanation": "L'organisation interne regroupant les anciens et le troisième âge se nomme 'Magui Pastef'.",
+    "difficulty": "expert",
+    "category": "parti"
+  },
+  {
+    "id": 39,
+    "question": "Quel pays d'accueil de la diaspora concentre la plus importante structure de financement (Pastef-Diaspora) ?",
+    "options": ["Les États-Unis", "La France", "L'Italie", "Le Canada"],
+    "answer": 1,
+    "explanation": "La France abrite la section Pastef-Diaspora la plus nombreuse et la plus active financièrement lors des collectes de fonds.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 40,
+    "question": "Quel allié historique d'Ousmane Sonko et député de Yewwi Askan Wi est célèbre pour son activisme parlementaire ?",
+    "options": ["Guy Marius Sagna", "Barthélémy Dias", "Birahim Seck", "Aliou Sané"],
+    "answer": 0,
+    "explanation": "Guy Marius Sagna est un compagnon de lutte historique et député emblématique allié de PASTEF.",
+    "difficulty": "debutant",
+    "category": "parti"
+  },
+  {
+    "id": 41,
+    "question": "Quel livre politique et programmatique majeur Ousmane Sonko a-t-il publié en 2017 ?",
+    "options": ["Solutions", "Sénégal 2050", "Pétrole et Gaz", "Lettre au Peuple"],
+    "answer": 0,
+    "explanation": "Il a publié son livre phare 'Solutions' en 2017, détaillant sa vision économique et sociale de réformes.",
+    "difficulty": "debutant",
+    "category": "programme"
+  },
+  {
+    "id": 42,
+    "question": "Quel ouvrage d'investigation Ousmane Sonko a-t-il publié en 2018 pour dénoncer la gestion des hydrocarbures au Sénégal ?",
+    "options": [
+      "Solutions pour le développement",
+      "Pétrole et gaz au Sénégal : Chronique d'une spoliation",
+      "Les dossiers noirs du foncier",
+      "L'éthique républicaine"
+    ],
+    "answer": 1,
+    "explanation": "Il a publié ce livre en 2018 pour réclamer la transparence et la renégociation des contrats d'hydrocarbures.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 43,
+    "question": "Comment s'appelle l'ambitieux plan de développement souverain présenté en octobre 2024 par le gouvernement ?",
+    "options": [
+      "Plan Sénégal Émergent (PSE)",
+      "Sénégal 2050 : Agenda national de transformation",
+      "Sénégal Souverain & Prospère",
+      "Plan National de Rupture"
+    ],
+    "answer": 1,
+    "explanation": "Présenté le 14 octobre 2024, ce plan remplace le PSE pour asseoir la souveraineté économique et endogène du pays.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 44,
+    "question": "Quel est le principal pilier économique défendu par Ousmane Sonko dans son livre de 2017 ?",
+    "options": [
+      "La dépendance aux financements extérieurs",
+      "Le patriotisme économique et l'industrialisation locale",
+      "La privatisation des services de santé",
+      "L'endettement massif sur les marchés internationaux"
+    ],
+    "answer": 1,
+    "explanation": "Il prône le patriotisme économique, la valorisation des ressources et la création de valeur ajoutée locale.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 45,
+    "question": "À quel coût maximum d'électricité le plan Sénégal 2050 s'engage-t-il pour les agropoles industrielles ?",
+    "options": ["Moins de 60 FCFA/kWh", "Moins de 100 FCFA/kWh", "Gratuité totale", "Environ 150 FCFA/kWh"],
+    "answer": 0,
+    "explanation": "Le plan Sénégal 2050 promet de diviser le coût de l'énergie industrielle pour le ramener sous la barre de 60 FCFA/kWh.",
+    "difficulty": "champion",
+    "category": "programme"
+  },
+  {
+    "id": 46,
+    "question": "Quelle proportion du PIB national la région de Dakar concentrait-elle avant la vision territoriale de Sénégal 2050 ?",
+    "options": ["Environ 15%", "Environ 30%", "Environ 46%", "Plus de 75%"],
+    "answer": 2,
+    "explanation": "Dakar concentrait 46% du PIB. Sénégal 2050 ambitionne de ramener cette part à 29% pour rééquilibrer le développement national.",
+    "difficulty": "champion",
+    "category": "programme"
+  },
+  {
+    "id": 47,
+    "question": "Quelle est la contribution au PIB visée par Sénégal 2050 pour les régions du pôle Centre d'ici 2050 ?",
+    "options": ["12% du PIB", "25% du PIB", "51% du PIB", "70% du PIB"],
+    "answer": 2,
+    "explanation": "Le pôle agro-industriel du Centre verra sa contribution économique propulsée à 51% du PIB national à terme.",
+    "difficulty": "champion",
+    "category": "programme"
+  },
+  {
+    "id": 48,
+    "question": "Dans le programme Sénégal 2050, combien de pôles de développement régionaux sont prévus pour rééquilibrer le territoire ?",
+    "options": ["4 pôles", "6 pôles", "8 pôles", "14 pôles"],
+    "answer": 2,
+    "explanation": "Le projet prévoit de restructurer le pays en 8 pôles de développement économique autonomes et viables.",
+    "difficulty": "debutant",
+    "category": "programme"
+  },
+  {
+    "id": 49,
+    "question": "Quel est le principal objectif du pilier 'Souveraineté Alimentaire' dans la vision Sénégal 2050 ?",
+    "options": [
+      "Développer les importations de blé",
+      "Atteindre l'autosuffisance en céréales de base comme le riz",
+      "Privatiser toutes les terres cultivables",
+      "Remplacer l'agriculture par le secteur des services"
+    ],
+    "answer": 1,
+    "explanation": "L'objectif est d'atteindre la souveraineté alimentaire en produisant localement le riz et autres céréales consommées au Sénégal.",
+    "difficulty": "debutant",
+    "category": "programme"
+  },
+  {
+    "id": 50,
+    "question": "Quelle filière maritime le programme Sénégal 2050 souhaite-t-il protéger en priorité face aux accords de pêche étrangers ?",
+    "options": ["La pêche industrielle d'exportation", "La pêche artisanale", "L'aquaculture continentale exclusive", "La pêche sportive"],
+    "answer": 1,
+    "explanation": "Le gouvernement s'engage à protéger la pêche artisanale et à réviser les accords de pêche préjudiciables à la ressource nationale.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 51,
+    "question": "Quel secteur industriel le programme Sénégal 2050 vise-t-il à lancer grâce aux ressources de gaz et de pétrole ?",
+    "options": [
+      "L'assemblage informatique de haute technologie",
+      "L'industrie automobile haut de gamme",
+      "La pétrochimie et la production d'engrais locaux",
+      "L'importation de produits raffinés étrangers"
+    ],
+    "answer": 2,
+    "explanation": "Le gaz et le pétrole doivent alimenter la pétrochimie locale, permettant notamment de produire des engrais pour l'agriculture.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 52,
+    "question": "Quelle réforme éducative majeure est préconisée par Sénégal 2050 pour favoriser l'emploi des jeunes ?",
+    "options": [
+      "La suppression des filières littéraires",
+      "La priorisation des filières STEM (sciences, technologies, ingénierie, mathématiques) et professionnelles",
+      "La gratuité sélective des universités privées uniquement",
+      "L'enseignement exclusif en anglais"
+    ],
+    "answer": 1,
+    "explanation": "L'orientation stratégique privilégie les formations scientifiques, techniques, d'ingénierie et de formation professionnelle.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 53,
+    "question": "Pour réduire la facture d'importation pharmaceutique, quel objectif de production locale le plan fixe-t-il ?",
+    "options": [
+      "Subventionner à 100% les importations de médicaments",
+      "Produire localement au moins 50% des médicaments essentiels",
+      "Fermer toutes les pharmacies privées",
+      "N'utiliser que la médecine traditionnelle"
+    ],
+    "answer": 1,
+    "explanation": "Le plan Sénégal 2050 vise une indépendance sanitaire en produisant au moins 50% de nos médicaments essentiels sur place.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 54,
+    "question": "Dans le volet transition énergétique de Sénégal 2050, quelle source d'énergie renouvelable est privilégiée pour l'électrification rurale ?",
+    "options": ["L'énergie nucléaire", "L'énergie solaire", "L'énergie éolienne offshore", "Le charbon propre"],
+    "answer": 1,
+    "explanation": "Le Sénégal mise sur son fort ensoleillement pour déployer des mini-centrales solaires et électrifier le monde rural.",
+    "difficulty": "debutant",
+    "category": "programme"
+  },
+  {
+    "id": 55,
+    "question": "À quel pourcentage de couverture forestière nationale le programme Sénégal 2050 ambitionne-t-il d'arriver ?",
+    "options": ["10% du territoire", "20% du territoire", "30% du territoire", "50% du territoire"],
+    "answer": 2,
+    "explanation": "Le reboisement et la préservation de la biodiversité visent à porter la couverture forestière à 30% du territoire national.",
+    "difficulty": "champion",
+    "category": "programme"
+  },
+  {
+    "id": 56,
+    "question": "Selon Sénégal 2050, quel outil financier public sera créé pour sécuriser les investissements intergénérationnels ?",
+    "options": [
+      "Une loterie nationale d'État",
+      "Un fonds souverain stratégique alimenté par les ressources extractives",
+      "Un nouvel emprunt obligatoire auprès des banques européennes",
+      "Une surtaxe sur le crédit mobile"
+    ],
+    "answer": 1,
+    "explanation": "Un fonds souverain gérera une partie des revenus gaziers et pétroliers pour garantir un héritage aux générations futures.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 57,
+    "question": "Quel pôle territorial est configuré comme hub minier et sidérurgique principal dans le programme Sénégal 2050 ?",
+    "options": ["Le Pôle Nord", "Le Pôle Ouest", "Le Pôle Est (Kedougou / Tambacounda)", "Le Pôle Sud"],
+    "answer": 2,
+    "explanation": "Le Pôle Est, riche en fer, or et autres minerais, accueillera le pôle industriel et sidérurgique majeur.",
+    "difficulty": "champion",
+    "category": "programme"
+  },
+  {
+    "id": 58,
+    "question": "Quel taux de croissance économique moyen à long terme le programme Sénégal 2050 vise-t-il à stabiliser ?",
+    "options": ["Entre 3% et 4%", "Entre 7% et 8%", "Plus de 15%", "Environ 5%"],
+    "answer": 1,
+    "explanation": "La transformation systémique de l'économie vise une croissance forte et inclusive de 7% à 8% par an.",
+    "difficulty": "champion",
+    "category": "programme"
+  },
+  {
+    "id": 59,
+    "question": "Selon le programme Sénégal 2050, quel horizon est fixé pour numériser l'intégralité des procédures administratives de l'État ?",
+    "options": ["2026", "2030", "2040", "2050"],
+    "answer": 1,
+    "explanation": "La dématérialisation et la souveraineté des données publiques de l'administration visent l'horizon 2030.",
+    "difficulty": "champion",
+    "category": "programme"
+  },
+  {
+    "id": 60,
+    "question": "Quelle mesure forte le Premier ministre Ousmane Sonko a-t-il activée en 2024 concernant les contrats d'exploitation des ressources ?",
+    "options": [
+      "La rupture de tous les contrats miniers en cours",
+      "La mise en place d'une Commission nationale de contrôle et de renégociation des contrats publics",
+      "La privatisation intégrale de Petrosen",
+      "Le transfert de la gestion aux bailleurs internationaux"
+    ],
+    "answer": 1,
+    "explanation": "Une commission a été mise sur pied pour auditer et renégocier les contrats léonins dans les domaines pétrolier et minier.",
+    "difficulty": "expert",
+    "category": "programme"
+  },
+  {
+    "id": 61,
+    "question": "Quel service de l'État Ousmane Sonko a-t-il le plus mis au cœur des débats sur l'équité fiscale ?",
+    "options": [
+      "Le Trésor Public",
+      "La Direction Générale des Impôts et des Domaines (DGID)",
+      "La Cour des Comptes",
+      "L'Inspection Générale des Finances"
+    ],
+    "answer": 1,
+    "explanation": "Il ciblait les dégrèvements fiscaux abusifs accordés sous l'ancienne gouvernance par la DGID.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 62,
+    "question": "Quelle mesure légale a permis la libération d'Ousmane Sonko et de Bassirou Diomaye Faye de prison en mars 2024 ?",
+    "options": [
+      "La loi d'amnistie votée en mars 2024",
+      "La grâce présidentielle de la fête nationale",
+      "Une liberté conditionnelle pour raisons médicales",
+      "Un non-lieu du doyen des juges"
+    ],
+    "answer": 0,
+    "explanation": "La loi d'amnistie générale votée en mars 2024 a effacé les charges politiques et permis leur libération en pleine campagne électorale.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 63,
+    "question": "Pendant combien d'années Ousmane Sonko a-t-il exercé comme Secrétaire général du SAID ?",
+    "options": ["2 ans", "5 ans", "10 ans", "12 ans"],
+    "answer": 2,
+    "explanation": "Il a dirigé et ancré le SAID pendant une décennie (2005-2015) pour porter la transparence au cœur du système fiscal.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 64,
+    "question": "Quelle réforme des traités internationaux Ousmane Sonko réclamait-il avec force à l'Assemblée nationale ?",
+    "options": [
+      "La fin immédiate de l'aide publique au développement",
+      "La transparence et la révision des conventions d'évitement de double imposition avec les pays occidentaux",
+      "La sortie du Sénégal de l'Organisation Mondiale du Commerce",
+      "L'exonération fiscale totale des multinationales"
+    ],
+    "answer": 1,
+    "explanation": "Il militait contre les traités fiscaux défavorables au Trésor sénégalais qui permettaient aux multinationales d'éviter l'impôt.",
+    "difficulty": "champion",
+    "category": "institutions"
+  },
+  {
+    "id": 65,
+    "question": "Quelle est la position d'Ousmane Sonko concernant la monnaie FCFA utilisée au Sénégal ?",
+    "options": [
+      "Il soutient sa pérennisation absolue avec parité fixe",
+      "Il milite pour une sortie ordonnée du FCFA au profit d'une monnaie souveraine nationale ou de l'Eco réformé",
+      "Il souhaite l'adoption immédiate du Dollar américain au Sénégal",
+      "Il propose de supprimer la Banque centrale"
+    ],
+    "answer": 1,
+    "explanation": "Il défend une souveraineté monétaire complète, via la création d'une monnaie nationale ou d'une monnaie commune rigoureusement souveraine.",
+    "difficulty": "champion",
+    "category": "institutions"
+  },
+  {
+    "id": 66,
+    "question": "Au sein de quelle commission parlementaire Ousmane Sonko siégeait-il en tant que député (2017-2022) ?",
+    "options": [
+      "La Commission des Affaires Étrangères",
+      "La Commission des Lois et des Droits de l'Homme",
+      "La Commission des Finances et du Budget",
+      "La Commission de l'Éducation et de la Jeunesse"
+    ],
+    "answer": 2,
+    "explanation": "En tant qu'expert en finances publiques, il a siégé et animé les débats à la Commission des Finances.",
+    "difficulty": "champion",
+    "category": "institutions"
+  },
+  {
+    "id": 67,
+    "question": "Quel principe moral Ousmane Sonko place-t-il en priorité pour les serviteurs de l'État ?",
+    "options": [
+      "L'allégeance aux partis au pouvoir",
+      "L'éthique, la transparence et la reddition des comptes",
+      "Le secret administratif absolu sur les fautes de gestion",
+      "La recherche du profit privé"
+    ],
+    "answer": 1,
+    "explanation": "L'éthique et le patriotisme de service caractérisent la refondation morale promue par PASTEF.",
+    "difficulty": "debutant",
+    "category": "institutions"
+  },
+  {
+    "id": 68,
+    "question": "Quelle instance Ousmane Sonko souhaite-t-il réformer pour libérer la justice de l'emprise politique ?",
+    "options": [
+      "Le Conseil Constitutionnel",
+      "Le Conseil Supérieur de la Magistrature (CSM)",
+      "La Cour Suprême",
+      "Le Médiateur de la République"
+    ],
+    "answer": 1,
+    "explanation": "Il prône de retirer le Président de la République et le ministre de la Justice du CSM pour lui octroyer une réelle indépendance.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 69,
+    "question": "Quelle réforme de nomination aux postes de direction publique est préconisée par PASTEF ?",
+    "options": [
+      "La cooptation familiale exclusive",
+      "L'appel à candidatures public et transparent pour les postes techniques",
+      "L'affectation automatique par tirage au sort",
+      "Le recrutement réservé aux seuls militants de parti"
+    ],
+    "answer": 1,
+    "explanation": "Pour rompre avec le clientélisme, PASTEF veut généraliser l'appel à candidatures transparent pour les directions d'entreprises publiques.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 70,
+    "question": "Dans le système judiciaire sénégalais actuel, qui préside constitutionnellement le Conseil supérieur de la Magistrature ?",
+    "options": [
+      "Le Premier Président de la Cour Suprême",
+      "Le Président de la République",
+      "Le ministre de la Justice",
+      "Le Doyen des Juges"
+    ],
+    "answer": 1,
+    "explanation": "Historiquement et constitutionnellement, c'est le Président de la République qui préside le CSM, une disposition que PASTEF veut réformer.",
+    "difficulty": "champion",
+    "category": "institutions"
+  },
+  {
+    "id": 71,
+    "question": "Selon la vision citoyenne de PASTEF, quel est le devoir premier d'un citoyen ?",
+    "options": [
+      "Payer ses impôts et participer activement aux actions de développement communautaire",
+      "Attendre que le gouvernement résolve tous les problèmes quotidiens",
+      "Partir à l'étranger dès que possible pour aider son pays",
+      "Voter uniquement et ne plus s'impliquer dans la vie locale"
+    ],
+    "answer": 0,
+    "explanation": "Le civisme et le patriotisme actif imposent de contribuer au développement et d'assumer son devoir fiscal.",
+    "difficulty": "debutant",
+    "category": "institutions"
+  },
+  {
+    "id": 72,
+    "question": "Quelle initiative nationale de propreté et de civisme a été relancée activement par le nouveau régime en 2024 ?",
+    "options": [
+      "Le plan 'Sénégal Vert'",
+      "Les journées de nettoiement civique (Sétal Sunu Réew)",
+      "La taxe de salubrité publique sur les commerces",
+      "Le service militaire obligatoire pour les jeunes sans emploi"
+    ],
+    "answer": 1,
+    "explanation": "Les journées nationales de mobilisation citoyenne 'Sétal Sunu Réew' encouragent la propreté et la préservation du cadre de vie.",
+    "difficulty": "debutant",
+    "category": "institutions"
+  },
+  {
+    "id": 73,
+    "question": "Quelle exigence de transparence Ousmane Sonko et les ministres ont-ils remplie dès leur prise de fonction en 2024 ?",
+    "options": [
+      "L'abandon de leur nationalité sénégalaise",
+      "La déclaration publique de patrimoine certifiée par l'OFNAC",
+      "Le vœu de pauvreté obligatoire",
+      "La publication de leur casier judiciaire international"
+    ],
+    "answer": 1,
+    "explanation": "Tous les membres du gouvernement ont procédé à leur déclaration de patrimoine auprès de l'OFNAC pour asseoir la transparence.",
+    "difficulty": "debutant",
+    "category": "institutions"
+  },
+  {
+    "id": 74,
+    "question": "Que signifie la démarche de 'reddition des comptes' initiée par le régime Faye-Sonko ?",
+    "options": [
+      "Interdire à tout ancien ministre de quitter le territoire définitivement",
+      "Évaluer et auditer rigoureusement la gestion des fonds publics passés et poursuivre les fautifs",
+      "Fermer les comptes des administrations non rentables",
+      "Augmenter arbitrairement le taux des taxes sur l'importation"
+    ],
+    "answer": 1,
+    "explanation": "La reddition des comptes consiste à auditer la gestion des deniers publics et à engager des poursuites en cas de détournement ou malversation.",
+    "difficulty": "debutant",
+    "category": "institutions"
+  },
+  {
+    "id": 75,
+    "question": "Quelle institution juridictionnelle publie les rapports annuels d'audit public salués par PASTEF pour leur rigueur ?",
+    "options": ["La Cour Suprême", "Le Conseil Constitutionnel", "La Cour des Comptes", "Le Tribunal de Grande Instance de Dakar"],
+    "answer": 2,
+    "explanation": "La Cour des Comptes publie des rapports d'audit détaillés qui mettent en lumière les fautes de gestion administrative.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 76,
+    "question": "Quel organe de lutte contre la corruption Ousmane Sonko souhaite-t-il doter d'un pouvoir d'auto-saisine judiciaire ?",
+    "options": [
+      "L'OFNAC (Office national de lutte contre la Fraude et la Corruption)",
+      "La CENTIF",
+      "La Division des Investigations Criminelles (DIC)",
+      "L'Inspection Générale des Finances"
+    ],
+    "answer": 0,
+    "explanation": "Le renforcement de l'OFNAC doit lui permettre de saisir directement le procureur sans passer par la tutelle politique.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 77,
+    "question": "Quelle proposition d'éthique financière Ousmane Sonko a-t-il formulée concernant les fonds alloués aux présidences d'institutions ?",
+    "options": [
+      "Leur triplement immédiat",
+      "La suppression des fonds dits politiques ou fonds secrets discrétionnaires non contrôlés",
+      "La distribution de ces fonds aux députés de l'opposition",
+      "L'exemption de tout audit pour ces dotations"
+    ],
+    "answer": 1,
+    "explanation": "Il prône la suppression ou l'encadrement strict et auditable des fonds secrets (fonds politiques) accordés de façon discrétionnaire.",
+    "difficulty": "champion",
+    "category": "institutions"
+  },
+  {
+    "id": 78,
+    "question": "Quelle loi majeure sur la liberté d'expression et l'accès public est réclamée pour moraliser la vie publique ?",
+    "options": [
+      "Une loi de censure préventive sur le web",
+      "Une loi d'accès à l'information publique facilitant l'accès aux documents administratifs",
+      "Le contrôle d'État de tous les journaux privés",
+      "L'interdiction de publier des enquêtes financières"
+    ],
+    "answer": 1,
+    "explanation": "Une loi d'accès à l'information publique permettrait à tout citoyen d'exiger la transparence sur les contrats et dépenses d'État.",
+    "difficulty": "expert",
+    "category": "institutions"
+  },
+  {
+    "id": 79,
+    "question": "Quelle est la devise éthique centrale qui résume l'engagement des militants de PASTEF ?",
+    "options": [
+      "Vaincre ou mourir dans la dignité",
+      "Le don de soi pour la patrie (Jub, Jubal, Jubanti)",
+      "Le pouvoir au peuple souverain",
+      "Unité, Solidarité, Progrès"
+    ],
+    "answer": 1,
+    "explanation": "Le triptyque moral 'Jub, Jubal, Jubanti' (Dignité, Droiture, Redressement) et la devise 'Le don de soi pour la patrie' sont les piliers éthiques de PASTEF.",
+    "difficulty": "debutant",
+    "category": "institutions"
+  },
+  {
+    "id": 80,
+    "question": "Quelle réforme administrative territoriale est envisagée pour supprimer des doublons institutionnels au Sénégal ?",
+    "options": [
+      "La suppression des mairies",
+      "La suppression de certains conseils départementaux redondants pour rationaliser les budgets",
+      "Le rattachement de toutes les communes à la capitale Dakar",
+      "L'abolition de la fonction de gouverneur"
+    ],
+    "answer": 1,
+    "explanation": "La suppression de conseils départementaux doublonnés avec d'autres échelons vise à réduire le train de vie de l'État.",
+    "difficulty": "champion",
+    "category": "institutions"
+  }
+]

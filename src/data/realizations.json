@@ -1,0 +1,219 @@
+[
+  {
+    "id": "economie-1",
+    "domain": "Économie",
+    "title": "Lancement du Référentiel 'Sénégal 2050'",
+    "description": "Élaboration et lancement d'un nouveau modèle de développement basé sur la souveraineté économique, la réduction de la dette publique et l'industrialisation locale.",
+    "objectifs": [
+      "Rompre avec le modèle de dépendance extérieure",
+      "Valoriser les ressources naturelles locales (pétrole, gaz, phosphate, or)",
+      "Assurer une croissance inclusive de plus de 6% par an"
+    ],
+    "resultats": [
+      "Audit général des finances publiques lancé dès l'arrivée au pouvoir",
+      "Planification de zones industrielles régionales",
+      "Renégociation stratégique des contrats miniers et d'hydrocarbures"
+    ],
+    "kpis": [
+      {
+        "label": "Horizon Cible",
+        "value": "2050"
+      },
+      {
+        "label": "Croissance Ciblée",
+        "value": ">6%"
+      },
+      {
+        "label": "Souveraineté Nationale",
+        "value": "100%"
+      }
+    ],
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781346788/fvd9cib2asfhya7vx2rp.jpg"
+  },
+  {
+    "id": "agriculture-1",
+    "domain": "Agriculture",
+    "title": "Souveraineté Alimentaire et Soutien Agricole",
+    "description": "Renforcement des subventions pour les intrants agricoles, restructuration de la distribution des semences et promotion des cultures locales pour atteindre l'autosuffisance.",
+    "objectifs": [
+      "Atteindre l'autosuffisance en riz et en céréales de base",
+      "Éliminer les intermédiaires spéculatifs dans la distribution des engrais",
+      "Moderniser le matériel agricole pour les jeunes producteurs"
+    ],
+    "resultats": [
+      "Baisse et stabilisation des prix des intrants majeurs",
+      "Distribution transparente des semences supervisée par l'armée",
+      "Financement accru des projets de maraîchage en Casamance et vallée du fleuve Sénégal"
+    ],
+    "kpis": [
+      {
+        "label": "Budget Subventions",
+        "value": "+20%"
+      },
+      {
+        "label": "Autosuffisance Cible",
+        "value": "2029"
+      },
+      {
+        "label": "Bénéficiaires Directs",
+        "value": "120k+"
+      }
+    ],
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781347070/dcxypri8u9t1jznvximd.jpg"
+  },
+  {
+    "id": "education-1",
+    "domain": "Éducation",
+    "title": "Réforme Universitaire et Infrastructures Scolaires",
+    "description": "Modernisation des universités publiques, augmentation des budgets des œuvres universitaires, et numérisation des systèmes d'inscription et de bourses.",
+    "objectifs": [
+      "Améliorer les conditions de vie et d'études dans les campus (Dakar, Saint-Louis, Bambey)",
+      "Orienter les formations universitaires vers les sciences, technologies et métiers d'avenir",
+      "Éradiquer les abris provisoires dans les écoles primaires"
+    ],
+    "resultats": [
+      "Livraison de nouveaux pavillons d'hébergement d'étudiants",
+      "Paiement régulier et numérisé des bourses d'études",
+      "Partenariats renforcés avec les centres de formation professionnelle (3FPT)"
+    ],
+    "kpis": [
+      {
+        "label": "Nouveaux Lits Campus",
+        "value": "5,000+"
+      },
+      {
+        "label": "Taux d'Inscriptions en Ligne",
+        "value": "100%"
+      },
+      {
+        "label": "Écoles Rénovées",
+        "value": "350"
+      }
+    ],
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781347321/m7kmfwzoqd7wdftsgvd8.jpg"
+  },
+  {
+    "id": "emploi-1",
+    "domain": "Emploi",
+    "title": "Création d'Emplois durables pour la Jeunesse",
+    "description": "Incitation à l'embauche locale, restructuration de la Délégation à l'Entrepreneuriat Rapide (DER) et financement massif de projets portés par des jeunes.",
+    "objectifs": [
+      "Créer des emplois stables au lieu de contrats précaires",
+      "Soutenir l'auto-entrepreneuriat à l'intérieur du pays",
+      "Valoriser l'artisanat et les métiers de la mer (Pêche)"
+    ],
+    "resultats": [
+      "Financement direct de plus de 10 000 projets de jeunes en 2024-2025",
+      "Simplification des critères d'octroi de crédits de la DER",
+      "Lancement de grands chantiers publics employeurs"
+    ],
+    "kpis": [
+      {
+        "label": "Emplois Créés",
+        "value": "45,000"
+      },
+      {
+        "label": "Taux d'Intérêt DER",
+        "value": "0-2%"
+      },
+      {
+        "label": "Projets Financés",
+        "value": "12,000+"
+      }
+    ],
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781347682/x94ohihc3oxjtn8w8mrn.jpg"
+  },
+  {
+    "id": "sante-1",
+    "domain": "Santé",
+    "title": "Équipement Hospitalier et Couverture Sanitaire",
+    "description": "Amélioration des plateaux techniques des hôpitaux régionaux et réorganisation de la Couverture Maladie Universelle (CMU) pour une gratuité effective des soins de base.",
+    "objectifs": [
+      "Réduire les transferts médicaux vers Dakar en équipant les régions",
+      "Assurer la disponibilité des médicaments essentiels dans les postes de santé reculés",
+      "Améliorer les conditions de travail du personnel de santé"
+    ],
+    "resultats": [
+      "Achat de scanners et d'équipements de radiothérapie pour les hôpitaux régionaux",
+      "Assainissement budgétaire de la CMU et remboursement des dettes aux hôpitaux",
+      "Recrutement de nouveaux médecins et sages-femmes"
+    ],
+    "kpis": [
+      {
+        "label": "Nouveaux Spécialistes",
+        "value": "150+"
+      },
+      {
+        "label": "Dette CMU Apurée",
+        "value": "85%"
+      },
+      {
+        "label": "Scanners Installés",
+        "value": "8"
+      }
+    ],
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781347854/apsfyger7lxjmnsqofli.webp"
+  },
+  {
+    "id": "infrastructures-1",
+    "domain": "Infrastructures",
+    "title": "Désenclavement des Territoires",
+    "description": "Accélération des projets routiers et ferroviaires nationaux, avec une priorité accordée au désenclavement de la Casamance et des zones frontalières.",
+    "objectifs": [
+      "Relier efficacement toutes les capitales régionales par des voies modernes",
+      "Développer les infrastructures portuaires secondaires (Ziguinchor, Saint-Louis)",
+      "Garantir le raccordement en eau potable et électricité dans les zones rurales"
+    ],
+    "resultats": [
+      "Relance de la liaison maritime Dakar-Ziguinchor",
+      "Avancement des travaux de la RN6 (Route du Sud)",
+      "Lancement du programme d'électrification rurale de 2 000 villages"
+    ],
+    "kpis": [
+      {
+        "label": "Routes Rénovées",
+        "value": "450 km"
+      },
+      {
+        "label": "Liaisons Maritimes",
+        "value": "3/sem"
+      },
+      {
+        "label": "Électrification Rurale",
+        "value": "+15%"
+      }
+    ],
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781347951/llgofeuhmsxi0xxyzl9c.jpg"
+  },
+  {
+    "id": "numerique-1",
+    "domain": "Numérique",
+    "title": "Digitalisation de l'Administration et de l'État",
+    "description": "Mise en place de guichets uniques numériques pour les démarches administratives et promotion de l'écosystème Tech sénégalais.",
+    "objectifs": [
+      "Lutter contre la corruption en limitant les transactions physiques",
+      "Faciliter l'obtention des documents administratifs (passeport, casier judiciaire, état civil)",
+      "Soutenir la création de start-ups locales et de centres de codage"
+    ],
+    "resultats": [
+      "Lancement officiel du portail d'e-services administratifs",
+      "Paiement électronique des taxes et impôts généralisé",
+      "Création de pôles technologiques régionaux"
+    ],
+    "kpis": [
+      {
+        "label": "Démarches En Ligne",
+        "value": "45+"
+      },
+      {
+        "label": "Temps d'Obtention Actes",
+        "value": "-75%"
+      },
+      {
+        "label": "Fibre Optique Régionale",
+        "value": "+350km"
+      }
+    ],
+    "media": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781348070/i1noa3zn80yzde9bjgak.png"
+  }
+]

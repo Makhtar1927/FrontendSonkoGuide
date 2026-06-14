@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ev-1",
+    "date": "Mars 2021",
+    "year": "2021",
+    "title": "Affaire Adji Sarr & Arrestation",
+    "description": "Son arrestation sur le chemin du tribunal sous prétexte de troubles à l'ordre public déclenche des manifestations massives pour la démocratie. Il est libéré sous contrôle judiciaire.",
+    "icon": "ShieldAlert",
+    "theme": "border-red-500/40 text-red-400 hover:border-red-500",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781366902/gdljt2opttsectcfxqtm.jpg"
+  },
+  {
+    "id": "ev-2",
+    "date": "Septembre 2022",
+    "year": "2022",
+    "title": "Législatives Historiques",
+    "description": "La coalition d'opposition Yewwi Askan Wi réalise une percée démocratique majeure, imposant une opposition historique et un équilibre à l'Assemblée nationale.",
+    "icon": "Scale",
+    "theme": "border-blue-500/40 text-blue-400 hover:border-blue-500",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781367179/edtjqlqr2p64i8wivnyv.jpg"
+  },
+  {
+    "id": "ev-3",
+    "date": "Mai 2023",
+    "year": "2023",
+    "title": "Affaire Mame Mbaye Niang",
+    "description": "Condamnation en appel pour diffamation. Ce verdict, qui vise à sceller son inéligibilité pour l'élection présidentielle de 2024, pousse le parti à préparer un plan de substitution.",
+    "icon": "Scale",
+    "theme": "border-amber-500/40 text-amber-400 hover:border-amber-500",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781367362/corvqni3l4hoijy4u1g6.jpg"
+  },
+  {
+    "id": "ev-4",
+    "date": "Mai 2023",
+    "year": "2023",
+    "title": "La Caravane de la Liberté",
+    "description": "Un convoi pacifique initié par Sonko depuis Ziguinchor pour rallier Dakar par la route. Une immense communion populaire interrompue par les forces de l'ordre.",
+    "icon": "Flag",
+    "theme": "border-brand-emerald/40 text-brand-emerald-light hover:border-brand-emerald",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781367552/nqa9htktxx8kun8w7icb.jpg"
+  },
+  {
+    "id": "ev-5",
+    "date": "Juin - Juillet 2023",
+    "year": "2023",
+    "title": "Verdict Adji Sarr & Détention",
+    "description": "Condamné par contumace à 2 ans de prison ferme pour corruption de la jeunesse dans le dossier Adji Sarr, il est arrêté en juillet et incarcéré dans la foulée.",
+    "icon": "ShieldAlert",
+    "theme": "border-red-600/40 text-red-500 hover:border-red-600",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781369225/lsbp0t8vhy2s97opvcvp.jpg"
+  },
+  {
+    "id": "ev-6",
+    "date": "14 Mars 2024",
+    "year": "2024",
+    "title": "Libération Triomphale",
+    "description": "Bénéficiant d'une loi d'amnistie générale, Ousmane Sonko et le candidat désigné Bassirou Diomaye Faye sortent de prison sous les acclamations d'une marée humaine.",
+    "icon": "UserCheck",
+    "theme": "border-teal-500/40 text-teal-400 hover:border-teal-500",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781307069/2024Sonko1.webp"
+  },
+  {
+    "id": "ev-7",
+    "date": "24 Mars 2024",
+    "year": "2024",
+    "title": "Victoire de la Rupture 54,28%",
+    "description": "Bien qu'inéligible, Sonko mène la campagne électorale. Bassirou Diomaye Faye remporte l'élection présidentielle dès le premier tour, couronnant des années de lutte.",
+    "icon": "Award",
+    "theme": "border-brand-gold/40 text-brand-gold hover:border-brand-gold",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781368468/spaw9jgtvuqxmzry1llf.jpg"
+  },
+  {
+    "id": "ev-8",
+    "date": "Avril 2024",
+    "year": "2024",
+    "title": "Nomination à la Primature",
+    "description": "Ousmane Sonko est nommé Premier Ministre. Il prend la tête du gouvernement pour concrétiser la vision souverainiste et le programme national Sénégal 2050.",
+    "icon": "Activity",
+    "theme": "border-brand-emerald/40 text-brand-emerald-light hover:border-brand-emerald",
+    "image": "https://res.cloudinary.com/drj3gdpqz/image/upload/v1781368336/dugkds5cy9qa8ubgn4ug.jpg"
+  }
+]
