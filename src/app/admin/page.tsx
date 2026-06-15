@@ -6,7 +6,7 @@ import {
   Lock, LayoutDashboard, Calendar, Newspaper, Video, 
   Map, Brain, Bot, Plus, Trash2, Save, LogOut, ArrowLeft, 
   Eye, CheckCircle, AlertCircle, PlusCircle, MinusCircle,
-  FileText, Upload, Users, RefreshCw, Clock
+  FileText, Upload, Users, RefreshCw, Clock, Star
 } from "lucide-react";
 import { supabase } from "@/utils/supabase";
 
@@ -75,6 +75,7 @@ interface VideoItem {
   youtubeId: string;
   duration: string;
   date: string;
+  featured?: boolean;
 }
 
 interface DocumentFile {
@@ -201,7 +202,7 @@ export default function AdminPage() {
       // 2. Actualités (map read_time -> readTime)
       const { data: actData } = await supabase.from("actualites").select("*");
       if (actData && actData.length > 0) {
-        const mapped = actData.map((item: any) => ({
+        const mapped = actData.map((item: { id: string; title: string; summary: string; content: string; date: string; read_time: string; category: string; image: string; author?: string }) => ({
           id: item.id,
           title: item.title,
           summary: item.summary,
@@ -218,7 +219,7 @@ export default function AdminPage() {
       // 3. Quizzes (map correct_answer -> correctAnswer)
       const { data: qData } = await supabase.from("quizzes").select("*");
       if (qData && qData.length > 0) {
-        const mapped = qData.map((item: any) => ({
+        const mapped = qData.map((item: { id: string; question: string; options: string[]; correct_answer: number; explanation: string; category: string; difficulty?: string }) => ({
           id: item.id,
           question: item.question,
           options: item.options,
@@ -245,13 +246,14 @@ export default function AdminPage() {
       // 6. Videos (map youtube_id -> youtubeId)
       const { data: vData } = await supabase.from("videos").select("*");
       if (vData && vData.length > 0) {
-        const mapped = vData.map((item: any) => ({
+        const mapped = vData.map((item: { id: string; title: string; category: string; youtube_id: string; duration: string; date: string; featured?: boolean }) => ({
           id: item.id,
           title: item.title,
           category: item.category,
           youtubeId: item.youtube_id,
           duration: item.duration,
-          date: item.date
+          date: item.date,
+          featured: item.featured ?? false
         }));
         setVideos(mapped);
       }
@@ -285,9 +287,13 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      fetchContributors();
-      fetchDatabaseData();
+      void (async () => {
+        fetchContributors();
+        await fetchDatabaseData();
+      })();
     }
+    // fetchContributors and fetchDatabaseData are stable references defined in component scope
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   // Show Toast helper
@@ -378,7 +384,7 @@ export default function AdminPage() {
       let data;
       try {
         data = await res.json();
-      } catch (jsonErr) {
+      } catch (_jsonErr) {
         throw new Error(`Erreur serveur (${res.status}) : Veuillez configurer les identifiants GOOGLE_DRIVE_CLIENT_EMAIL et GOOGLE_DRIVE_PRIVATE_KEY dans votre fichier .env.local.`);
       }
 
@@ -1207,6 +1213,38 @@ export default function AdminPage() {
               </button>
             </div>
 
+            {/* VIDÉO À LA UNE — Panneau dédié */}
+            {(() => {
+              const featuredVid = videos.find(v => v.featured);
+              return (
+                <div className="glass-panel p-5 rounded-2xl border border-brand-gold/20 flex gap-6 items-center">
+                  <div className="flex items-center gap-2 text-brand-gold">
+                    <Star className="w-5 h-5 fill-brand-gold" />
+                    <span className="text-sm font-extrabold uppercase tracking-wider">Vidéo à la une</span>
+                  </div>
+                  {featuredVid ? (
+                    <div className="flex-1 flex items-center gap-4">
+                      <div className="w-32 aspect-video rounded-lg overflow-hidden border border-brand-emerald/20 flex-shrink-0 bg-black">
+                        <iframe
+                          className="w-full h-full pointer-events-none"
+                          src={`https://www.youtube.com/embed/${featuredVid.youtubeId}`}
+                          title={featuredVid.title}
+                          tabIndex={-1}
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[10px] font-bold text-brand-gold bg-brand-green/30 px-2 py-0.5 rounded border border-brand-gold/20">{featuredVid.category}</span>
+                        <p className="text-sm font-bold text-white mt-1 line-clamp-2">{featuredVid.title}</p>
+                        <p className="text-[10px] font-mono text-foreground/45 mt-0.5">{featuredVid.date} · {featuredVid.duration}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-sm text-foreground/45 italic flex-1">Aucune vidéo sélectionnée — cliquez sur ★ dans la liste ci-dessous.</p>
+                  )}
+                </div>
+              );
+            })()}
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               {/* List */}
               <div className="lg:col-span-5 glass-panel p-4 rounded-2xl max-h-[600px] overflow-y-auto space-y-2">
@@ -1222,22 +1260,42 @@ export default function AdminPage() {
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-[10px] font-bold text-brand-gold bg-brand-green/30 px-1.5 py-0.5 rounded border border-brand-gold/10">{vid.category}</span>
-                      <span className="text-xs truncate max-w-[180px]">{vid.title}</span>
+                      <span className="text-xs truncate max-w-[140px]">{vid.title}</span>
                     </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const updated = videos.filter((_, i) => i !== idx);
-                        setVideos(updated);
-                        setSelectedVideoIndex(null);
-                        saveFile("videos", updated);
-                      }}
-                      title="Supprimer cette vidéo"
-                      aria-label="Supprimer cette vidéo"
-                      className="p-1 text-foreground/45 hover:text-red-400 transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center gap-1">
+                      {/* Featured toggle */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const updated = videos.map((v, i) => ({ ...v, featured: i === idx }));
+                          setVideos(updated);
+                          saveFile("videos", updated);
+                        }}
+                        title={vid.featured ? "Vidéo à la une (active)" : "Définir comme vidéo à la une"}
+                        aria-label={vid.featured ? "Vidéo à la une active" : "Définir comme vidéo à la une"}
+                        className={`p-1.5 rounded-lg transition-colors ${
+                          vid.featured
+                            ? "text-brand-gold bg-brand-gold/15 border border-brand-gold/30"
+                            : "text-foreground/30 hover:text-brand-gold hover:bg-brand-gold/10"
+                        }`}
+                      >
+                        <Star className={`w-3.5 h-3.5 ${vid.featured ? "fill-brand-gold" : ""}`} />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const updated = videos.filter((_, i) => i !== idx);
+                          setVideos(updated);
+                          setSelectedVideoIndex(null);
+                          saveFile("videos", updated);
+                        }}
+                        title="Supprimer cette vidéo"
+                        aria-label="Supprimer cette vidéo"
+                        className="p-1 text-foreground/45 hover:text-red-400 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>

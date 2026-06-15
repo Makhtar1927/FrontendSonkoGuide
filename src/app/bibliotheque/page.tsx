@@ -11,6 +11,7 @@ interface Video {
   youtubeId: string;
   duration: string;
   date: string;
+  featured?: boolean;
 }
 
 interface DocumentItem {
@@ -40,13 +41,14 @@ export default function BibliothequePage() {
         const { data: vData, error: vError } = await supabase.from("videos").select("*");
         if (vError) throw vError;
         if (vData && vData.length > 0) {
-          const mappedVideos = vData.map((item: any) => ({
+          const mappedVideos = vData.map((item: { id: string; title: string; category: string; youtube_id: string; duration: string; date: string; featured?: boolean }) => ({
             id: item.id,
             title: item.title,
-            category: item.category as any,
+            category: item.category as Video["category"],
             youtubeId: item.youtube_id, // map youtube_id -> youtubeId
             duration: item.duration,
-            date: item.date
+            date: item.date,
+            featured: item.featured ?? false
           }));
           setVideos(mappedVideos);
         }
@@ -149,6 +151,49 @@ export default function BibliothequePage() {
         {/* VIDÉOS SECTION */}
         {activeTab === "videos" && (
           <div>
+            {/* VIDÉO À LA UNE */}
+            {(() => {
+              const featuredVid = videos.find(v => v.featured);
+              if (!featuredVid) return null;
+              return (
+                <div className="mb-10 rounded-3xl overflow-hidden border border-brand-gold/20 shadow-2xl shadow-brand-gold/5 relative">
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold text-brand-green-dark text-[10px] font-black uppercase tracking-wider shadow-lg">
+                    <Star className="w-3 h-3 fill-brand-green-dark" />
+                    Vidéo à la une
+                  </div>
+
+                  {/* Duration badge */}
+                  <div className="absolute top-4 right-4 z-10 px-2.5 py-1 rounded-lg bg-brand-dark-base/80 border border-brand-emerald/20 text-[10px] font-mono text-foreground/70">
+                    {featuredVid.duration}
+                  </div>
+
+                  {/* Iframe player */}
+                  <div className="relative w-full aspect-[21/9]">
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src={`https://www.youtube.com/embed/${featuredVid.youtubeId}?rel=0&modestbranding=1`}
+                      title={featuredVid.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+
+                  {/* Info bar */}
+                  <div className="bg-brand-green-dark/60 backdrop-blur-md px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
+                    <div>
+                      <span className="text-[10px] font-bold text-brand-gold bg-brand-green/30 px-2 py-0.5 rounded border border-brand-gold/20">
+                        {featuredVid.category}
+                      </span>
+                      <h2 className="text-white font-bold text-base md:text-lg mt-2 leading-snug">
+                        {featuredVid.title}
+                      </h2>
+                    </div>
+                    <span className="text-[10px] font-mono text-foreground/45 whitespace-nowrap">{featuredVid.date}</span>
+                  </div>
+                </div>
+              );
+            })()}
             {/* Search and Sub-filters */}
             <div className="glass-panel p-6 rounded-2xl mb-8 flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
               <div className="flex flex-wrap gap-2">

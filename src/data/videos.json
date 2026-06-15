@@ -1,7 +1,7 @@
 [
-  { "id": "vid-1", "title": "Saint-Louis : Ousmane Sonko en communion avec les étudiants de l'UGB", "category": "Discours", "youtubeId": "HWqi-nemcfo", "duration": "1h 45m", "date": "Mai 2024" },
-  { "id": "vid-2", "title": "Ousmane Sonko : 'La fin du franc CFA est historique' - TV5MONDE", "category": "Interviews", "youtubeId": "NiBRlgz8YQI", "duration": "15m", "date": "Juin 2020" },
-  { "id": "vid-3", "title": "Présidentielle 2019 : Présentation du programme Solutions de Ousmane Sonko", "category": "Débats", "youtubeId": "TiqJWWm8Zyg", "duration": "2h 15m", "date": "Février 2019" },
-  { "id": "vid-4", "title": "Conférence conjointe de Ousmane Sonko et Jean-Luc Mélenchon à l'UCAD", "category": "Conférences", "youtubeId": "nGZYXdx6-To", "duration": "2h 10m", "date": "Mai 2024" },
-  { "id": "vid-5", "title": "Sénégal 2050 : PM Ousmane Sonko introduit les quatre axes stratégiques", "category": "Podcasts", "youtubeId": "QTNnnxIW5yE", "duration": "35m", "date": "Octobre 2024" }
+  { "id": "vid-1", "title": "Saint-Louis : Ousmane Sonko en communion avec les étudiants de l'UGB", "category": "Discours", "youtubeId": "HWqi-nemcfo", "duration": "1h 45m", "date": "Mai 2024", "featured": true },
+  { "id": "vid-2", "title": "Ousmane Sonko : 'La fin du franc CFA est historique' - TV5MONDE", "category": "Interviews", "youtubeId": "NiBRlgz8YQI", "duration": "15m", "date": "Juin 2020", "featured": false },
+  { "id": "vid-3", "title": "Présidentielle 2019 : Présentation du programme Solutions de Ousmane Sonko", "category": "Débats", "youtubeId": "TiqJWWm8Zyg", "duration": "2h 15m", "date": "Février 2019", "featured": false },
+  { "id": "vid-4", "title": "Conférence conjointe de Ousmane Sonko et Jean-Luc Mélenchon à l'UCAD", "category": "Conférences", "youtubeId": "nGZYXdx6-To", "duration": "2h 10m", "date": "Mai 2024", "featured": false },
+  { "id": "vid-5", "title": "Sénégal 2050 : PM Ousmane Sonko introduit les quatre axes stratégiques", "category": "Podcasts", "youtubeId": "QTNnnxIW5yE", "duration": "35m", "date": "Octobre 2024", "featured": false }
 ]
