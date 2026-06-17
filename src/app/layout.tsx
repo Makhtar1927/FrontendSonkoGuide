@@ -60,9 +60,9 @@ export const metadata: Metadata = {
   },
   // ─── Icons ───────────────────────────────────────────────────────────────
   icons: {
-    icon: "/IconSonko.jpg",
-    apple: "/IconSonko.jpg",
-    shortcut: "/IconSonko.jpg",
+    icon: "/favicon_os.png",
+    apple: "/favicon_os.png",
+    shortcut: "/favicon_os.png",
   },
   // ─── Robots / SEO ────────────────────────────────────────────────────────
   robots: {
