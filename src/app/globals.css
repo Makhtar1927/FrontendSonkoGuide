@@ -76,6 +76,15 @@
   display: none;             /* Chrome / Safari / Opera */
 }
 
+/* Alias used in some components (e.g. biography tabs) */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE / Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;             /* Chrome / Safari / Opera */
+}
+
 /* Dynamic progress bar — width driven by CSS custom property to avoid inline style linting */
 .progress-bar-fill {
   width: var(--progress-width, 0%);

@@ -20,8 +20,10 @@ export default function Timeline360() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [minImportance, setMinImportance] = useState<number>(3); // Default to major milestones (>=3)
-  const [activeEvent, setActiveEvent] = useState<TimelineEvent | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
+  // Image index is stored alongside the event title so it auto-resets when the displayed event changes
+  const [imageState, setImageState] = useState<{ eventTitle: string | null; index: number }>({ eventTitle: null, index: 0 });
+  const [showScrollHint, setShowScrollHint] = useState(true);
 
   useEffect(() => {
     const fetchTimeline = async () => {
@@ -41,11 +43,20 @@ export default function Timeline360() {
     fetchTimeline();
   }, []);
 
-  useEffect(() => {
-    setCurrentImageIndex(0);
-  }, [activeEvent?.title]);
+  // (image index reset is handled via imageState — see below)
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // Hide scroll hint once user starts scrolling
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      if (el.scrollLeft > 10) setShowScrollHint(false);
+    };
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const categories = [
     { id: "all", label: "Tous", icon: Filter },
@@ -69,20 +80,16 @@ export default function Timeline360() {
     }).sort((a, b) => parseInt(a.year) - parseInt(b.year));
   }, [timeline, selectedCategory, searchQuery, minImportance]);
 
-  // Set first event as active initially if available
-  useEffect(() => {
-    if (filteredEvents.length > 0 && !activeEvent) {
-      setActiveEvent(filteredEvents[0]);
-    } else if (filteredEvents.length > 0 && activeEvent) {
-      // Keep selected event active if it's still in the filtered list, otherwise set first
-      const stillExists = filteredEvents.some(e => e.title === activeEvent.title);
-      if (!stillExists) {
-        setActiveEvent(filteredEvents[0]);
-      }
-    } else {
-      setActiveEvent(null);
-    }
-  }, [filteredEvents, activeEvent]);
+  // Derive the displayed event without state mutation in effects
+  const activeEvent = useMemo(() => {
+    if (filteredEvents.length === 0) return null;
+    if (!selectedEvent) return filteredEvents[0];
+    const stillExists = filteredEvents.some(e => e.title === selectedEvent.title);
+    return stillExists ? selectedEvent : filteredEvents[0];
+  }, [filteredEvents, selectedEvent]);
+
+  // Current image index — auto-resets to 0 when the displayed event changes
+  const currentImageIndex = imageState.eventTitle === activeEvent?.title ? imageState.index : 0;
 
   // Navigation handlers for horizontal scroll
   const scroll = (direction: "left" | "right") => {
@@ -93,6 +100,7 @@ export default function Timeline360() {
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth"
       });
+      setShowScrollHint(false);
     }
   };
 
@@ -219,7 +227,7 @@ export default function Timeline360() {
               return (
                 <div
                   key={event.title}
-                  onClick={() => setActiveEvent(event)}
+                  onClick={() => setSelectedEvent(event)}
                   className="flex-shrink-0 w-[300px] md:w-[320px] cursor-pointer snap-start"
                 >
                   <motion.div
@@ -263,6 +271,29 @@ export default function Timeline360() {
               );
             })}
           </div>
+
+          {/* Scroll hint — visible only on small screens where arrow buttons are hidden */}
+          <AnimatePresence>
+            {showScrollHint && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.4 } }}
+                className="md:hidden pointer-events-none absolute inset-y-0 right-0 flex items-center"
+              >
+                {/* Fade gradient */}
+                <div className="w-20 h-full bg-gradient-to-r from-transparent to-brand-dark-base/90 rounded-r-2xl" />
+                {/* Bouncing arrow badge */}
+                <motion.div
+                  animate={{ x: [0, 6, 0] }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute right-2 flex items-center justify-center w-8 h-8 rounded-full bg-brand-gold/20 border border-brand-gold/40 backdrop-blur-sm shadow-lg"
+                >
+                  <ChevronRight className="w-4 h-4 text-brand-gold" />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
 
@@ -342,9 +373,7 @@ export default function Timeline360() {
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              setCurrentImageIndex((prev) => 
-                                prev === 0 ? mediaUrls.length - 1 : prev - 1
-                              );
+                              setImageState({ eventTitle: activeEvent?.title ?? null, index: currentImageIndex === 0 ? mediaUrls.length - 1 : currentImageIndex - 1 });
                             }}
                             title="Image précédente"
                             aria-label="Image précédente"
@@ -356,9 +385,7 @@ export default function Timeline360() {
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              setCurrentImageIndex((prev) => 
-                                prev === mediaUrls.length - 1 ? 0 : prev + 1
-                              );
+                              setImageState({ eventTitle: activeEvent?.title ?? null, index: currentImageIndex === mediaUrls.length - 1 ? 0 : currentImageIndex + 1 });
                             }}
                             title="Image suivante"
                             aria-label="Image suivante"
@@ -379,7 +406,7 @@ export default function Timeline360() {
                                 key={dotIdx}
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  setCurrentImageIndex(dotIdx);
+                                  setImageState({ eventTitle: activeEvent?.title ?? null, index: dotIdx });
                                 }}
                                 title={`Aller à l'image ${dotIdx + 1}`}
                                 aria-label={`Aller à l'image ${dotIdx + 1}`}

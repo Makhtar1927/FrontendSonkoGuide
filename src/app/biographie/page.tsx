@@ -1,11 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { User, BookOpen, Briefcase, Landmark, ShieldAlert, Award, FileText } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { User, BookOpen, Briefcase, Landmark, ShieldAlert, Award, ChevronRight } from "lucide-react";
 
 export default function BiographiePage() {
   const [activeTab, setActiveTab] = useState<"general" | "academic" | "professional" | "political">("general");
+  const [showScrollHint, setShowScrollHint] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      if (el.scrollLeft > 10) setShowScrollHint(false);
+    };
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Reset hint when tab changes (user might be on a new layout)
 
   const tabs = [
     { id: "general", label: "Présentation & Enfance", icon: User },
@@ -30,26 +44,60 @@ export default function BiographiePage() {
         </div>
 
         {/* Tabs switcher */}
-        <div className="flex justify-center border-b border-brand-emerald/15 pb-px mb-12">
-          <div className="flex gap-2 bg-brand-green-dark/30 p-1.5 rounded-2xl border border-brand-emerald/10">
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-2 px-5 py-3 rounded-xl text-xs md:text-sm font-bold transition-all cursor-pointer ${
-                    isActive
-                      ? "bg-brand-gold text-brand-green-dark shadow-lg shadow-brand-gold/15"
-                      : "text-foreground/75 hover:bg-brand-green/30"
-                  }`}
+        <div className="border-b border-brand-emerald/15 pb-px mb-12">
+          <div className="relative">
+            {/* Scroll container */}
+            <div
+              ref={scrollRef}
+              className="overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 flex justify-start md:justify-center"
+            >
+              <div className="flex gap-2 bg-brand-green-dark/30 p-1.5 rounded-2xl border border-brand-emerald/10 whitespace-nowrap min-w-max mx-auto">
+                {tabs.map((tab) => {
+                  const Icon = tab.icon;
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => {
+                        setActiveTab(tab.id as "general" | "academic" | "professional" | "political");
+                        setShowScrollHint(true);
+                      }}
+                      className={`flex-shrink-0 flex items-center gap-2 px-5 py-3 rounded-xl text-xs md:text-sm font-bold transition-all cursor-pointer ${
+                        isActive
+                          ? "bg-brand-gold text-brand-green-dark shadow-lg shadow-brand-gold/15"
+                          : "text-foreground/75 hover:bg-brand-green/30"
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      <span>{tab.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Scroll hint — visible only on small screens */}
+            <AnimatePresence>
+              {showScrollHint && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 0.4 } }}
+                  className="md:hidden pointer-events-none absolute inset-y-0 right-0 flex items-center"
                 >
-                  <Icon className="w-4 h-4" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
+                  {/* Fade gradient */}
+                  <div className="w-16 h-full bg-gradient-to-r from-transparent to-brand-dark-base/90 rounded-r-2xl" />
+                  {/* Arrow badge */}
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute right-1 flex items-center justify-center w-7 h-7 rounded-full bg-brand-gold/20 border border-brand-gold/40 backdrop-blur-sm"
+                  >
+                    <ChevronRight className="w-4 h-4 text-brand-gold" />
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
@@ -97,17 +145,17 @@ export default function BiographiePage() {
                 <div className="glass-panel p-6 rounded-2xl">
                   <h3 className="text-xl font-bold text-white font-display mb-3">Enfance & Histoire Familiale</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                    Né à Thiès au cœur du Sénégal, Ousmane Sonko grandit principalement entre Sébikotane, une commune située près de la capitale Dakar, et la région naturelle de Casamance au Sud du Sénégal. Issu d'un milieu familial modeste attaché aux valeurs d'intégrité, de dignité et de travail rigoureux.
+                    Né à Thiès au cœur du Sénégal, Ousmane Sonko grandit principalement entre Sébikotane, une commune située près de la capitale Dakar, et la région naturelle de Casamance au Sud du Sénégal. Issu d&apos;un milieu familial modeste attaché aux valeurs d&apos;intégrité, de dignité et de travail rigoureux.
                   </p>
                   <p className="text-sm text-foreground/80 leading-relaxed font-sans mt-3">
-                    Son village natal et ses séjours réguliers en Casamance forgeront très tôt sa sensibilité paysanne et son attachement à la terre sénégalaise, à son agriculture et à l'autonomie des régions.
+                    Son village natal et ses séjours réguliers en Casamance forgeront très tôt sa sensibilité paysanne et son attachement à la terre sénégalaise, à son agriculture et à l&apos;autonomie des régions.
                   </p>
                 </div>
 
                 <div className="glass-panel p-6 rounded-2xl border-l-4 border-l-brand-emerald">
                   <h3 className="text-xl font-bold text-white font-display mb-3">Éducation Religieuse & Valeurs</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                    Élevé dans une pure tradition religieuse musulmane, il fréquente durant sa jeunesse les écoles coraniques de son quartier. Cette éducation spirituelle joue un rôle fondamental dans la construction de ses valeurs morales : l'éthique (Jom), la droiture, la lutte contre le vol et la justice sociale, des piliers qu'il érigera plus tard en slogan pour PASTEF.
+                    Élevé dans une pure tradition religieuse musulmane, il fréquente durant sa jeunesse les écoles coraniques de son quartier. Cette éducation spirituelle joue un rôle fondamental dans la construction de ses valeurs morales : l&apos;éthique (Jom), la droiture, la lutte contre le vol et la justice sociale, des piliers qu&apos;il érigera plus tard en slogan pour PASTEF.
                   </p>
                 </div>
               </div>
@@ -134,7 +182,7 @@ export default function BiographiePage() {
                   <span className="text-xs font-mono font-bold text-brand-gold/70 block mb-2">MAÎTRISE EN DROIT</span>
                   <h3 className="text-lg font-bold text-white mb-3 font-display">Université Gaston Berger de Saint-Louis (1993-1999)</h3>
                   <p className="text-sm text-foreground/75 leading-relaxed font-sans">
-                    Il s'inscrit à l'Université Gaston Berger (UGB) de Saint-Louis. En 1999, il obtient une Maîtrise en Droit Public, avec pour spécialisation le Droit des Affaires. Son mémoire de fin d'études porte déjà sur le thème : <strong className="text-brand-gold">La fiscalité locale au Sénégal</strong>.
+                    Il s&apos;inscrit à l&apos;Université Gaston Berger (UGB) de Saint-Louis. En 1999, il obtient une Maîtrise en Droit Public, avec pour spécialisation le Droit des Affaires. Son mémoire de fin d&apos;études porte déjà sur le thème : <strong className="text-brand-gold">La fiscalité locale au Sénégal</strong>.
                   </p>
                 </div>
               </div>
@@ -143,9 +191,9 @@ export default function BiographiePage() {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <div className="md:col-span-8 glass-panel p-6 rounded-2xl border-l-4 border-l-brand-gold">
                   <span className="text-xs font-mono font-bold text-brand-gold/70 block mb-2">CONCOURS ET DIPLÔME MAJOR</span>
-                  <h3 className="text-lg font-bold text-white mb-3 font-display">L'École Nationale d'Administration (ENA) du Sénégal</h3>
+                  <h3 className="text-lg font-bold text-white mb-3 font-display">L&apos;École Nationale d&apos;Administration (ENA) du Sénégal</h3>
                   <p className="text-sm text-foreground/75 leading-relaxed font-sans">
-                    Reçu sur concours à la prestigieuse École Nationale d'Administration (ENA) de Dakar, Ousmane Sonko choisit la section **Impôts et Domaines**. Il en ressort diplômé major ou haut gradé en 2001, prêt à entamer sa carrière de haut fonctionnaire dans l'administration fiscale nationale.
+                    Reçu sur concours à la prestigieuse École Nationale d&apos;Administration (ENA) de Dakar, Ousmane Sonko choisit la section **Impôts et Domaines**. Il en ressort diplômé major ou haut gradé en 2001, prêt à entamer sa carrière de haut fonctionnaire dans l&apos;administration fiscale nationale.
                   </p>
                 </div>
 
@@ -153,7 +201,7 @@ export default function BiographiePage() {
                   <Award className="w-12 h-12 text-brand-gold mb-3 animate-pulse" />
                   <h4 className="font-bold text-white text-sm">Master 2 UCAD</h4>
                   <p className="text-xs text-foreground/60 mt-2">
-                    En 2003, il complète ses compétences avec un Master en Finances Publiques et Fiscalité à l'UCAD de Dakar.
+                    En 2003, il complète ses compétences avec un Master en Finances Publiques et Fiscalité à l&apos;UCAD de Dakar.
                   </p>
                 </div>
               </div>
@@ -173,7 +221,7 @@ export default function BiographiePage() {
                   Inspecteur des Impôts et des Domaines (2001 - 2016)
                 </h3>
                 <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                  Durant 15 ans, Ousmane Sonko sert avec rigueur l'administration fiscale du Sénégal. Il a pour mission le contrôle fiscal, la gestion foncière et le recouvrement des taxes publiques. Ses audits et dossiers lui permettent de cartographier précisément l'économie nationale et de relever les nombreuses failles du système fiscal (optimisations agressives et fraude fiscale).
+                  Durant 15 ans, Ousmane Sonko sert avec rigueur l&apos;administration fiscale du Sénégal. Il a pour mission le contrôle fiscal, la gestion foncière et le recouvrement des taxes publiques. Ses audits et dossiers lui permettent de cartographier précisément l&apos;économie nationale et de relever les nombreuses failles du système fiscal (optimisations agressives et fraude fiscale).
                 </p>
                 
                 <h4 className="font-bold text-brand-gold text-sm mt-6 mb-2 uppercase tracking-wide">Création du syndicat SAID</h4>
@@ -187,9 +235,9 @@ export default function BiographiePage() {
                 <div className="md:col-span-8 glass-panel p-6 rounded-2xl border-l-4 border-l-[#EF4444] bg-[#EF4444]/5 flex gap-4 items-start">
                   <ShieldAlert className="w-8 h-8 text-[#EF4444] flex-shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-bold text-[#EF4444] text-base font-display">La Radiation d'Août 2016</h4>
+                    <h4 className="font-bold text-[#EF4444] text-base font-display">La Radiation d&apos;Août 2016</h4>
                     <p className="text-xs md:text-sm text-foreground/75 leading-relaxed mt-2 font-sans">
-                      En août 2016, après avoir rendu publics des dossiers fiscaux sensibles dénonçant les privilèges illégaux et le non-paiement de l'impôt par les parlementaires et l'entourage présidentiel, Ousmane Sonko est radié de la fonction publique par décret présidentiel. Cette décision politique propulse alors le haut fonctionnaire sur le devant de la scène politique en tant que figure de la dissidence et lance sa carrière d'opposition à plein temps.
+                      En août 2016, après avoir rendu publics des dossiers fiscaux sensibles dénonçant les privilèges illégaux et le non-paiement de l&apos;impôt par les parlementaires et l&apos;entourage présidentiel, Ousmane Sonko est radié de la fonction publique par décret présidentiel. Cette décision politique propulse alors le haut fonctionnaire sur le devant de la scène politique en tant que figure de la dissidence et lance sa carrière d&apos;opposition à plein temps.
                     </p>
                   </div>
                 </div>

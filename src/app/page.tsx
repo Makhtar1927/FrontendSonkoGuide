@@ -11,7 +11,65 @@ import EventsSlider360 from "@/components/events-slider-360";
 export default function Home() {
   return (
     <div className="flex flex-col w-full relative">
-      
+
+      {/* 0. GUIDE DE LA RÉVOLUTION — Banner section */}
+      <section className="relative w-full bg-brand-dark-base overflow-hidden border-b border-brand-emerald/15">
+        {/* Ambient glows */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_40%_50%,_rgba(7,71,47,0.25),_transparent)] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/4 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2" />
+
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch">
+
+          {/* ── LEFT on desktop: Image ── / bottom on mobile ── */}
+          <div className="w-full lg:w-[45%] xl:w-[42%] flex-shrink-0 relative order-2 lg:order-1 lg:self-stretch">
+            <div className="relative w-full h-[420px] lg:h-full min-h-[480px] overflow-hidden">
+              {/* Gold border on the right edge (desktop only) */}
+              <div className="hidden lg:block absolute right-0 inset-y-0 w-px bg-gradient-to-b from-transparent via-brand-gold/30 to-transparent z-10" />
+              <img
+                src="/Gardien.png"
+                alt="Ousmane Sonko — Guide de la Révolution"
+                className="w-full h-full object-cover object-top"
+              />
+              {/* Fades RIGHT into the text column on desktop */}
+              <div className="hidden lg:block absolute inset-0 bg-gradient-to-l from-brand-dark-base via-brand-dark-base/15 to-transparent pointer-events-none" />
+              {/* Bottom fade for mobile */}
+              <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-brand-dark-base via-transparent to-transparent pointer-events-none" />
+
+            </div>
+          </div>
+
+          {/* ── RIGHT on desktop: Text ── / top on mobile ── */}
+          <div className="flex-1 flex flex-col justify-center px-6 md:px-12 py-16 lg:py-24 order-1 lg:order-2">
+            {/* Eyebrow */}
+            <span className="text-[10px] md:text-xs font-mono font-black text-brand-gold/70 uppercase tracking-[0.3em] mb-4 block">
+              Sénégal · PASTEF · Président de l&apos;Assemblée Nationale
+            </span>
+
+            {/* Big title */}
+            <h2 className="font-display font-extrabold leading-[1.05] text-white">
+              <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight">
+                Guide de la
+              </span>
+              <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-brand-gold-light to-brand-gold">
+                Révolution
+              </span>
+            </h2>
+
+            {/* Sub-tagline */}
+            <p className="mt-6 text-sm md:text-base text-foreground/60 max-w-md leading-relaxed font-sans">
+              Ousmane Sonko — bâtisseur de souveraineté, porteur d&apos;une vision de rupture et de justice sociale pour le peuple sénégalais.
+            </p>
+
+            {/* Decorative separator */}
+            <div className="mt-8 flex items-center gap-4">
+              <div className="h-px w-12 bg-brand-gold/60" />
+              <span className="text-[10px] font-mono text-brand-gold/50 uppercase tracking-widest">Né le 15 juillet 1974 · Thiès, Sénégal</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* 1. HERO BANNER SECTION */}
       <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-center py-20 px-4 md:px-8 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/35 via-brand-dark-base to-brand-dark-base overflow-hidden">
         {/* Glow lines */}
