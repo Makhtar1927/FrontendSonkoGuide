@@ -42,13 +42,25 @@ export default function ActualitesPage() {
   // Local fallback comments state (in case Supabase table comments isn't created yet)
   const [localComments, setLocalComments] = useState<Record<string, Comment[]>>({});
 
+  interface ActualiteRow {
+    id: string;
+    title: string;
+    summary: string;
+    content: string;
+    date: string;
+    read_time: string;
+    category: string;
+    image: string;
+    author?: string;
+  }
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         const { data, error } = await supabase.from("actualites").select("*");
         if (error) throw error;
         if (data && data.length > 0) {
-          const mapped = data.map((item: any) => ({
+          const mapped = (data as ActualiteRow[]).map((item) => ({
             id: item.id,
             title: item.title,
             summary: item.summary,
@@ -114,10 +126,32 @@ export default function ActualitesPage() {
 
   // Fetch comments when an article is selected
   useEffect(() => {
-    if (selectedArticle) {
-      fetchComments(selectedArticle.id);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!selectedArticle) return;
+    const articleId = selectedArticle.id;
+    const load = async () => {
+      setLoadingComments(true);
+      try {
+        const { data, error } = await supabase
+          .from("comments")
+          .select("*")
+          .eq("article_id", articleId)
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          console.warn("Could not fetch comments from Supabase, falling back to local storage.", error.message);
+          setComments((prev) => localComments[articleId] ?? prev);
+        } else if (data) {
+          setComments(data as Comment[]);
+        }
+      } catch (err) {
+        console.error("Exception fetching comments:", err);
+        setComments(localComments[articleId] ?? []);
+      } finally {
+        setLoadingComments(false);
+      }
+    };
+    load();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedArticle]);
 
   const handlePostComment = async (e: React.FormEvent) => {
