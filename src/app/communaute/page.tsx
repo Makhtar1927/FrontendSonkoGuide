@@ -38,7 +38,7 @@ export default function CommunautePage() {
   };
 
   return (
-    <div className="w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-20 px-4 md:px-8 flex-grow flex items-center justify-center min-h-[75vh]">
+    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-20 px-4 md:px-8 flex-grow flex items-center justify-center min-h-[75vh]">
       <div className="max-w-2xl w-full text-center relative">
         {/* Ambient Blur Background Glows */}
         <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-72 h-72 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />

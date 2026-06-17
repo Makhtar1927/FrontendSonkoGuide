@@ -4,7 +4,7 @@ import { Info, Mail, Globe, Landmark, Code, Heart, ArrowRight } from "lucide-rea
 
 export default function AProposPage() {
   return (
-    <div className="w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-20 px-4 md:px-8 flex-grow flex items-center justify-center">
+    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-20 px-4 md:px-8 flex-grow flex items-center justify-center">
       <div className="max-w-4xl w-full relative">
         {/* Glow */}
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-brand-gold/5 rounded-full blur-2xl pointer-events-none" />

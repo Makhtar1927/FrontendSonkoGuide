@@ -1,16 +1,48 @@
+"use client";
+
 import Link from "next/link";
 import { Sparkles, Clock, Bot } from "lucide-react";
+import dynamic from "next/dynamic";
 import CitationCard from "@/components/citation-card";
-import Timeline360 from "@/components/timeline-360";
-import SenegalMap from "@/components/senegal-map";
-import QuizGame from "@/components/quiz-game";
-import AskSonko from "@/components/ask-sonko";
 import WaveButton from "@/components/wave-button";
-import EventsSlider360 from "@/components/events-slider-360";
+
+// Squelette de chargement pour les composants dynamiques
+const LoadingSkeleton = ({ title }: { title: string }) => (
+  <div className="w-full h-80 rounded-2xl glass-panel border border-brand-emerald/10 flex flex-col items-center justify-center gap-3 bg-brand-green-dark/5">
+    <div className="w-8 h-8 rounded-full border-2 border-brand-gold/20 border-t-brand-gold animate-spin" />
+    <span className="text-xs font-mono text-foreground/45 tracking-wider">{title}...</span>
+  </div>
+);
+
+// Importations dynamiques pour réduire la taille du bundle initial et fluidifier le chargement
+const Timeline360 = dynamic(() => import("@/components/timeline-360"), {
+  ssr: false,
+  loading: () => <LoadingSkeleton title="Chargement de la Timeline 360°" />,
+});
+
+const EventsSlider360 = dynamic(() => import("@/components/events-slider-360"), {
+  ssr: false,
+  loading: () => <LoadingSkeleton title="Chargement des récits chronologiques" />,
+});
+
+const SenegalMap = dynamic(() => import("@/components/senegal-map"), {
+  ssr: false,
+  loading: () => <LoadingSkeleton title="Chargement de la carte territoriale interactive" />,
+});
+
+const QuizGame = dynamic(() => import("@/components/quiz-game"), {
+  ssr: false,
+  loading: () => <LoadingSkeleton title="Chargement du grand quiz citoyen" />,
+});
+
+const AskSonko = dynamic(() => import("@/components/ask-sonko"), {
+  ssr: false,
+  loading: () => <LoadingSkeleton title="Chargement de l'assistant IA" />,
+});
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full relative">
+    <div className="flex flex-col w-full relative animate-slide-up">
 
       {/* 0. GUIDE DE LA RÉVOLUTION — Banner section */}
       <section className="relative w-full bg-brand-dark-base overflow-hidden border-b border-brand-emerald/15">

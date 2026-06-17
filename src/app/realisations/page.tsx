@@ -61,7 +61,7 @@ export default function RealisationsPage() {
   }, [realizations, selectedDomain, searchQuery]);
 
   return (
-    <div className="w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-16 px-4 md:px-8">
+    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
