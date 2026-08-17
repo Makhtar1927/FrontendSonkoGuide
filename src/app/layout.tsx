@@ -5,6 +5,7 @@ import "./globals.css";
 import WaveButton from "@/components/wave-button";
 import { Landmark } from "lucide-react";
 import Navbar from "@/components/navbar";
+import AnalyticsTracker from "@/components/analytics-tracker";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://frontendsonkoguide.vercel.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -85,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="h-full antialiased" suppressHydrationWarning>
       <body className="min-h-full flex flex-col bg-brand-dark-base text-foreground" suppressHydrationWarning>
+        <AnalyticsTracker />
         
         {/* Header Navigation */}
         <Navbar />

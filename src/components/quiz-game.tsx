@@ -23,6 +23,7 @@ import {
 import confetti from "canvas-confetti";
 import quizData from "@/data/quizzes.json";
 import { supabase } from "@/utils/supabase";
+import { trackEvent } from "@/utils/analytics";
 
 interface Question {
   id: number;
@@ -206,6 +207,7 @@ export default function QuizGame() {
     setMaxStreak(0);
     setStartTime(Date.now());
     setGameState("quiz");
+    trackEvent("Quiz", "start_quiz", `Quiz démarré: ${selectedCategory} (${difficulty}) par ${userName.trim()}`, "quiz");
   };
 
   const handleOptionSelect = (optionIdx: number) => {

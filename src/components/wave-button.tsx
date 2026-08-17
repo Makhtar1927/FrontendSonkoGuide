@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { trackEvent } from "@/utils/analytics";
 
 interface WaveButtonProps {
   href?: string;
@@ -29,14 +30,20 @@ export default function WaveButton({
     }
   }, []);
 
+  const handleClick = () => {
+    trackEvent("Donations", "click_wave_donate", "Soutien Wave Mobile Money");
+  };
+
   return (
     <a
       href={href}
       target={target}
       rel="noopener noreferrer"
       className={className}
+      onClick={handleClick}
     >
       {children}
     </a>
   );
 }
+

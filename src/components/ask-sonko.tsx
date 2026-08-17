@@ -16,6 +16,7 @@ import {
   Code 
 } from "lucide-react";
 import { supabase } from "@/utils/supabase";
+import { trackEvent } from "@/utils/analytics";
 
 export default function AskSonko() {
   const [email, setEmail] = useState("");
@@ -28,6 +29,8 @@ export default function AskSonko() {
     if (!email) return;
     setLoading(true);
     setErrorMsg("");
+
+    trackEvent("IA RAG", "ask_sonko_query", `Inscription file Ask Sonko (${email})`, "rag");
 
     try {
       // Sync waiting list signup to Supabase contributors table

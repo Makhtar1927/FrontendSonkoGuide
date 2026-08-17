@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, Search, Download, Star, Play, Library } from "lucide-react";
+import { trackEvent } from "@/utils/analytics";
 
 interface Video {
   id: string;
@@ -344,6 +345,7 @@ export default function BibliothequePage() {
                         href={doc.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackEvent("Documents", "download_pdf", doc.title, "download")}
                         title="Télécharger le document"
                         aria-label="Télécharger le document"
                         className="p-3.5 rounded-xl bg-brand-green/30 border border-brand-emerald/15 hover:bg-brand-gold hover:text-brand-green-dark hover:border-brand-gold transition-all text-brand-gold cursor-pointer flex items-center justify-center"
