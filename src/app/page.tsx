@@ -6,9 +6,6 @@ import dynamic from "next/dynamic";
 import CitationCard from "@/components/citation-card";
 import WaveButton from "@/components/wave-button";
 
-// ERREUR VOLONTAIRE : Déclenchement de l'email de notification Vercel Build Failure
-const _testVercelNotificationTrigger: number = "declenchement_notification_email_vercel";
-
 // Squelette de chargement pour les composants dynamiques
 const LoadingSkeleton = ({ title }: { title: string }) => (
   <div className="w-full h-80 rounded-2xl glass-panel border border-brand-emerald/10 flex flex-col items-center justify-center gap-3 bg-brand-green-dark/5">
