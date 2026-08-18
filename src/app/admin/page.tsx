@@ -407,12 +407,24 @@ export default function AdminPage() {
         },
         body: JSON.stringify({ file: fileName, data }),
       });
+
+      if (res.status === 401 || res.status === 403) {
+        showToast("error", "Session expirée. Veuillez vous reconnecter.");
+        handleLogout();
+        return false;
+      }
+
       const resData = await res.json();
       if (resData.success) {
         showToast("success", `Modifications enregistrées dans ${fileName}.json avec succès !`);
         return true;
       } else {
-        showToast("error", resData.error || `Erreur de sauvegarde de ${fileName}`);
+        if (resData.error && resData.error.includes("Session")) {
+          showToast("error", "Session expirée. Veuillez vous reconnecter.");
+          handleLogout();
+        } else {
+          showToast("error", resData.error || `Erreur de sauvegarde de ${fileName}`);
+        }
         return false;
       }
     } catch (err) {
