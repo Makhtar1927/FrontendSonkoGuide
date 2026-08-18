@@ -195,20 +195,28 @@ export default function AdminPage() {
   const [analyticsPeriod, setAnalyticsPeriod] = useState<"7d" | "30d" | "all">("7d");
   const [selectedChartMetric, setSelectedChartMetric] = useState<"views" | "clicks">("views");
   const [isExportingCSV, setIsExportingCSV] = useState(false);
+  const [analyticsLoading, setAnalyticsLoading] = useState(false);
 
-  const fetchAnalytics = () => {
+  const fetchAnalytics = async () => {
+    setAnalyticsLoading(true);
     try {
-      const data = getAnalyticsSummary();
+      const data = await getAnalyticsSummary();
       setAnalytics(data);
     } catch (err) {
       console.warn("Could not load analytics:", err);
+    } finally {
+      setAnalyticsLoading(false);
     }
   };
 
   const handleExportCSV = () => {
     try {
+      if (!analytics) {
+        showToast("error", "Aucune donnée analytics chargée. Rafraîchissez d'abord.");
+        return;
+      }
       setIsExportingCSV(true);
-      const csvContent = exportAnalyticsCSV();
+      const csvContent = exportAnalyticsCSV(analytics);
       const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -228,7 +236,7 @@ export default function AdminPage() {
   const handleResetAnalytics = () => {
     if (window.confirm("Êtes-vous sûr de vouloir réinitialiser les événements analytiques de test ?")) {
       resetAnalyticsData();
-      fetchAnalytics();
+      void fetchAnalytics();
       showToast("success", "Événements de test réinitialisés avec succès.");
     }
   };
@@ -342,7 +350,7 @@ export default function AdminPage() {
       void (async () => {
         fetchContributors();
         await fetchDatabaseData();
-        fetchAnalytics();
+        await fetchAnalytics();
       })();
     }
     // fetchContributors and fetchDatabaseData are stable references defined in component scope
@@ -611,7 +619,7 @@ export default function AdminPage() {
                       key={item.id}
                       onClick={() => {
                         setActiveTab(item.id);
-                        if (item.id === "analytics") fetchAnalytics();
+                        if (item.id === "analytics") void fetchAnalytics();
                       }}
                       className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all text-left cursor-pointer ${
                         isActive
@@ -773,7 +781,7 @@ export default function AdminPage() {
 
               <button
                 onClick={() => {
-                  fetchAnalytics();
+                  void fetchAnalytics();
                   setActiveTab("analytics");
                 }}
                 className="px-4 py-2.5 rounded-xl bg-brand-green/25 border border-brand-gold/30 hover:bg-brand-green/40 text-brand-gold font-bold text-xs flex items-center gap-2 transition-all cursor-pointer"
@@ -793,24 +801,25 @@ export default function AdminPage() {
                       <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                     </span>
                     <span className="text-xs font-mono font-bold text-brand-gold uppercase tracking-wider">
-                      Audience & Trafic en Direct
+                      Audience & Trafic en Direct {analyticsLoading && <span className="animate-pulse">⟳</span>}
                     </span>
                   </div>
                   <h2 className="text-xl md:text-2xl font-bold text-white font-display">
-                    {(analytics?.totalViews || 16840).toLocaleString("fr-FR")} pages consultées • {(analytics?.uniqueVisitors || 7420).toLocaleString("fr-FR")} visiteurs uniques
+                    {analyticsLoading ? "Chargement…" : analytics
+                      ? `${analytics.totalViews.toLocaleString("fr-FR")} pages consultées • ${analytics.uniqueVisitors.toLocaleString("fr-FR")} visiteurs uniques`
+                      : "Aucune donnée — activez le tracking"}
                   </h2>
                   <p className="text-xs text-foreground/70 flex flex-wrap items-center gap-x-4 gap-y-1">
-                    <span>⚡ {(analytics?.totalClicks || 4920).toLocaleString("fr-FR")} clics & interactions</span>
-                    <span>•</span>
-                    <span>🥇 Page #1 : Accueil & Hub 360° (38%)</span>
-                    <span>•</span>
-                    <span>🇸🇳 71% Mobile / 83% Sénégal</span>
+                    <span>⚡ {(analytics?.totalClicks ?? 0).toLocaleString("fr-FR")} clics & interactions</span>
+                    {analytics?.topPages[0] && <><span>•</span><span>🥇 Page #1 : {analytics.topPages[0].name} ({analytics.topPages[0].percentage}%)</span></>}
+                    {analytics?.deviceBreakdown[0] && <><span>•</span><span>📱 {analytics.deviceBreakdown[0].percentage}% {analytics.deviceBreakdown[0].name.split(" ")[0]}</span></>}
+                    {analytics?.dataSource && <><span>•</span><span className="text-emerald-400">Source : {analytics.dataSource === "supabase" ? "🟢 Supabase (données réelles)" : analytics.dataSource === "localStorage" ? "🟡 Session courante" : "⚪ Aucune donnée"}</span></>}
                   </p>
                 </div>
 
                 <button
                   onClick={() => {
-                    fetchAnalytics();
+                    void fetchAnalytics();
                     setActiveTab("analytics");
                   }}
                   className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-green-dark font-extrabold text-xs flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-brand-gold/20 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
@@ -896,13 +905,13 @@ export default function AdminPage() {
 
               {/* Action Buttons Toolbar */}
               <div className="flex flex-wrap items-center gap-2.5">
-                <button
-                  onClick={fetchAnalytics}
+                 <button
+                  onClick={() => void fetchAnalytics()}
                   title="Rafraîchir les données"
                   className="px-3.5 py-2 rounded-xl bg-brand-green/20 border border-brand-emerald/20 hover:bg-brand-green/35 text-xs font-bold text-foreground hover:text-white flex items-center gap-1.5 transition-all cursor-pointer"
                 >
-                  <RefreshCw className="w-3.5 h-3.5 text-brand-gold" />
-                  <span>Rafraîchir</span>
+                  <RefreshCw className={`w-3.5 h-3.5 text-brand-gold ${analyticsLoading ? 'animate-spin' : ''}`} />
+                  <span>{analyticsLoading ? 'Chargement…' : 'Rafraîchir'}</span>
                 </button>
 
                 <button
@@ -936,11 +945,15 @@ export default function AdminPage() {
                   </div>
                 </div>
                 <div className="text-3xl font-black font-display text-white mt-3">
-                  {(analytics?.totalViews || 16840).toLocaleString("fr-FR")}
+                  {analyticsLoading ? (
+                    <span className="animate-pulse text-foreground/30">---</span>
+                  ) : (
+                    (analytics?.totalViews ?? 0).toLocaleString("fr-FR")
+                  )}
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold mt-2">
                   <TrendingUp className="w-3.5 h-3.5" />
-                  <span>+18.4% ce mois-ci</span>
+                  <span>{analytics ? (analytics.totalViews > 0 ? `${analytics.totalViews} événements enregistrés` : "Aucune visite encore") : "Données non disponibles"}</span>
                 </div>
               </div>
 
@@ -953,10 +966,14 @@ export default function AdminPage() {
                   </div>
                 </div>
                 <div className="text-3xl font-black font-display text-white mt-3">
-                  {(analytics?.uniqueVisitors || 7420).toLocaleString("fr-FR")}
+                  {analyticsLoading ? (
+                    <span className="animate-pulse text-foreground/30">---</span>
+                  ) : (
+                    (analytics?.uniqueVisitors ?? 0).toLocaleString("fr-FR")
+                  )}
                 </div>
                 <div className="text-[11px] text-foreground/50 mt-2">
-                  <span>~45% de visiteurs récurrents</span>
+                  <span>{analytics?.dataSource === "supabase" ? "🟢 Source : Supabase (multi-utilisateurs)" : analytics?.dataSource === "localStorage" ? "🟡 Source : Session courante" : "En attente de données…"}</span>
                 </div>
               </div>
 
@@ -969,10 +986,14 @@ export default function AdminPage() {
                   </div>
                 </div>
                 <div className="text-3xl font-black font-display text-white mt-3">
-                  {(analytics?.totalClicks || 4920).toLocaleString("fr-FR")}
+                  {analyticsLoading ? (
+                    <span className="animate-pulse text-foreground/30">---</span>
+                  ) : (
+                    (analytics?.totalClicks ?? 0).toLocaleString("fr-FR")
+                  )}
                 </div>
                 <div className="text-[11px] text-brand-gold font-semibold mt-2">
-                  <span>Dons Wave, Quiz, PDF, IA</span>
+                  <span>{analytics?.topClicks.length ? analytics.topClicks.map(c => c.category).join(", ") : "Dons Wave, Quiz, PDF, IA"}</span>
                 </div>
               </div>
 
@@ -985,10 +1006,14 @@ export default function AdminPage() {
                   </div>
                 </div>
                 <div className="text-3xl font-black font-display text-white mt-3">
-                  {analytics?.avgSessionDuration || "4 min 12 s"}
+                  {analyticsLoading ? (
+                    <span className="animate-pulse text-foreground/30">---</span>
+                  ) : (
+                    analytics?.avgSessionDuration || "—"
+                  )}
                 </div>
                 <div className="text-[11px] text-foreground/50 mt-2">
-                  <span>Taux de rebond : {analytics?.bounceRate || "23.4%"}</span>
+                  <span>Taux de rebond : {analytics?.bounceRate || "—"}</span>
                 </div>
               </div>
             </div>
@@ -1226,17 +1251,25 @@ export default function AdminPage() {
                   <span>Origine Géographique Estimée</span>
                 </h3>
                 <div className="space-y-3.5">
-                  {(analytics?.geoBreakdown || []).map((g) => (
-                    <div key={g.region} className="space-y-1">
-                      <div className="flex justify-between text-xs">
-                        <span className="text-foreground/75 font-semibold">{g.region}</span>
-                        <span className="font-mono font-bold text-white">{g.percentage}%</span>
-                      </div>
-                      <div className="w-full bg-brand-green/20 h-2 rounded-full overflow-hidden">
-                        <div style={{ width: `${g.percentage}%` }} className="bg-brand-emerald h-full rounded-full" />
-                      </div>
+                  {(analytics?.geoBreakdown || []).length === 0 ? (
+                    <div className="text-center py-6 text-foreground/35 text-xs">
+                      <Globe className="w-8 h-8 mx-auto mb-2 opacity-30" />
+                      <p>Géolocalisation non disponible</p>
+                      <p className="text-[10px] mt-1 text-foreground/25">Nécessite une API GeoIP (ex. ipapi.co)</p>
                     </div>
-                  ))}
+                  ) : (
+                    (analytics?.geoBreakdown || []).map((g) => (
+                      <div key={g.region} className="space-y-1">
+                        <div className="flex justify-between text-xs">
+                          <span className="text-foreground/75 font-semibold">{g.region}</span>
+                          <span className="font-mono font-bold text-white">{g.percentage}%</span>
+                        </div>
+                        <div className="w-full bg-brand-green/20 h-2 rounded-full overflow-hidden">
+                          <div style={{ width: `${g.percentage}%` }} className="bg-brand-emerald h-full rounded-full" />
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
@@ -1247,14 +1280,22 @@ export default function AdminPage() {
                   <span>Recherches Populaires dans l&apos;IA</span>
                 </h3>
                 <div className="space-y-2.5">
-                  {(analytics?.topSearches || []).slice(0, 5).map((s, idx) => (
-                    <div key={idx} className="p-2.5 rounded-xl bg-brand-green/10 border border-brand-emerald/10 flex justify-between items-center gap-2 text-xs">
-                      <span className="text-foreground/80 truncate font-medium">{s.query}</span>
-                      <span className="font-mono text-[10px] font-bold text-brand-gold px-1.5 py-0.5 rounded bg-brand-green/30 flex-shrink-0">
-                        {s.count} req
-                      </span>
+                  {(analytics?.topSearches || []).length === 0 ? (
+                    <div className="text-center py-6 text-foreground/35 text-xs">
+                      <Bot className="w-8 h-8 mx-auto mb-2 opacity-30" />
+                      <p>Aucune recherche IA enregistrée</p>
+                      <p className="text-[10px] mt-1 text-foreground/25">Les questions des visiteurs à Ask Sonko apparaîtront ici</p>
                     </div>
-                  ))}
+                  ) : (
+                    (analytics?.topSearches || []).slice(0, 5).map((s, idx) => (
+                      <div key={idx} className="p-2.5 rounded-xl bg-brand-green/10 border border-brand-emerald/10 flex justify-between items-center gap-2 text-xs">
+                        <span className="text-foreground/80 truncate font-medium">{s.query}</span>
+                        <span className="font-mono text-[10px] font-bold text-brand-gold px-1.5 py-0.5 rounded bg-brand-green/30 flex-shrink-0">
+                          {s.count} req
+                        </span>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             </div>
@@ -1270,10 +1311,10 @@ export default function AdminPage() {
                   <p className="text-xs text-foreground/50 mt-0.5">Flux instantané des événements capturés sur le site</p>
                 </div>
                 <button
-                  onClick={fetchAnalytics}
+                  onClick={() => void fetchAnalytics()}
                   className="text-xs text-brand-gold hover:underline flex items-center gap-1 font-semibold cursor-pointer"
                 >
-                  <RefreshCw className="w-3 h-3" />
+                  <RefreshCw className={`w-3 h-3 ${analyticsLoading ? 'animate-spin' : ''}`} />
                   <span>Actualiser le flux</span>
                 </button>
               </div>
@@ -1290,37 +1331,52 @@ export default function AdminPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-brand-emerald/5 font-sans">
-                    {(analytics?.recentEvents || []).map((ev) => (
-                      <tr key={ev.id} className="hover:bg-brand-green/10 transition-colors">
-                        <td className="py-2.5">
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                            ev.type === "pageview"
-                              ? "bg-blue-900/40 text-blue-300 border border-blue-500/20"
-                              : ev.category === "Donations"
-                              ? "bg-sky-900/40 text-sky-300 border border-sky-500/20"
-                              : ev.type === "rag"
-                              ? "bg-purple-900/40 text-purple-300 border border-purple-500/20"
-                              : ev.type === "quiz"
-                              ? "bg-amber-900/40 text-amber-300 border border-amber-500/20"
-                              : "bg-emerald-900/40 text-emerald-300 border border-emerald-500/20"
-                          }`}>
-                            {ev.type.toUpperCase()}
-                          </span>
-                        </td>
-                        <td className="py-2.5 font-medium text-white max-w-xs truncate">
-                          {ev.label || ev.action}
-                        </td>
-                        <td className="py-2.5 font-mono text-[11px] text-foreground/60">
-                          {ev.path}
-                        </td>
-                        <td className="py-2.5 font-mono text-[11px] text-foreground/60">
-                          {ev.device} {ev.city ? `• ${ev.city}` : ""}
-                        </td>
-                        <td className="py-2.5 text-right font-mono text-[10px] text-foreground/45">
-                          {new Date(ev.timestamp).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                    {(analytics?.recentEvents || []).length === 0 ? (
+                      <tr>
+                        <td colSpan={5} className="py-8 text-center text-foreground/40 text-sm">
+                          {analyticsLoading ? (
+                            <span className="animate-pulse">Chargement des événements…</span>
+                          ) : (
+                            <span>
+                              Aucun événement enregistré pour l&apos;instant.<br />
+                              <span className="text-xs text-foreground/30">Les visites et clics des visiteurs apparaîtront ici en temps réel.</span>
+                            </span>
+                          )}
                         </td>
                       </tr>
-                    ))}
+                    ) : (
+                      (analytics?.recentEvents || []).map((ev) => (
+                        <tr key={ev.id} className="hover:bg-brand-green/10 transition-colors">
+                          <td className="py-2.5">
+                            <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                              ev.type === "pageview"
+                                ? "bg-blue-900/40 text-blue-300 border border-blue-500/20"
+                                : ev.category === "Donations"
+                                ? "bg-sky-900/40 text-sky-300 border border-sky-500/20"
+                                : ev.type === "rag"
+                                ? "bg-purple-900/40 text-purple-300 border border-purple-500/20"
+                                : ev.type === "quiz"
+                                ? "bg-amber-900/40 text-amber-300 border border-amber-500/20"
+                                : "bg-emerald-900/40 text-emerald-300 border border-emerald-500/20"
+                            }`}>
+                              {ev.type.toUpperCase()}
+                            </span>
+                          </td>
+                          <td className="py-2.5 font-medium text-white max-w-xs truncate">
+                            {ev.label || ev.action}
+                          </td>
+                          <td className="py-2.5 font-mono text-[11px] text-foreground/60">
+                            {ev.path}
+                          </td>
+                          <td className="py-2.5 font-mono text-[11px] text-foreground/60">
+                            {ev.device} {ev.city ? `• ${ev.city}` : ""}
+                          </td>
+                          <td className="py-2.5 text-right font-mono text-[10px] text-foreground/45">
+                            {new Date(ev.timestamp).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
