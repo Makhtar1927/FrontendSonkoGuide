@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import PWARegister from "@/components/pwa-register";
 import PWAInstallPrompt from "@/components/pwa-install-prompt";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://frontendsonkoguide.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sonko.vercel.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const viewport: Viewport = {
