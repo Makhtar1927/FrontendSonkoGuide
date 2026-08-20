@@ -1,0 +1,80 @@
+{
+  "name": "SONKO — Guide de la Révolution",
+  "short_name": "SONKO",
+  "description": "Encyclopédie interactive citoyenne dédiée à Ousmane Sonko, Guide de la Révolution et Président de l'Assemblée nationale du Sénégal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAF8",
+  "theme_color": "#07472F",
+  "orientation": "portrait-primary",
+  "lang": "fr",
+  "scope": "/",
+  "categories": ["education", "news", "politics"],
+  "icons": [
+    {
+      "src": "/Sonko.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/Sonko.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/Sonko.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/Sonko.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon_os.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon_os.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Biographie & Parcours",
+      "url": "/biographie",
+      "icons": [{ "src": "/Sonko.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Grand Quiz Citoyen",
+      "url": "/#grand-quiz",
+      "icons": [{ "src": "/Sonko.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Bibliothèque Médias",
+      "url": "/bibliotheque",
+      "icons": [{ "src": "/Sonko.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Actualités & Réformes",
+      "url": "/actualites",
+      "icons": [{ "src": "/Sonko.jpg", "sizes": "96x96" }]
+    }
+  ]
+}

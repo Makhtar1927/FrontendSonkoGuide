@@ -70,7 +70,7 @@ export default function EventsSlider360() {
       <div className="absolute top-1/2 -left-4 md:-left-6 -translate-y-1/2 z-20">
         <button
           onClick={() => scroll("left")}
-          className="p-3 rounded-full bg-brand-green-dark/80 border border-brand-emerald/20 hover:border-brand-gold hover:text-brand-gold text-white transition-all cursor-pointer shadow-lg backdrop-blur-md"
+          className="p-3 rounded-full bg-emerald-50/90 dark:bg-brand-green-dark/80 border border-brand-emerald/20 hover:border-brand-gold hover:text-brand-gold text-foreground dark:text-white transition-all cursor-pointer shadow-lg backdrop-blur-md"
           title="Précédent"
           aria-label="Précédent"
         >
@@ -81,7 +81,7 @@ export default function EventsSlider360() {
       <div className="absolute top-1/2 -right-4 md:-right-6 -translate-y-1/2 z-20">
         <button
           onClick={() => scroll("right")}
-          className="p-3 rounded-full bg-brand-green-dark/80 border border-brand-emerald/20 hover:border-brand-gold hover:text-brand-gold text-white transition-all cursor-pointer shadow-lg backdrop-blur-md"
+          className="p-3 rounded-full bg-emerald-50/90 dark:bg-brand-green-dark/80 border border-brand-emerald/20 hover:border-brand-gold hover:text-brand-gold text-foreground dark:text-white transition-all cursor-pointer shadow-lg backdrop-blur-md"
           title="Suivant"
           aria-label="Suivant"
         >

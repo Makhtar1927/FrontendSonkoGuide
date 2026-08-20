@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, User, MessageSquare, Send, Search, Sparkles, X, Calendar, Share2 } from "lucide-react";
+import { Clock, User, MessageSquare, Send, Search, X, Calendar, Share2 } from "lucide-react";
 import { supabase } from "@/utils/supabase";
 import actualitesData from "@/data/actualites.json";
 
@@ -39,7 +39,7 @@ export default function ActualitesPage() {
   const [loadingComments, setLoadingComments] = useState(false);
   const [postingComment, setPostingComment] = useState(false);
   
-  // Local fallback comments state (in case Supabase table comments isn't created yet)
+  // Local fallback comments state
   const [localComments, setLocalComments] = useState<Record<string, Comment[]>>({});
 
   interface ActualiteRow {
@@ -66,7 +66,7 @@ export default function ActualitesPage() {
             summary: item.summary,
             content: item.content,
             date: item.date,
-            readTime: item.read_time, // map read_time -> readTime
+            readTime: item.read_time,
             category: item.category,
             image: item.image,
             author: item.author || "Secrétariat Général de PASTEF"
@@ -109,7 +109,6 @@ export default function ActualitesPage() {
 
       if (error) {
         console.warn("Could not fetch comments from Supabase, falling back to local storage.", error.message);
-        // Fallback to local storage or local state
         const localList = localComments[articleId] || [];
         setComments(localList);
       } else if (data) {
@@ -124,117 +123,88 @@ export default function ActualitesPage() {
     }
   };
 
-  // Fetch comments when an article is selected
   useEffect(() => {
-    if (!selectedArticle) return;
-    const articleId = selectedArticle.id;
-    const load = async () => {
-      setLoadingComments(true);
-      try {
-        const { data, error } = await supabase
-          .from("comments")
-          .select("*")
-          .eq("article_id", articleId)
-          .order("created_at", { ascending: false });
-
-        if (error) {
-          console.warn("Could not fetch comments from Supabase, falling back to local storage.", error.message);
-          setComments((prev) => localComments[articleId] ?? prev);
-        } else if (data) {
-          setComments(data as Comment[]);
-        }
-      } catch (err) {
-        console.error("Exception fetching comments:", err);
-        setComments(localComments[articleId] ?? []);
-      } finally {
-        setLoadingComments(false);
-      }
-    };
-    load();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (selectedArticle) {
+      fetchComments(selectedArticle.id);
+    }
   }, [selectedArticle]);
 
   const handlePostComment = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!commentAuthor.trim() || !commentContent.trim() || !selectedArticle) return;
+    if (!selectedArticle || !commentAuthor.trim() || !commentContent.trim()) return;
 
     setPostingComment(true);
-    const newCommentPayload = {
+    const newComment: Comment = {
+      id: Date.now().toString(),
       article_id: selectedArticle.id,
       user_name: commentAuthor.trim(),
-      content: commentContent.trim()
+      content: commentContent.trim(),
+      created_at: new Date().toISOString()
     };
 
     try {
       const { error } = await supabase
         .from("comments")
-        .insert([newCommentPayload]);
+        .insert([{
+          article_id: selectedArticle.id,
+          user_name: commentAuthor.trim(),
+          content: commentContent.trim()
+        }]);
 
       if (error) {
-        console.warn("Failed to post comment to Supabase table, applying local fallback.", error.message);
-        applyLocalFallbackComment(selectedArticle.id, newCommentPayload);
+        console.warn("Supabase insert failed, storing locally:", error.message);
+        const updated = [newComment, ...(localComments[selectedArticle.id] || [])];
+        setLocalComments({ ...localComments, [selectedArticle.id]: updated });
+        setComments(updated);
       } else {
-        setCommentContent("");
-        await fetchComments(selectedArticle.id);
+        setComments([newComment, ...comments]);
       }
+
+      setCommentContent("");
     } catch (err) {
-      console.error("Exception posting comment:", err);
-      applyLocalFallbackComment(selectedArticle.id, newCommentPayload);
+      console.error("Error posting comment:", err);
+      const updated = [newComment, ...(localComments[selectedArticle.id] || [])];
+      setLocalComments({ ...localComments, [selectedArticle.id]: updated });
+      setComments(updated);
+      setCommentContent("");
     } finally {
       setPostingComment(false);
     }
   };
 
-  const applyLocalFallbackComment = (articleId: string, payload: { user_name: string; content: string }) => {
-    const fallbackComment: Comment = {
-      id: Math.random().toString(36).substr(2, 9),
-      article_id: articleId,
-      user_name: payload.user_name,
-      content: payload.content,
-      created_at: new Date().toISOString()
-    };
-
-    const updatedList = [fallbackComment, ...(localComments[articleId] || [])];
-    setLocalComments(prev => ({
-      ...prev,
-      [articleId]: updatedList
-    }));
-    setComments(updatedList);
-    setCommentContent("");
-  };
-
-  const handleShare = (article: Article) => {
+  const handleShare = async (article: Article) => {
     if (navigator.share) {
-      navigator.share({
-        title: article.title,
-        text: article.summary,
-        url: window.location.href,
-      }).catch(err => console.log(err));
+      try {
+        await navigator.share({
+          title: article.title,
+          text: article.summary,
+          url: window.location.href,
+        });
+      } catch (err) {
+        console.error("Erreur de partage:", err);
+      }
     } else {
-      navigator.clipboard.writeText(`"${article.title}" - Lire l'actualité sur SONKO Guide de la Révolution`);
-      alert("Lien copié dans le presse-papiers !");
+      navigator.clipboard.writeText(window.location.href);
+      alert("Lien de l'article copié dans le presse-papiers !");
     }
   };
 
   return (
-    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-16 px-4 md:px-8">
+    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-50/70 dark:from-brand-green/20 via-brand-dark-base to-brand-dark-base py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-xs font-mono font-black text-brand-gold uppercase tracking-[0.25em] flex items-center justify-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 animate-pulse text-brand-gold" />
-            <span>Actualités & Réformes</span>
-          </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold font-display text-white mt-3 text-glow-gold">
-            Fil d&apos;Actualités Officielles
+          <span className="text-xs font-mono font-black text-brand-gold uppercase tracking-[0.25em]">Fil d&apos;Informations</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold font-display text-foreground mt-3 text-glow-gold">
+            Actualités & Décisions
           </h1>
-          <p className="text-sm text-foreground/60 mt-3 max-w-xl mx-auto leading-relaxed">
-            Restez informé en temps réel des réformes, déclarations ministérielles, visites diplomatiques et projets d&apos;infrastructures.
+          <p className="text-sm text-foreground/75 mt-3 max-w-xl mx-auto leading-relaxed">
+            Suivez l&apos;actualité officielle, les conseils interministériels, les grands discours et les réformes du gouvernement sénégalais.
           </p>
         </div>
 
-        {/* Filters and search panel */}
+        {/* Categories Bar & Search */}
         <div className="glass-panel p-6 rounded-2xl mb-10 flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
@@ -243,8 +213,8 @@ export default function ActualitesPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-xl text-xs md:text-sm font-bold border transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? "bg-brand-gold text-brand-green-dark border-brand-gold shadow-md"
-                    : "bg-brand-green/15 border-brand-emerald/15 text-foreground/75 hover:bg-brand-green/30"
+                    ? "bg-brand-gold text-brand-green-dark border-brand-gold shadow-md font-extrabold"
+                    : "bg-emerald-50/70 dark:bg-brand-green/15 border-brand-emerald/15 text-foreground/80 hover:bg-emerald-100 dark:hover:bg-brand-green/30"
                 }`}
               >
                 {cat === "all" ? "Toutes les catégories" : cat}
@@ -258,7 +228,7 @@ export default function ActualitesPage() {
               placeholder="Rechercher un article..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground transition-all"
+              className="w-full bg-emerald-50/60 dark:bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 transition-all"
             />
             <Search className="w-4 h-4 text-foreground/50 absolute left-3 top-3" />
           </div>
@@ -285,7 +255,7 @@ export default function ActualitesPage() {
                     alt={art.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark-base via-transparent to-transparent opacity-75" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark-base via-transparent to-transparent opacity-60" />
                   
                   {/* Tag label */}
                   <span className="absolute top-4 left-4 px-2.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-brand-gold text-brand-green-dark border border-brand-gold shadow-md">
@@ -296,22 +266,22 @@ export default function ActualitesPage() {
                 {/* Article Info */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center gap-3 text-[10px] text-foreground/45 font-mono mb-3">
+                    <div className="flex items-center gap-3 text-[10px] text-foreground/50 font-mono mb-3">
                       <span className="flex items-center gap-1"><Calendar className="w-3 h-3 text-brand-gold" /> {art.date}</span>
                       <span>•</span>
                       <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-brand-gold" /> {art.readTime}</span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-white font-display leading-snug group-hover:text-brand-gold transition-colors line-clamp-2">
+                    <h3 className="text-lg font-bold text-foreground font-display leading-snug group-hover:text-brand-gold transition-colors line-clamp-2">
                       {art.title}
                     </h3>
-                    <p className="text-xs md:text-sm text-foreground/70 mt-3 leading-relaxed line-clamp-3">
+                    <p className="text-xs md:text-sm text-foreground/75 mt-3 leading-relaxed line-clamp-3">
                       {art.summary}
                     </p>
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-brand-emerald/10 flex justify-between items-center">
-                    <span className="text-[10px] font-mono text-foreground/40 font-bold truncate max-w-[150px]">
+                    <span className="text-[10px] font-mono text-foreground/50 font-bold truncate max-w-[150px]">
                       Par {art.author}
                     </span>
                     
@@ -329,7 +299,7 @@ export default function ActualitesPage() {
           </AnimatePresence>
 
           {filteredArticles.length === 0 && (
-            <div className="col-span-3 text-center py-20 bg-brand-green/5 border border-brand-emerald/10 rounded-2xl">
+            <div className="col-span-3 text-center py-20 bg-emerald-50/50 dark:bg-brand-green/5 border border-brand-emerald/10 rounded-2xl">
               <p className="text-foreground/50 text-sm">Aucun article ne correspond à vos critères de recherche.</p>
             </div>
           )}
@@ -358,7 +328,7 @@ export default function ActualitesPage() {
                 onClick={() => setSelectedArticle(null)}
                 title="Fermer"
                 aria-label="Fermer"
-                className="absolute top-4 right-4 p-2.5 rounded-full bg-brand-dark-base/80 border border-brand-emerald/10 hover:border-brand-gold/45 text-white hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer"
+                className="absolute top-4 right-4 p-2.5 rounded-full bg-emerald-50/90 dark:bg-brand-dark-base/80 border border-brand-emerald/10 hover:border-brand-gold/45 text-foreground hover:scale-105 active:scale-95 transition-all z-10 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -381,7 +351,7 @@ export default function ActualitesPage() {
 
               {/* Content body */}
               <div className="p-6 md:p-8">
-                <div className="flex flex-wrap items-center gap-4 text-xs text-foreground/45 font-mono mb-4">
+                <div className="flex flex-wrap items-center gap-4 text-xs text-foreground/50 font-mono mb-4">
                   <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-brand-gold" /> {selectedArticle.date}</span>
                   <span>•</span>
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-brand-gold" /> {selectedArticle.readTime} de lecture</span>
@@ -389,7 +359,7 @@ export default function ActualitesPage() {
                   <span className="flex items-center gap-1"><User className="w-3.5 h-3.5 text-brand-gold" /> {selectedArticle.author}</span>
                 </div>
 
-                <h2 className="text-2xl md:text-3xl font-extrabold font-display text-white leading-tight mb-6">
+                <h2 className="text-2xl md:text-3xl font-extrabold font-display text-foreground leading-tight mb-6">
                   {selectedArticle.title}
                 </h2>
 
@@ -400,7 +370,7 @@ export default function ActualitesPage() {
                 <div className="flex justify-end gap-3 border-t border-brand-emerald/10 pt-6 mb-8">
                   <button
                     onClick={() => handleShare(selectedArticle)}
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-green/20 border border-brand-emerald/25 text-foreground hover:bg-brand-green/45 hover:text-white text-xs font-bold transition-all cursor-pointer"
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-50 dark:bg-brand-green/20 border border-brand-emerald/25 text-foreground hover:bg-emerald-100 dark:hover:bg-brand-green/45 text-xs font-bold transition-all cursor-pointer"
                   >
                     <Share2 className="w-3.5 h-3.5 text-brand-gold" />
                     <span>Partager l&apos;article</span>
@@ -409,7 +379,7 @@ export default function ActualitesPage() {
 
                 {/* COMMENTS SECTION */}
                 <div className="border-t border-brand-emerald/15 pt-8">
-                  <h3 className="text-lg font-bold text-white font-display mb-6 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-foreground font-display mb-6 flex items-center gap-2">
                     <MessageSquare className="w-5 h-5 text-brand-gold" />
                     <span>Espace de Discussion ({comments.length})</span>
                   </h3>
@@ -427,7 +397,7 @@ export default function ActualitesPage() {
                           value={commentAuthor}
                           onChange={(e) => setCommentAuthor(e.target.value)}
                           required
-                          className="w-full bg-brand-dark-base border border-brand-emerald/25 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-brand-gold text-foreground transition-all"
+                          className="w-full bg-emerald-50/60 dark:bg-brand-dark-base border border-brand-emerald/25 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 transition-all"
                         />
                       </div>
                       <div className="sm:col-span-2">
@@ -437,7 +407,7 @@ export default function ActualitesPage() {
                           value={commentContent}
                           onChange={(e) => setCommentContent(e.target.value)}
                           required
-                          className="w-full bg-brand-dark-base border border-brand-emerald/25 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-brand-gold text-foreground transition-all"
+                          className="w-full bg-emerald-50/60 dark:bg-brand-dark-base border border-brand-emerald/25 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 transition-all"
                         />
                       </div>
                     </div>
@@ -448,31 +418,30 @@ export default function ActualitesPage() {
                         className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-green-dark text-xs font-extrabold hover:shadow-lg transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
                       >
                         <Send className="w-3 h-3" />
-                        <span>{postingComment ? "Publication..." : "Publier"}</span>
+                        <span>{postingComment ? "Envoi..." : "Publier mon avis"}</span>
                       </button>
                     </div>
                   </form>
 
                   {/* Comments list */}
-                  <div className="space-y-4 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin">
+                  <div className="space-y-3">
                     {loadingComments ? (
-                      <div className="text-center py-6 text-xs text-foreground/40 font-mono">
-                        Chargement des commentaires...
+                      <div className="py-6 text-center text-xs font-mono text-foreground/40">
+                        Chargement des avis citoyens...
                       </div>
-                    ) : comments.length === 0 ? (
-                      <div className="text-center py-8 bg-brand-green-dark/10 border border-brand-emerald/5 rounded-xl text-xs text-foreground/40 font-mono">
-                        Aucun commentaire pour le moment. Soyez le premier à réagir !
-                      </div>
-                    ) : (
-                      comments.map((comm) => (
-                        <div key={comm.id} className="bg-brand-green-dark/15 border border-brand-emerald/10 p-4 rounded-xl">
-                          <div className="flex justify-between items-center gap-3">
-                            <span className="text-xs font-extrabold text-brand-gold font-display flex items-center gap-1">
-                              <User className="w-3 h-3 text-foreground/50" />
-                              {comm.user_name}
+                    ) : comments.length > 0 ? (
+                      comments.map((comment) => (
+                        <div
+                          key={comment.id}
+                          className="p-4 rounded-xl bg-emerald-50/40 dark:bg-brand-green-dark/20 border border-brand-emerald/10 space-y-1.5"
+                        >
+                          <div className="flex justify-between items-center">
+                            <span className="text-xs font-bold text-brand-gold flex items-center gap-1.5">
+                              <User className="w-3.5 h-3.5" />
+                              {comment.user_name}
                             </span>
                             <span className="text-[9px] font-mono text-foreground/40">
-                              {new Date(comm.created_at).toLocaleDateString("fr-FR", {
+                              {new Date(comment.created_at).toLocaleDateString("fr-FR", {
                                 day: "numeric",
                                 month: "short",
                                 hour: "2-digit",
@@ -480,22 +449,23 @@ export default function ActualitesPage() {
                               })}
                             </span>
                           </div>
-                          <p className="text-xs text-foreground/80 mt-2 font-sans leading-relaxed">
-                            {comm.content}
+                          <p className="text-xs text-foreground/80 leading-relaxed font-sans">
+                            {comment.content}
                           </p>
                         </div>
                       ))
+                    ) : (
+                      <p className="text-center py-6 text-xs text-foreground/40 font-mono">
+                        Soyez le premier à commenter cette actualité républicaine.
+                      </p>
                     )}
                   </div>
-
                 </div>
-
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
     </div>
   );
 }

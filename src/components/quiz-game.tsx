@@ -376,10 +376,10 @@ export default function QuizGame() {
               <div className="inline-flex p-3 rounded-full bg-brand-gold/15 text-brand-gold border border-brand-gold/20 mb-4 animate-bounce">
                 <Trophy className="w-10 h-10" />
               </div>
-              <h2 className="text-2xl md:text-4xl font-black font-display text-white text-glow-gold tracking-tight">
+              <h2 className="text-2xl md:text-4xl font-black font-display text-foreground text-glow-gold tracking-tight">
                 Le Grand Quiz Ousmane Sonko
               </h2>
-              <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
+              <p className="text-sm text-foreground/75 mt-3 leading-relaxed">
                 Testez vos connaissances sur l&apos;histoire politique, la biographie, la vision économique et le programme Sénégal 2050 du leader national.
               </p>
             </div>
@@ -390,7 +390,7 @@ export default function QuizGame() {
               {/* User Identity Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono font-bold text-brand-gold/80 mb-2 uppercase tracking-wide">
+                  <label className="block text-[11px] font-mono font-bold text-brand-gold mb-2 uppercase tracking-wide">
                     Identité du Participant
                   </label>
                   <div className="relative">
@@ -399,14 +399,14 @@ export default function QuizGame() {
                       placeholder="Ex: Moustapha Ndiaye (pour le certificat)"
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
-                      className="w-full bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-3 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground font-semibold"
+                      className="w-full bg-emerald-50/70 dark:bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-3 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 font-semibold"
                     />
                     <User className="w-4 h-4 text-foreground/45 absolute left-3.5 top-3.5" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono font-bold text-brand-gold/80 mb-2 uppercase tracking-wide">
+                  <label className="block text-[11px] font-mono font-bold text-brand-gold mb-2 uppercase tracking-wide">
                     Niveau de Difficulté
                   </label>
                   <div className="grid grid-cols-3 gap-2">
@@ -417,7 +417,7 @@ export default function QuizGame() {
                         className={`py-3 rounded-xl text-xs font-bold border capitalize transition-all cursor-pointer ${
                           difficulty === level
                             ? "bg-brand-gold text-brand-green-dark border-brand-gold shadow-md font-extrabold scale-105"
-                            : "bg-brand-green/10 border-brand-emerald/20 text-foreground/75 hover:bg-brand-green/35"
+                            : "bg-emerald-50/60 dark:bg-brand-green/10 border-brand-emerald/20 text-foreground/75 hover:bg-emerald-100 dark:hover:bg-brand-green/35"
                         }`}
                       >
                         {level === "debutant" ? "Débutant" : level === "expert" ? "Expert" : "Champion"}
@@ -429,7 +429,7 @@ export default function QuizGame() {
 
               {/* Category selector */}
               <div>
-                <label className="block text-[11px] font-mono font-bold text-brand-gold/80 mb-2.5 uppercase tracking-wide">
+                <label className="block text-[11px] font-mono font-bold text-brand-gold mb-2.5 uppercase tracking-wide">
                   Choisissez une thématique
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
@@ -442,8 +442,8 @@ export default function QuizGame() {
                         onClick={() => setSelectedCategory(cat.id as CategoryId)}
                         className={`p-3.5 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer hover:scale-[1.02] relative group min-h-[110px] ${
                           isActive 
-                            ? "bg-brand-green/40 border-brand-gold shadow-lg" 
-                            : "bg-brand-green-dark/20 border-brand-emerald/15 hover:border-brand-emerald/40"
+                            ? "bg-brand-gold/15 dark:bg-brand-green/40 border-brand-gold shadow-lg" 
+                            : "bg-emerald-50/50 dark:bg-brand-green-dark/20 border-brand-emerald/15 hover:border-brand-emerald/40"
                         }`}
                       >
                         <div className="flex justify-between items-start w-full">
@@ -458,10 +458,10 @@ export default function QuizGame() {
                         </div>
 
                         <div className="mt-3">
-                          <h4 className={`text-xs font-black leading-tight ${isActive ? "text-brand-gold" : "text-white group-hover:text-brand-gold transition-colors"}`}>
+                          <h4 className={`text-xs font-black leading-tight ${isActive ? "text-brand-gold" : "text-foreground group-hover:text-brand-gold transition-colors"}`}>
                             {cat.name}
                           </h4>
-                          <p className="text-[9px] text-foreground/45 mt-0.5 line-clamp-2 leading-snug">
+                          <p className="text-[9px] text-foreground/50 mt-0.5 line-clamp-2 leading-snug">
                             {cat.description}
                           </p>
                         </div>

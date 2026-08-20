@@ -72,7 +72,7 @@ export default function AskSonko() {
           <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-brand-emerald/20 to-brand-gold/20 flex items-center justify-center border border-brand-gold/30 mx-auto shadow-lg shadow-brand-gold/5">
             <Bot className="w-8 h-8 text-brand-gold" />
           </div>
-          <h3 className="text-2xl md:text-3xl font-extrabold font-display text-white tracking-tight">
+          <h3 className="text-2xl md:text-3xl font-extrabold font-display text-foreground tracking-tight">
             Assistant IA &quot;<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-brand-gold-light text-glow-gold">Ask Sonko</span>&quot;
           </h3>
         </div>
@@ -84,32 +84,32 @@ export default function AskSonko() {
         {/* Feature Cards Grid (Preview) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto text-left">
           <div className="glass-panel p-4 rounded-xl border border-brand-emerald/10 hover:border-brand-emerald/25 transition-all">
-            <div className="w-8 h-8 rounded-lg bg-brand-green/20 flex items-center justify-center text-brand-gold mb-2.5">
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-brand-green/20 flex items-center justify-center text-brand-gold mb-2.5">
               <Database className="w-4 h-4" />
             </div>
-            <h4 className="text-xs font-bold text-white mb-1">Index Documentaire Complet</h4>
-            <p className="text-[11px] text-foreground/50">20+ volumes de rapports d&apos;État, livres officiels et discours transcrits et vectorisés localement.</p>
+            <h4 className="text-xs font-bold text-foreground mb-1">Index Documentaire Complet</h4>
+            <p className="text-[11px] text-foreground/60">20+ volumes de rapports d&apos;État, livres officiels et discours transcrits et vectorisés localement.</p>
           </div>
 
           <div className="glass-panel p-4 rounded-xl border border-brand-emerald/10 hover:border-brand-emerald/25 transition-all">
-            <div className="w-8 h-8 rounded-lg bg-brand-green/20 flex items-center justify-center text-brand-gold mb-2.5">
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-brand-green/20 flex items-center justify-center text-brand-gold mb-2.5">
               <Brain className="w-4 h-4" />
             </div>
-            <h4 className="text-xs font-bold text-white mb-1">Algorithme RAG de Pointe</h4>
-            <p className="text-[11px] text-foreground/50">Génération enrichie par la recherche avec citations de sources réelles et indicateurs de pertinence.</p>
+            <h4 className="text-xs font-bold text-foreground mb-1">Algorithme RAG de Pointe</h4>
+            <p className="text-[11px] text-foreground/60">Génération enrichie par la recherche avec citations de sources réelles et indicateurs de pertinence.</p>
           </div>
         </div>
 
         {/* Progress Bar Widget */}
         <div className="glass-panel max-w-md mx-auto p-4 rounded-xl border border-brand-emerald/15 text-left font-mono">
           <div className="flex justify-between items-center text-[10px] mb-2 font-bold">
-            <span className="text-foreground/50 flex items-center gap-1.5">
+            <span className="text-foreground/60 flex items-center gap-1.5">
               <Code className="w-3.5 h-3.5 text-brand-gold" />
               <span>Fine-tuning & Vectorisation</span>
             </span>
             <span className="text-brand-gold">75% Complété</span>
           </div>
-          <div className="h-2 w-full bg-brand-green-dark/40 rounded-full overflow-hidden border border-brand-emerald/10 p-0.5">
+          <div className="h-2 w-full bg-brand-green-dark/15 dark:bg-brand-green-dark/40 rounded-full overflow-hidden border border-brand-emerald/10 p-0.5">
             <div className="h-full bg-gradient-to-r from-brand-emerald to-brand-gold rounded-full w-[75%] animate-pulse" />
           </div>
         </div>
@@ -121,17 +121,17 @@ export default function AskSonko() {
               <div className="w-10 h-10 rounded-full bg-brand-gold/15 border border-brand-gold text-brand-gold flex items-center justify-center mb-3">
                 <CheckCircle2 className="w-5 h-5" />
               </div>
-              <h4 className="text-sm font-bold text-white mb-1">Inscription enregistrée !</h4>
-              <p className="text-xs text-foreground/50">Vous serez notifié dès que l&apos;assistant IA sera activé.</p>
+              <h4 className="text-sm font-bold text-foreground mb-1">Inscription enregistrée !</h4>
+              <p className="text-xs text-foreground/60">Vous serez notifié dès que l&apos;assistant IA sera activé.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3">
               <div className="text-left">
-                <h4 className="text-xs font-bold text-white mb-1">Rejoindre la liste d&apos;accès anticipé</h4>
-                <p className="text-[11px] text-foreground/50">Soyez averti dès l&apos;ouverture des accès bêta de l&apos;IA.</p>
+                <h4 className="text-xs font-bold text-foreground mb-1">Rejoindre la liste d&apos;accès anticipé</h4>
+                <p className="text-[11px] text-foreground/60">Soyez averti dès l&apos;ouverture des accès bêta de l&apos;IA.</p>
               </div>
 
-              {errorMsg && <p className="text-[10px] text-red-400 text-left font-semibold">{errorMsg}</p>}
+              {errorMsg && <p className="text-[10px] text-red-500 dark:text-red-400 text-left font-semibold">{errorMsg}</p>}
 
               <div className="flex gap-2">
                 <div className="relative flex-1">
@@ -143,7 +143,7 @@ export default function AskSonko() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Votre adresse e-mail"
                     title="Adresse e-mail pour s'inscrire"
-                    className="w-full bg-brand-dark-base border border-brand-emerald/25 rounded-xl pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-brand-gold text-white"
+                    className="w-full bg-emerald-50/50 dark:bg-brand-dark-base border border-brand-emerald/25 rounded-xl pl-10 pr-3 py-2 text-xs focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/40"
                   />
                 </div>
                 <button

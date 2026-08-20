@@ -144,7 +144,7 @@ export default function Timeline360() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-semibold border transition-all cursor-pointer ${
                   isActive
                     ? "bg-brand-gold text-brand-green-dark border-brand-gold shadow-lg shadow-brand-gold/15"
-                    : "bg-brand-green/20 border-brand-emerald/20 text-foreground/75 hover:bg-brand-green/40 hover:border-brand-gold/40"
+                    : "bg-emerald-50 dark:bg-brand-green/20 border-brand-emerald/20 text-foreground/80 hover:bg-emerald-100 dark:hover:bg-brand-green/40 hover:border-brand-gold/40"
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -163,13 +163,13 @@ export default function Timeline360() {
               placeholder="Rechercher une date, événement..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground transition-all"
+              className="w-full bg-emerald-50/60 dark:bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 transition-all"
             />
             <Search className="w-4 h-4 text-foreground/50 absolute left-3 top-3" />
           </div>
 
           {/* Slider */}
-          <div className="flex items-center gap-3 bg-brand-green/10 border border-brand-emerald/15 px-4 py-1.5 rounded-xl">
+          <div className="flex items-center gap-3 bg-emerald-50/60 dark:bg-brand-green/10 border border-brand-emerald/15 px-4 py-1.5 rounded-xl">
             <Sliders className="w-4 h-4 text-brand-gold" />
             <div className="flex flex-col">
               <span className="text-[10px] text-foreground/55 font-mono leading-none">IMPORTANCE</span>

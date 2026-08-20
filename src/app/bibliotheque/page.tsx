@@ -46,7 +46,7 @@ export default function BibliothequePage() {
             id: item.id,
             title: item.title,
             category: item.category as Video["category"],
-            youtubeId: item.youtube_id, // map youtube_id -> youtubeId
+            youtubeId: item.youtube_id,
             duration: item.duration,
             date: item.date,
             featured: item.featured ?? false
@@ -107,29 +107,29 @@ export default function BibliothequePage() {
   });
 
   return (
-    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-16 px-4 md:px-8">
+    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-50/70 dark:from-brand-green/20 via-brand-dark-base to-brand-dark-base py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
         <div className="text-center mb-12">
           <span className="text-xs font-mono font-black text-brand-gold uppercase tracking-[0.25em]">Médiathèque</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold font-display text-white mt-3 text-glow-gold">
+          <h1 className="text-4xl md:text-5xl font-extrabold font-display text-foreground mt-3 text-glow-gold">
             Bibliothèque & Vidéothèque
           </h1>
-          <p className="text-sm text-foreground/60 mt-3 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm text-foreground/75 mt-3 max-w-xl mx-auto leading-relaxed">
             Consultez les discours vidéos officiels, interviews phares, et téléchargez les livres et documents programmatiques de référence.
           </p>
         </div>
 
         {/* Section switcher */}
         <div className="flex justify-center mb-10">
-          <div className="flex gap-2 bg-brand-green-dark/30 p-1.5 rounded-2xl border border-brand-emerald/10">
+          <div className="flex gap-2 bg-emerald-50/80 dark:bg-brand-green-dark/30 p-1.5 rounded-2xl border border-brand-emerald/15">
             <button
               onClick={() => { setActiveTab("videos"); setSearchQuery(""); }}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs md:text-sm font-bold transition-all cursor-pointer ${
                 activeTab === "videos"
-                  ? "bg-brand-gold text-brand-green-dark shadow-md"
-                  : "text-foreground/75 hover:bg-brand-green/30"
+                  ? "bg-brand-gold text-brand-green-dark shadow-md font-black"
+                  : "text-foreground/75 hover:bg-emerald-100/80 dark:hover:bg-brand-green/30"
               }`}
             >
               <Play className="w-4 h-4" />
@@ -139,8 +139,8 @@ export default function BibliothequePage() {
               onClick={() => { setActiveTab("documents"); setSearchQuery(""); }}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs md:text-sm font-bold transition-all cursor-pointer ${
                 activeTab === "documents"
-                  ? "bg-brand-gold text-brand-green-dark shadow-md"
-                  : "text-foreground/75 hover:bg-brand-green/30"
+                  ? "bg-brand-gold text-brand-green-dark shadow-md font-black"
+                  : "text-foreground/75 hover:bg-emerald-100/80 dark:hover:bg-brand-green/30"
               }`}
             >
               <BookOpen className="w-4 h-4" />
@@ -165,7 +165,7 @@ export default function BibliothequePage() {
                   </div>
 
                   {/* Duration badge */}
-                  <div className="absolute top-4 right-4 z-10 px-2.5 py-1 rounded-lg bg-brand-dark-base/80 border border-brand-emerald/20 text-[10px] font-mono text-foreground/70">
+                  <div className="absolute top-4 right-4 z-10 px-2.5 py-1 rounded-lg bg-emerald-950/80 text-white dark:bg-brand-dark-base/80 border border-brand-emerald/20 text-[10px] font-mono">
                     {featuredVid.duration}
                   </div>
 
@@ -181,16 +181,16 @@ export default function BibliothequePage() {
                   </div>
 
                   {/* Info bar */}
-                  <div className="bg-brand-green-dark/60 backdrop-blur-md px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
+                  <div className="bg-emerald-50/90 dark:bg-brand-green-dark/60 backdrop-blur-md px-6 py-4 flex items-center justify-between gap-4 flex-wrap border-t border-brand-emerald/10">
                     <div>
-                      <span className="text-[10px] font-bold text-brand-gold bg-brand-green/30 px-2 py-0.5 rounded border border-brand-gold/20">
+                      <span className="text-[10px] font-bold text-brand-gold bg-brand-green/20 px-2 py-0.5 rounded border border-brand-gold/20">
                         {featuredVid.category}
                       </span>
-                      <h2 className="text-white font-bold text-base md:text-lg mt-2 leading-snug">
+                      <h2 className="text-foreground font-bold text-base md:text-lg mt-2 leading-snug">
                         {featuredVid.title}
                       </h2>
                     </div>
-                    <span className="text-[10px] font-mono text-foreground/45 whitespace-nowrap">{featuredVid.date}</span>
+                    <span className="text-[10px] font-mono text-foreground/50 whitespace-nowrap">{featuredVid.date}</span>
                   </div>
                 </div>
               );
@@ -204,8 +204,8 @@ export default function BibliothequePage() {
                     onClick={() => setVideoFilter(filter)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                       videoFilter === filter
-                        ? "bg-brand-gold text-brand-green-dark border-brand-gold shadow-sm"
-                        : "bg-brand-green/15 border-brand-emerald/15 text-foreground/75 hover:bg-brand-green/30"
+                        ? "bg-brand-gold text-brand-green-dark border-brand-gold shadow-sm font-extrabold"
+                        : "bg-emerald-50/70 dark:bg-brand-green/15 border-brand-emerald/15 text-foreground/80 hover:bg-emerald-100 dark:hover:bg-brand-green/30"
                     }`}
                   >
                     {filter === "all" ? "Toutes" : filter === "favorites" ? "Mes Favoris ⭐" : filter}
@@ -219,7 +219,7 @@ export default function BibliothequePage() {
                   placeholder="Rechercher une vidéo..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground transition-all"
+                  className="w-full bg-emerald-50/60 dark:bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 transition-all"
                 />
                 <Search className="w-4 h-4 text-foreground/50 absolute left-3 top-3" />
               </div>
@@ -253,16 +253,16 @@ export default function BibliothequePage() {
                         onClick={() => toggleFavorite(vid.id)}
                         title={favorites.includes(vid.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
                         aria-label={favorites.includes(vid.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
-                        className="absolute top-2 right-2 p-2 rounded-full bg-brand-dark-base/80 border border-brand-emerald/10 hover:border-brand-gold/45 text-foreground/80 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                        className="absolute top-2 right-2 p-2 rounded-full bg-emerald-950/80 text-white dark:bg-brand-dark-base/80 border border-brand-emerald/10 hover:border-brand-gold/45 hover:scale-105 active:scale-95 transition-all cursor-pointer"
                       >
-                        <Star className={`w-4 h-4 ${favorites.includes(vid.id) ? "fill-brand-gold text-brand-gold" : "text-foreground/60"}`} />
+                        <Star className={`w-4 h-4 ${favorites.includes(vid.id) ? "fill-brand-gold text-brand-gold" : "text-white/70"}`} />
                       </button>
                     </div>
 
                     {/* Card Content details */}
                     <div className="p-5 flex-1 flex flex-col justify-between">
                       <div>
-                        <span className="text-[10px] font-bold text-brand-gold bg-brand-green/30 px-2 py-0.5 rounded border border-brand-gold/20">
+                        <span className="text-[10px] font-bold text-brand-gold bg-brand-green/10 dark:bg-brand-green/30 px-2 py-0.5 rounded border border-brand-gold/20">
                           {vid.category}
                         </span>
                         <h4 className="font-bold text-sm text-foreground mt-3 line-clamp-2 leading-snug">
@@ -270,7 +270,7 @@ export default function BibliothequePage() {
                         </h4>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-brand-emerald/10 flex justify-between items-center text-[10px] text-foreground/45 font-mono">
+                      <div className="mt-4 pt-3 border-t border-brand-emerald/10 flex justify-between items-center text-[10px] text-foreground/50 font-mono">
                         <span>{vid.date}</span>
                         <span>Durée: {vid.duration}</span>
                       </div>
@@ -280,7 +280,7 @@ export default function BibliothequePage() {
               </AnimatePresence>
 
               {filteredVideos.length === 0 && (
-                <div className="col-span-3 text-center py-20 bg-brand-green/5 border border-brand-emerald/10 rounded-2xl">
+                <div className="col-span-3 text-center py-20 bg-emerald-50/50 dark:bg-brand-green/5 border border-brand-emerald/10 rounded-2xl">
                   <p className="text-foreground/50 text-sm">Aucune vidéo ne correspond à vos critères.</p>
                 </div>
               )}
@@ -292,19 +292,19 @@ export default function BibliothequePage() {
         {activeTab === "documents" && (
           <div>
             {/* Search inputs */}
-            <div className="glass-panel p-6 rounded-2xl mb-8 flex justify-between items-center">
+            <div className="glass-panel p-6 rounded-2xl mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <h3 className="text-sm font-mono font-bold text-brand-gold uppercase tracking-wider flex items-center gap-2">
                 <Library className="w-4 h-4" />
                 <span>Base Documentaire Téléchargeable</span>
               </h3>
               
-              <div className="relative min-w-[240px]">
+              <div className="relative min-w-[240px] w-full sm:w-auto">
                 <input
                   type="text"
                   placeholder="Filtrer les documents..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground transition-all"
+                  className="w-full bg-emerald-50/60 dark:bg-brand-green/20 border border-brand-emerald/25 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 transition-all"
                 />
                 <Search className="w-4 h-4 text-foreground/50 absolute left-3 top-3" />
               </div>
@@ -323,17 +323,17 @@ export default function BibliothequePage() {
                     className="glass-panel p-6 rounded-2xl border-l-4 border-l-brand-emerald flex justify-between items-start gap-4 hover:border-brand-gold/40 transition-all group"
                   >
                     <div className="flex-1">
-                      <span className="text-[10px] font-mono font-bold text-brand-gold/60 uppercase block mb-1">
+                      <span className="text-[10px] font-mono font-bold text-brand-gold uppercase block mb-1">
                         {doc.type}
                       </span>
-                      <h4 className="text-lg font-bold text-white font-display leading-snug group-hover:text-brand-gold transition-colors">
+                      <h4 className="text-lg font-bold text-foreground font-display leading-snug group-hover:text-brand-gold transition-colors">
                         {doc.title}
                       </h4>
-                      <p className="text-xs text-foreground/70 mt-2 leading-relaxed">
+                      <p className="text-xs text-foreground/75 mt-2 leading-relaxed">
                         {doc.description}
                       </p>
 
-                      <div className="flex gap-4 mt-4 text-[10px] font-mono text-foreground/40">
+                      <div className="flex gap-4 mt-4 text-[10px] font-mono text-foreground/50">
                         <span>Poids: {doc.size}</span>
                         <span>•</span>
                         <span>Téléchargements: {doc.downloads}</span>
@@ -348,7 +348,7 @@ export default function BibliothequePage() {
                         onClick={() => trackEvent("Documents", "download_pdf", doc.title, "download")}
                         title="Télécharger le document"
                         aria-label="Télécharger le document"
-                        className="p-3.5 rounded-xl bg-brand-green/30 border border-brand-emerald/15 hover:bg-brand-gold hover:text-brand-green-dark hover:border-brand-gold transition-all text-brand-gold cursor-pointer flex items-center justify-center"
+                        className="p-3.5 rounded-xl bg-emerald-50 dark:bg-brand-green/30 border border-brand-emerald/15 hover:bg-brand-gold hover:text-brand-green-dark hover:border-brand-gold transition-all text-brand-gold cursor-pointer flex items-center justify-center shadow-sm"
                       >
                         <Download className="w-5 h-5" />
                       </a>
@@ -367,7 +367,7 @@ export default function BibliothequePage() {
               </AnimatePresence>
 
               {filteredDocs.length === 0 && (
-                <div className="col-span-2 text-center py-20 bg-brand-green/5 border border-brand-emerald/10 rounded-2xl">
+                <div className="col-span-2 text-center py-20 bg-emerald-50/50 dark:bg-brand-green/5 border border-brand-emerald/10 rounded-2xl">
                   <p className="text-foreground/50 text-sm">Aucun document ne correspond à votre recherche.</p>
                 </div>
               )}

@@ -34,22 +34,9 @@ interface PoleData {
   projects: Project[];
 }
 
-const REGIONS: Region[] = [
-  { id: "DK", name: "Dakar", capital: "Dakar", poleId: "pole-1", coords: "M 40,240 L 60,230 L 75,245 L 60,265 L 45,260 Z", center: { x: 55, y: 245 } },
-  { id: "TH", name: "Thiès", capital: "Thiès", poleId: "pole-2", coords: "M 75,245 L 85,210 L 110,215 L 120,240 L 110,270 L 80,265 Z", center: { x: 95, y: 240 } },
-  { id: "SL", name: "Saint-Louis", capital: "Saint-Louis", poleId: "pole-4", coords: "M 85,210 L 100,150 L 130,120 L 180,110 L 220,130 L 200,165 L 140,185 L 110,215 Z", center: { x: 155, y: 155 } },
-  { id: "LG", name: "Louga", capital: "Louga", poleId: "pole-4", coords: "M 110,215 L 140,185 L 200,165 L 230,200 L 180,225 L 120,240 Z", center: { x: 165, y: 205 } },
-  { id: "MT", name: "Matam", capital: "Matam", poleId: "pole-4", coords: "M 200,165 L 220,130 L 280,175 L 280,210 L 200,240 L 230,200 Z", center: { x: 240, y: 180 } },
-  { id: "DB", name: "Diourbel", capital: "Diourbel", poleId: "pole-3", coords: "M 120,240 L 130,218 L 145,222 L 142,243 Z", center: { x: 132, y: 231 } },
-  { id: "FT", name: "Fatick", capital: "Fatick", poleId: "pole-3", coords: "M 80,265 L 110,270 L 115,285 L 85,295 Z", center: { x: 97, y: 278 } },
-  { id: "KL", name: "Kaolack", capital: "Kaolack", poleId: "pole-3", coords: "M 120,240 L 150,230 L 160,260 L 140,290 L 110,270 Z", center: { x: 138, y: 258 } },
-  { id: "KF", name: "Kaffrine", capital: "Kaffrine", poleId: "pole-3", coords: "M 140,290 L 160,260 L 195,290 L 175,310 Z", center: { x: 168, y: 285 } },
-  { id: "TC", name: "Tambacounda", capital: "Tambacounda", poleId: "pole-6", coords: "M 200,240 L 280,210 L 300,250 L 330,290 L 270,300 L 280,360 L 240,360 L 195,290 Z", center: { x: 250, y: 285 } },
-  { id: "KD", name: "Kédougou", capital: "Kédougou", poleId: "pole-6", coords: "M 270,300 L 330,290 L 360,330 L 340,380 L 280,360 Z", center: { x: 310, y: 335 } },
-  { id: "ZC", name: "Ziguinchor", capital: "Ziguinchor", poleId: "pole-5", coords: "M 60,370 L 90,372 L 90,400 L 50,400 Z", center: { x: 72, y: 385 } },
-  { id: "SD", name: "Sédhiou", capital: "Sédhiou", poleId: "pole-5", coords: "M 90,372 L 125,375 L 125,400 L 90,400 Z", center: { x: 108, y: 386 } },
-  { id: "KO", name: "Kolda", capital: "Kolda", poleId: "pole-5", coords: "M 125,375 L 195,380 L 195,400 L 125,400 Z", center: { x: 160, y: 388 } }
-];
+import { REGIONS_DATA } from "@/data/regions_data";
+
+const REGIONS: Region[] = REGIONS_DATA;
 
 const POLE_DATA: Record<string, PoleData> = {
   "pole-1": {
@@ -305,53 +292,67 @@ export default function SenegalMap() {
                 onClick={() => setSelectedPoleId("pole-7")}
                 className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-mono font-bold border transition-all cursor-pointer ${
                   selectedPoleId === "pole-7"
-                    ? "bg-teal-500/20 text-teal-300 border-teal-500/50 shadow-md shadow-teal-500/10"
-                    : "bg-brand-dark-base/40 text-foreground/50 border-brand-emerald/10 hover:text-white"
+                    ? "bg-teal-500/20 text-teal-600 dark:text-teal-300 border-teal-500/50 shadow-md shadow-teal-500/10"
+                    : "bg-emerald-50 dark:bg-brand-dark-base/40 text-foreground/70 border-brand-emerald/10 hover:text-foreground"
                 }`}
               >
-                <Palette className="w-3 h-3 text-teal-400" />
+                <Palette className="w-3 h-3 text-teal-500 dark:text-teal-400" />
                 <span>Pôle 7 : Tourisme Durable</span>
               </button>
               <button
                 onClick={() => setSelectedPoleId("pole-8")}
                 className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-mono font-bold border transition-all cursor-pointer ${
                   selectedPoleId === "pole-8"
-                    ? "bg-rose-500/20 text-rose-300 border-rose-500/50 shadow-md shadow-rose-500/10"
-                    : "bg-brand-dark-base/40 text-foreground/50 border-brand-emerald/10 hover:text-white"
+                    ? "bg-rose-500/20 text-rose-600 dark:text-rose-300 border-rose-500/50 shadow-md shadow-rose-500/10"
+                    : "bg-emerald-50 dark:bg-brand-dark-base/40 text-foreground/70 border-brand-emerald/10 hover:text-foreground"
                 }`}
               >
-                <Palette className="w-3 h-3 text-rose-400" />
+                <Palette className="w-3 h-3 text-rose-500 dark:text-rose-400" />
                 <span>Pôle 8 : Artisanat Créatif</span>
               </button>
             </div>
           )}
 
           {/* SVG Map of Senegal */}
-          <div className="w-full flex justify-center items-center flex-grow">
+          <div className="w-full flex justify-center items-center flex-grow py-2">
             <svg
-              viewBox="0 0 400 450"
-              width="400"
-              height="450"
-              className="w-full h-auto max-w-[380px] aspect-[400/450] flex-shrink-0"
+              viewBox="0 0 600 440"
+              className="w-full h-auto max-w-[540px] aspect-[600/440] flex-shrink-0 drop-shadow-xl select-none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Rivers / Borders decoration */}
-              <path d="M 50,340 C 90,340 100,345 130,342 C 160,340 180,348 200,345" fill="none" stroke="rgba(14, 115, 81, 0.12)" strokeWidth="6" />
-              <path d="M 50,370 C 80,368 120,365 140,368 C 160,370 170,366 190,368" fill="none" stroke="rgba(14, 115, 81, 0.12)" strokeWidth="4" />
+              {/* Geographic labels watermark */}
+              <text
+                x="150"
+                y="308"
+                className="text-[9px] font-mono italic fill-foreground/30 pointer-events-none select-none tracking-widest"
+                textAnchor="middle"
+              >
+                GAMBIE
+              </text>
+              <text
+                x="40"
+                y="130"
+                className="text-[8px] font-mono italic fill-foreground/25 pointer-events-none select-none tracking-widest -rotate-45"
+                textAnchor="middle"
+              >
+                OCÉAN ATLANTIQUE
+              </text>
 
-              {/* Render 14 Region paths */}
+              {/* Render 14 Official Region paths */}
               {REGIONS.map((reg) => {
                 const highlighted = isRegionHighlighted(reg.id);
                 const fillColor = getRegionFillColor(reg.id);
 
                 return (
-                  <g key={reg.id}>
+                  <g key={reg.id} className="group">
                     <path
                       d={reg.coords}
                       fill={fillColor}
-                      stroke={highlighted ? "#D4AF37" : "rgba(14, 115, 81, 0.25)"}
-                      strokeWidth={highlighted ? 2 : 1}
-                      className="transition-all duration-300 cursor-pointer hover:fill-brand-green/80"
+                      stroke={highlighted ? "#D4AF37" : "rgba(14, 115, 81, 0.45)"}
+                      strokeWidth={highlighted ? 2.5 : 1}
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      className="transition-all duration-300 cursor-pointer hover:brightness-110 hover:stroke-brand-gold"
                       onClick={() => handleRegionClick(reg.id)}
                     />
                     
@@ -359,8 +360,8 @@ export default function SenegalMap() {
                     <text
                       x={reg.center.x}
                       y={reg.center.y}
-                      className={`text-[8px] font-mono font-bold fill-white/80 pointer-events-none select-none transition-all duration-300 ${
-                        highlighted ? "fill-brand-gold font-black scale-110" : ""
+                      className={`text-[9px] sm:text-[10px] font-mono font-black pointer-events-none select-none transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] ${
+                        highlighted ? "fill-brand-gold font-black scale-110" : "fill-white"
                       }`}
                       textAnchor="middle"
                       alignmentBaseline="middle"
@@ -370,26 +371,6 @@ export default function SenegalMap() {
                   </g>
                 );
               })}
-
-              {/* Casamance Archipelago Small Markers */}
-              <circle 
-                cx="50" 
-                cy="385" 
-                r="3" 
-                fill={getRegionFillColor("ZC")} 
-                stroke={isRegionHighlighted("ZC") ? "#D4AF37" : "rgba(14, 115, 81, 0.25)"} 
-                className="cursor-pointer" 
-                onClick={() => handleRegionClick("ZC")} 
-              />
-              <circle 
-                cx="58" 
-                cy="388" 
-                r="2.5" 
-                fill={getRegionFillColor("ZC")} 
-                stroke={isRegionHighlighted("ZC") ? "#D4AF37" : "rgba(14, 115, 81, 0.25)"} 
-                className="cursor-pointer" 
-                onClick={() => handleRegionClick("ZC")} 
-              />
             </svg>
           </div>
 
@@ -530,7 +511,7 @@ export default function SenegalMap() {
                   <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/5 rounded-full blur-2xl pointer-events-none" />
                   
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-2xl font-bold text-white font-display flex items-center gap-2">
+                    <h3 className="text-2xl font-bold text-foreground font-display flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-brand-gold" />
                       Région de {selectedRegion.name}
                     </h3>
@@ -546,14 +527,14 @@ export default function SenegalMap() {
 
                 {/* Local Stats */}
                 <div className="grid grid-cols-2 gap-4 mt-6">
-                  <div className="bg-brand-green-dark/20 border border-brand-emerald/10 p-3 rounded-xl text-center">
+                  <div className="bg-emerald-50/50 dark:bg-brand-green-dark/20 border border-brand-emerald/10 p-3 rounded-xl text-center">
                     <span className="text-[9px] text-foreground/45 block uppercase font-mono font-bold">Région Administrative</span>
-                    <span className="text-sm font-bold text-white block mt-1">
+                    <span className="text-sm font-bold text-foreground block mt-1">
                       Sénégal
                     </span>
                   </div>
                   
-                  <div className="bg-brand-green-dark/20 border border-brand-emerald/10 p-3 rounded-xl text-center">
+                  <div className="bg-emerald-50/50 dark:bg-brand-green-dark/20 border border-brand-emerald/10 p-3 rounded-xl text-center">
                     <span className="text-[9px] text-foreground/45 block uppercase font-mono font-bold">Pôle Économique Rattaché</span>
                     <span className="text-sm font-bold text-brand-gold block mt-1">
                       {POLE_DATA[selectedRegion.poleId]?.name.replace("Pôle", "")}
@@ -576,7 +557,7 @@ export default function SenegalMap() {
                       >
                         <div>
                           <h5 className="font-bold text-xs text-foreground">{proj.title}</h5>
-                          <p className="text-[10px] text-foreground/50 mt-0.5">
+                          <p className="text-[10px] text-foreground/60 mt-0.5">
                             Focus local pour la souveraineté économique de {selectedRegion.name}.
                           </p>
                         </div>
@@ -588,7 +569,7 @@ export default function SenegalMap() {
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-brand-emerald/10 flex items-center justify-between text-[10px] text-foreground/40 font-mono">
+                <div className="mt-8 pt-4 border-t border-brand-emerald/10 flex items-center justify-between text-[10px] text-foreground/50 font-mono">
                   <span className="flex items-center gap-1">
                     <Shield className="w-3.5 h-3.5 text-brand-gold" />
                     Réf: Aménagement territorial
@@ -607,41 +588,41 @@ export default function SenegalMap() {
 
       {/* Strategic Info Banner at the bottom of the map card */}
       <div className="mt-8 pt-6 border-t border-brand-emerald/10 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-        <div className="bg-brand-dark-card/50 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
+        <div className="bg-brand-dark-card/60 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
           <Landmark className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="text-white block font-display">Macro-céphalie brisée</strong>
-            <span className="text-[11px] text-foreground/50 leading-relaxed block mt-0.5">
+            <strong className="text-foreground block font-display">Macro-céphalie brisée</strong>
+            <span className="text-[11px] text-foreground/65 leading-relaxed block mt-0.5">
               Le poids de Dakar dans le PIB national passera de 46 % à 29 % d&apos;ici 2050.
             </span>
           </div>
         </div>
 
-        <div className="bg-brand-dark-card/50 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
+        <div className="bg-brand-dark-card/60 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
           <Zap className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="text-white block font-display">Agropoles Intégrées</strong>
-            <span className="text-[11px] text-foreground/50 leading-relaxed block mt-0.5">
+            <strong className="text-foreground block font-display">Agropoles Intégrées</strong>
+            <span className="text-[11px] text-foreground/65 leading-relaxed block mt-0.5">
               47 parcs agro-industriels avec électricité garantie à moins de 60 FCFA/kWh.
             </span>
           </div>
         </div>
 
-        <div className="bg-brand-dark-card/50 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
+        <div className="bg-brand-dark-card/60 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
           <TrendingUp className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="text-white block font-display">Contribution PIB Centre</strong>
-            <span className="text-[11px] text-foreground/50 leading-relaxed block mt-0.5">
+            <strong className="text-foreground block font-display">Contribution PIB Centre</strong>
+            <span className="text-[11px] text-foreground/65 leading-relaxed block mt-0.5">
               Les régions du Centre pèseront pour 51 % du PIB national à terme.
             </span>
           </div>
         </div>
 
-        <div className="bg-brand-dark-card/50 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
+        <div className="bg-brand-dark-card/60 p-3.5 rounded-xl border border-brand-emerald/10 flex items-start gap-3">
           <Sparkles className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="text-white block font-display">Souveraineté Est</strong>
-            <span className="text-[11px] text-foreground/50 leading-relaxed block mt-0.5">
+            <strong className="text-foreground block font-display">Souveraineté Est</strong>
+            <span className="text-[11px] text-foreground/65 leading-relaxed block mt-0.5">
               Le tiers Est du Sénégal représentera 20 % du PIB grâce au pôle minier.
             </span>
           </div>

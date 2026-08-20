@@ -17,7 +17,6 @@ export default function CommunautePage() {
     setErrorMsg("");
 
     try {
-      // Sync waiting list signup to the contributors table
       const { error } = await supabase.from("contributors").insert([
         {
           email: email,
@@ -30,7 +29,6 @@ export default function CommunautePage() {
       setSubmitted(true);
     } catch (err) {
       console.warn("Could not insert to Supabase, setting local success", err);
-      // Fallback for seamless UX in offline/development mode
       setSubmitted(true);
     } finally {
       setLoading(false);
@@ -38,20 +36,20 @@ export default function CommunautePage() {
   };
 
   return (
-    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-green/20 via-brand-dark-base to-brand-dark-base py-20 px-4 md:px-8 flex-grow flex items-center justify-center min-h-[75vh]">
+    <div className="w-full animate-slide-up bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-50/70 dark:from-brand-green/20 via-brand-dark-base to-brand-dark-base py-20 px-4 md:px-8 flex-grow flex items-center justify-center min-h-[75vh]">
       <div className="max-w-2xl w-full text-center relative">
         {/* Ambient Blur Background Glows */}
         <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-72 h-72 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-emerald/5 rounded-full blur-3xl pointer-events-none" />
 
         {/* Development Status Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-green/30 border border-brand-gold/30 text-brand-gold text-xs font-mono font-bold tracking-wider uppercase mb-8 animate-pulse">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-brand-green/30 border border-brand-gold/30 text-brand-gold text-xs font-mono font-bold tracking-wider uppercase mb-8 animate-pulse">
           <Clock className="w-3.5 h-3.5" />
           <span>Portail en cours de développement</span>
         </div>
 
         {/* Premium Header */}
-        <h1 className="text-4xl md:text-5xl font-extrabold font-display text-white tracking-tight leading-none mb-6">
+        <h1 className="text-4xl md:text-5xl font-extrabold font-display text-foreground tracking-tight leading-none mb-6">
           Espace <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-brand-gold-light text-glow-gold">Communauté</span> & Citoyens
         </h1>
 
@@ -62,32 +60,32 @@ export default function CommunautePage() {
         {/* Feature Cards Grid (Preview) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-10 text-left">
           <div className="glass-panel p-5 rounded-2xl border border-brand-emerald/10 hover:border-brand-emerald/25 transition-all">
-            <div className="w-8 h-8 rounded-xl bg-brand-green/20 flex items-center justify-center text-brand-gold mb-3">
+            <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-brand-green/20 flex items-center justify-center text-brand-gold mb-3">
               <Users className="w-4.5 h-4.5" />
             </div>
-            <h3 className="text-sm font-bold text-white mb-1">Cercle des Contributeurs</h3>
-            <p className="text-xs text-foreground/50">Discutez, partagez vos idées et collaborez sur les projets territoriaux.</p>
+            <h3 className="text-sm font-bold text-foreground mb-1">Cercle des Contributeurs</h3>
+            <p className="text-xs text-foreground/60">Discutez, partagez vos idées et collaborez sur les projets territoriaux.</p>
           </div>
 
           <div className="glass-panel p-5 rounded-2xl border border-brand-emerald/10 hover:border-brand-emerald/25 transition-all">
-            <div className="w-8 h-8 rounded-xl bg-brand-green/20 flex items-center justify-center text-brand-gold mb-3">
+            <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-brand-green/20 flex items-center justify-center text-brand-gold mb-3">
               <ShieldCheck className="w-4.5 h-4.5" />
             </div>
-            <h3 className="text-sm font-bold text-white mb-1">Attestations & Badges</h3>
-            <p className="text-xs text-foreground/50">Obtenez vos certificats de mérite nationaux après validation des quiz.</p>
+            <h3 className="text-sm font-bold text-foreground mb-1">Attestations & Badges</h3>
+            <p className="text-xs text-foreground/60">Obtenez vos certificats de mérite nationaux après validation des quiz.</p>
           </div>
         </div>
 
         {/* Progress Bar Widget */}
         <div className="glass-panel max-w-md mx-auto p-5 rounded-2xl border border-brand-emerald/15 mb-10 text-left font-mono">
           <div className="flex justify-between items-center text-xs mb-2.5">
-            <span className="text-foreground/50 flex items-center gap-1.5">
+            <span className="text-foreground/60 flex items-center gap-1.5">
               <Code className="w-3.5 h-3.5 text-brand-gold" />
               <span>Intégration API & Supabase</span>
             </span>
             <span className="font-bold text-brand-gold">85% Complété</span>
           </div>
-          <div className="h-2 w-full bg-brand-green-dark/40 rounded-full overflow-hidden border border-brand-emerald/10 p-0.5">
+          <div className="h-2 w-full bg-brand-green-dark/15 dark:bg-brand-green-dark/40 rounded-full overflow-hidden border border-brand-emerald/10 p-0.5">
             <div className="h-full bg-gradient-to-r from-brand-emerald to-brand-gold rounded-full w-[85%] animate-pulse" />
           </div>
         </div>
@@ -99,17 +97,17 @@ export default function CommunautePage() {
               <div className="w-12 h-12 rounded-full bg-brand-gold/15 border border-brand-gold text-brand-gold flex items-center justify-center mb-4">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white font-display">Inscription validée !</h3>
-              <p className="text-xs text-foreground/55 text-center mt-2 max-w-xs leading-relaxed">
+              <h3 className="text-lg font-bold text-foreground font-display">Inscription validée !</h3>
+              <p className="text-xs text-foreground/65 text-center mt-2 max-w-xs leading-relaxed">
                 Merci pour votre engagement. Vous recevrez une notification par e-mail dès le lancement officiel du portail.
               </p>
             </div>
           ) : (
             <div>
-              <h3 className="text-sm font-bold text-white mb-2 uppercase tracking-wider text-left font-mono text-brand-gold">
+              <h3 className="text-sm font-bold text-brand-gold mb-2 uppercase tracking-wider text-left font-mono">
                 Rejoindre la liste d&apos;attente
               </h3>
-              <p className="text-xs text-foreground/50 text-left mb-6">
+              <p className="text-xs text-foreground/60 text-left mb-6">
                 Inscrivez-vous pour être alerté dès l&apos;ouverture officielle de l&apos;espace citoyen.
               </p>
 
@@ -122,7 +120,7 @@ export default function CommunautePage() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     disabled={loading}
-                    className="w-full bg-brand-dark-base border border-brand-emerald/25 rounded-xl px-4 py-3 pl-10 text-xs focus:outline-none focus:border-brand-gold text-white transition-all disabled:opacity-50"
+                    className="w-full bg-emerald-50/70 dark:bg-brand-dark-base border border-brand-emerald/25 rounded-xl px-4 py-3 pl-10 text-xs focus:outline-none focus:border-brand-gold text-foreground placeholder:text-foreground/45 transition-all disabled:opacity-50"
                   />
                   <Mail className="w-4 h-4 text-foreground/40 absolute left-3.5 top-3.5" />
                 </div>
@@ -139,7 +137,6 @@ export default function CommunautePage() {
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

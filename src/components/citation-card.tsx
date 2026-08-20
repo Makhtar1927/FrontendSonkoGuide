@@ -288,13 +288,13 @@ export default function CitationCard() {
         <div className="flex gap-2">
           <button 
             onClick={handlePrev}
-            className="px-4 py-2 rounded-lg bg-brand-green/30 border border-brand-emerald/20 text-foreground/80 hover:text-white hover:bg-brand-green/60 hover:border-brand-gold/50 transition-all font-semibold text-sm cursor-pointer"
+            className="px-4 py-2 rounded-lg bg-emerald-50 dark:bg-brand-green/30 border border-brand-emerald/20 text-foreground/85 hover:text-foreground hover:bg-emerald-100 dark:hover:bg-brand-green/60 hover:border-brand-gold/50 transition-all font-semibold text-sm cursor-pointer"
           >
             Précédente
           </button>
           <button 
             onClick={handleNext}
-            className="px-4 py-2 rounded-lg bg-brand-green/30 border border-brand-emerald/20 text-foreground/80 hover:text-white hover:bg-brand-green/60 hover:border-brand-gold/50 transition-all font-semibold text-sm cursor-pointer"
+            className="px-4 py-2 rounded-lg bg-emerald-50 dark:bg-brand-green/30 border border-brand-emerald/20 text-foreground/85 hover:text-foreground hover:bg-emerald-100 dark:hover:bg-brand-green/60 hover:border-brand-gold/50 transition-all font-semibold text-sm cursor-pointer"
           >
             Suivante
           </button>
@@ -307,12 +307,12 @@ export default function CitationCard() {
             title="Partager sur WhatsApp"
             className="p-2 rounded-lg bg-[#25D366]/10 hover:bg-[#25D366]/20 transition-colors border border-[#25D366]/20 cursor-pointer flex items-center justify-center"
           >
-            <Image src="/WhatsApp.svg" alt="WhatsApp" width={24} height={24} />
+            <Image src="/WhatsApp.svg" alt="WhatsApp" width={24} height={24} style={{ width: "auto", height: "auto" }} />
           </button>
           <button
             onClick={() => shareSocial("twitter")}
             title="Partager sur X (Twitter)"
-            className="p-2.5 rounded-lg bg-white/5 text-foreground hover:bg-white/10 transition-colors border border-white/10 cursor-pointer flex items-center justify-center"
+            className="p-2.5 rounded-lg bg-emerald-50 dark:bg-white/5 text-foreground hover:bg-emerald-100 dark:hover:bg-white/10 transition-colors border border-brand-emerald/20 dark:border-white/10 cursor-pointer flex items-center justify-center"
           >
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -333,7 +333,7 @@ export default function CitationCard() {
         <div className="flex gap-2">
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-green/20 border border-brand-emerald/20 hover:bg-brand-green/40 text-foreground text-sm font-semibold transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-50 dark:bg-brand-green/20 border border-brand-emerald/20 hover:bg-emerald-100 dark:hover:bg-brand-green/40 text-foreground text-sm font-semibold transition-all cursor-pointer"
           >
             {copied ? (
               <>

@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Landmark, Award, Bot, Menu, X, ChevronRight, HelpCircle } from "lucide-react";
+import { Award, Bot, Menu, X, ChevronRight } from "lucide-react";
 import WaveButton from "@/components/wave-button";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,22 +24,22 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b border-brand-emerald/10 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full glass-panel border-b border-brand-emerald/15 backdrop-blur-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2 group z-50">
+        <Link href="/" className="flex items-center gap-2.5 group z-50">
           <Image 
             src="https://res.cloudinary.com/drj3gdpqz/image/upload/v1781306865/Sonko.jpg" 
             alt="Ousmane Sonko" 
-            width={32} 
-            height={32} 
-            className="w-8 h-8 rounded-full border border-brand-gold/60 object-cover shadow-sm group-hover:scale-105 transition-all"
+            width={34} 
+            height={34} 
+            className="w-8.5 h-8.5 rounded-full border border-brand-gold/60 object-cover shadow-sm group-hover:scale-105 transition-all"
           />
           <div className="flex flex-col">
-            <span className="font-extrabold font-display text-base tracking-wider text-white group-hover:text-brand-gold transition-colors">
+            <span className="font-extrabold font-display text-base tracking-wider text-foreground group-hover:text-brand-gold transition-colors">
               SONKO
             </span>
-            <span className="text-[9px] font-mono text-brand-gold tracking-widest leading-none">
+            <span className="text-[9px] font-mono text-brand-gold font-bold tracking-widest leading-none">
               GUIDE DE LA RÉVOLUTION
             </span>
           </div>
@@ -50,7 +51,7 @@ export default function Navbar() {
             <Link 
               key={link.href} 
               href={link.href} 
-              className="text-foreground/75 hover:text-brand-gold transition-colors"
+              className="text-foreground/80 hover:text-brand-gold transition-colors"
             >
               {link.label}
             </Link>
@@ -58,7 +59,10 @@ export default function Navbar() {
         </nav>
 
         {/* Right buttons / Actions */}
-        <div className="flex items-center gap-2 md:gap-3 z-50">
+        <div className="flex items-center gap-2 md:gap-2.5 z-50">
+          {/* Theme Toggle Button */}
+          <ThemeToggle />
+
           {/* Support button - always visible */}
           <WaveButton 
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#1c9ff5] hover:bg-[#1585cf] text-white text-[11px] font-extrabold transition-all active:scale-95 shadow-md shadow-sky-500/15 cursor-pointer"
@@ -76,7 +80,7 @@ export default function Navbar() {
           {/* Quiz Button - Hidden on mobile, visible on sm and up */}
           <Link 
             href="/#grand-quiz"
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-green/35 border border-brand-emerald/20 text-[11px] font-bold text-brand-gold hover:bg-brand-green/60 transition-all cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-brand-green/35 border border-brand-emerald/20 text-[11px] font-bold text-brand-gold hover:bg-emerald-100 dark:hover:bg-brand-green/60 transition-all cursor-pointer"
           >
             <Award className="w-3.5 h-3.5" />
             <span>Défi Quiz</span>
@@ -94,7 +98,7 @@ export default function Navbar() {
           {/* Hamburger Menu Button (visible on mobile / below md) */}
           <button
             onClick={toggleMenu}
-            className="flex md:hidden items-center justify-center p-2 rounded-lg bg-brand-green/20 border border-brand-emerald/15 hover:bg-brand-green/40 text-brand-gold transition-colors focus:outline-none cursor-pointer"
+            className="flex md:hidden items-center justify-center p-2 rounded-lg bg-emerald-50 dark:bg-brand-green/20 border border-brand-emerald/15 hover:bg-emerald-100 dark:hover:bg-brand-green/40 text-brand-gold transition-colors focus:outline-none cursor-pointer"
             aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isOpen ? <X className="w-5 h-5 animate-spin-once" /> : <Menu className="w-5 h-5" />}
@@ -106,6 +110,12 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-brand-dark-base/95 backdrop-blur-xl border-b border-brand-emerald/15 animate-fade-in shadow-2xl z-40">
           <div className="px-4 pt-4 pb-6 space-y-4 font-sans max-h-[calc(100vh-4rem)] overflow-y-auto">
+            {/* Theme switcher toggle on mobile */}
+            <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-50/70 dark:bg-brand-green-dark/20 border border-brand-emerald/10">
+              <span className="text-xs font-bold text-foreground/80">Thème d&apos;affichage</span>
+              <ThemeToggle showLabel />
+            </div>
+
             {/* Nav links */}
             <div className="flex flex-col gap-1.5">
               {navLinks.map((link) => (
@@ -113,7 +123,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between p-3 rounded-xl bg-brand-green-dark/10 border border-brand-emerald/5 hover:border-brand-gold/25 hover:bg-brand-green/20 text-sm font-semibold text-foreground/80 hover:text-white transition-all"
+                  className="flex items-center justify-between p-3 rounded-xl bg-emerald-50/50 dark:bg-brand-green-dark/10 border border-brand-emerald/10 hover:border-brand-gold/35 hover:bg-emerald-100/60 dark:hover:bg-brand-green/20 text-sm font-semibold text-foreground/85 hover:text-foreground transition-all"
                 >
                   <span>{link.label}</span>
                   <ChevronRight className="w-4 h-4 text-brand-gold/60" />
@@ -127,7 +137,7 @@ export default function Navbar() {
               <Link
                 href="/#grand-quiz"
                 onClick={() => setIsOpen(false)}
-                className="flex sm:hidden items-center justify-between p-3 rounded-xl bg-brand-green-dark/25 border border-brand-emerald/15 text-sm font-bold text-brand-gold hover:bg-brand-green/40 transition-all"
+                className="flex sm:hidden items-center justify-between p-3 rounded-xl bg-emerald-50/60 dark:bg-brand-green-dark/25 border border-brand-emerald/15 text-sm font-bold text-brand-gold hover:bg-emerald-100 dark:hover:bg-brand-green/40 transition-all"
               >
                 <div className="flex items-center gap-2">
                   <Award className="w-4 h-4 text-brand-gold" />
